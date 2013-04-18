@@ -847,30 +847,30 @@ function showWind(chartName, forecast)
                 alternateGridColor: null,
                 plotBands: [{ // Light air
                     from: 0.3,
-                    to: 1.5,
+                    to: 1.6,
                     color: 'rgba(68, 170, 213, 0.1)',
                     label: {
-                        text: 'Light air',
+                        text: '1 bft',
                         style: {
                             color: '#606060'
                         }
                     }
                 }, { // Light breeze
-                    from: 1.5,
-                    to: 3.3,
+                    from: 1.6,
+                    to: 3.4,
                     color: 'rgba(0, 0, 0, 0)',
                     label: {
-                        text: 'Light breeze',
+                        text: '2 bft',
                         style: {
                             color: '#606060'
                         }
                     }
                 }, { // Gentle breeze
-                    from: 3.3,
+                    from: 3.4,
                     to: 5.5,
                     color: 'rgba(68, 170, 213, 0.1)',
                     label: {
-                        text: 'Gentle breeze',
+                        text: '3 bft',
                         style: {
                             color: '#606060'
                         }
@@ -880,7 +880,7 @@ function showWind(chartName, forecast)
                     to: 8,
                     color: 'rgba(0, 0, 0, 0)',
                     label: {
-                        text: 'Moderate breeze',
+                        text: '4 bft',
                         style: {
                             color: '#606060'
                         }
@@ -890,7 +890,7 @@ function showWind(chartName, forecast)
                     to: 11,
                     color: 'rgba(68, 170, 213, 0.1)',
                     label: {
-                        text: 'Fresh breeze',
+                        text: '5 bft',
                         style: {
                             color: '#606060'
                         }
@@ -900,17 +900,27 @@ function showWind(chartName, forecast)
                     to: 14,
                     color: 'rgba(0, 0, 0, 0)',
                     label: {
-                        text: 'Strong breeze',
+                        text: '6 bft',
                         style: {
                             color: '#606060'
                         }
                     }
                 }, { // High wind
                     from: 14,
-                    to: 15,
+                    to: 17,
                     color: 'rgba(68, 170, 213, 0.1)',
                     label: {
-                        text: 'High wind',
+                        text: '7 bft',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Gale
+                    from: 17,
+                    to: 21,
+                    color: 'rgba(68, 170, 213, 0.1)',
+                    label: {
+                        text: '8 bft',
                         style: {
                             color: '#606060'
                         }
