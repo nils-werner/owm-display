@@ -49,25 +49,25 @@ function showBarsDouble(chartName, forecast)
 
 	window.chart = new Highcharts.Chart({
 	
-	    chart: {
-	        renderTo: chartName,
-	        type: 'columnrange',
-	        //inverted: true
-	    },
+		chart: {
+			renderTo: chartName,
+			type: 'columnrange',
+			//inverted: true
+		},
 		credits: {
 			enabled: false
 		},
-	    
-	    title: {
-	        text: 'Temperature variation by hours'
-	    },	    
-	    subtitle: {
-	        text: null
-	    },
+		
+		title: {
+			text: 'Temperature variation by hours'
+		},	    
+		subtitle: {
+			text: null
+		},
 	
-	    xAxis: {
-	        type: 'datetime',
-	        categories:  categories,
+		xAxis: {
+			type: 'datetime',
+			categories:  categories,
 		tickInterval: 8,
 		labels: {
 			formatter: function() {
@@ -75,46 +75,46 @@ function showBarsDouble(chartName, forecast)
 			}
 		}
 
-	    },
-	    
-	    yAxis: {
-	        title: {
-	            text: 'Temperature ( °C )'
-	        }
-	    },
+		},
+		
+		yAxis: {
+			title: {
+				text: 'Temperature ( °C )'
+			}
+		},
 	
-	    tooltip: {
-	        valueSuffix: '°C'
-	    },
-	    
+		tooltip: {
+			valueSuffix: '°C'
+		},
+		
 /*	    plotOptions: {
-	        columnrange: {
-	        	dataLabels: {
-	        		enabled: true,
-	        		formatter: function () {
-	        			return this.y + '°C';
-	        		},
-	        		y: 0
-	        	}
-	        }
-	    }, */
-	    
-	    legend: {
-	        enabled: false
-	    },
+			columnrange: {
+				dataLabels: {
+					enabled: true,
+					formatter: function () {
+						return this.y + '°C';
+					},
+					y: 0
+				}
+			}
+		}, */
+		
+		legend: {
+			enabled: false
+		},
 	
-	    series: [{
-	        name: 'Temperatures',
-	        data:  tmp_min_max,
-	    },{
-	        name: 'Temperatures',
-	        data:  tmp,
+		series: [{
+			name: 'Temperatures',
+			data:  tmp_min_max,
+		},{
+			name: 'Temperatures',
+			data:  tmp,
 		type: 'spline'
 
-	    }]
+		}]
 	
 	});
-    
+	
 }
 
 function showBars(chartName, forecast)
@@ -137,60 +137,60 @@ forecast[i]['dt'] * 1000,
 
 	window.chart = new Highcharts.Chart({
 	
-	    chart: {
-	        renderTo: chartName,
-	        type: 'columnrange',
-	        //inverted: true
-	    },
-	    credits: {
+		chart: {
+			renderTo: chartName,
+			type: 'columnrange',
+			//inverted: true
+		},
+		credits: {
 			enabled: false
 		},
-	    
-	    title: {
-	        text: 'Temperature variation by hours'
-	    },	    
-	    subtitle: {
-	        text: null
-	    },
+		
+		title: {
+			text: 'Temperature variation by hours'
+		},	    
+		subtitle: {
+			text: null
+		},
 	
-	    xAxis: {
-	        type: 'datetime',
+		xAxis: {
+			type: 'datetime',
 //	        categories:  categories
-	    },
-	    
-	    yAxis: {
-	        title: {
-	            text: 'Temperature ( °C )'
-	        }
-	    },
+		},
+		
+		yAxis: {
+			title: {
+				text: 'Temperature ( °C )'
+			}
+		},
 	
-	    tooltip: {
-	        valueSuffix: '°C'
-	    },
-	    
+		tooltip: {
+			valueSuffix: '°C'
+		},
+		
 /*	    plotOptions: {
-	        columnrange: {
-	        	dataLabels: {
-	        		enabled: true,
-	        		formatter: function () {
-	        			return this.y + '°C';
-	        		},
-	        		y: 0
-	        	}
-	        }
-	    }, */
-	    
-	    legend: {
-	        enabled: false
-	    },
+			columnrange: {
+				dataLabels: {
+					enabled: true,
+					formatter: function () {
+						return this.y + '°C';
+					},
+					y: 0
+				}
+			}
+		}, */
+		
+		legend: {
+			enabled: false
+		},
 	
-	    series: [{
-	        name: 'Temperatures',
-	        data:  tmp
-	    }]
+		series: [{
+			name: 'Temperatures',
+			data:  tmp
+		}]
 	
 	});
-    
+	
 }
 
 function showPolarSpeed(chartName, forecast)
@@ -208,7 +208,7 @@ series:[
 	{name:"0.5-2 m/s", data:[1.78, 1.09, 0.82, 1.22, 2.2, 2.01, 3.06, 3.42, 4.74, 4.14, 4.01, 2.66, 1.71, 2.4, 4.28, 5]},
 	{name:"&lt; 0.5 m/s", data:[1.81, 0.62, 0.82, 0.59, 0.62, 1.22, 1.61, 2.04, 2.66, 2.96, 2.53, 1.97, 1.64, 1.32, 1.58, 1.51]}
 ]};
-    			
+				
 var n = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW']; 
 
 
@@ -262,68 +262,68 @@ xAxis:{
 series: tmp
 };
 
-    		// Create the chart
-    		window.chart = new Highcharts.Chart(Highcharts.merge(options, {
-		        
-			    chart: {
-			        renderTo: chartName,
-			        polar: true,
-			        type: 'column'
-			    },
+			// Create the chart
+			window.chart = new Highcharts.Chart(Highcharts.merge(options, {
+				
+				chart: {
+					renderTo: chartName,
+					polar: true,
+					type: 'column'
+				},
 				credits: {
 					enabled: false
 				},
-			    
-			    title: {
-			        text: 'Wind rose'
-			    },
-			    
-			    subtitle: {
-			    	text: 'Source: <a href="http://openweathermap.org">openweathermap.org</a>'
-			    },
-			    
-			    pane: {
-			    	size: '85%'
-			    },
-			    
-			    legend: {
-			    	reversed: true,
-			    	align: 'right',
-			    	verticalAlign: 'top',
-			    	y: 100,
-			    	layout: 'vertical'
-			    },
-			    
-			    xAxis: {
-			    	tickmarkPlacement: 'on'
-			    },
-			        
-			    yAxis: {
-			        min: 0,
-			        endOnTick: false,
-			        showLastLabel: true,
-			        title: {
-			        	text: 'Frequency (%)'
-			        },
-			        labels: {
-			        	formatter: function () {
-			        		return this.value + '%';
-			        	}
-			        }
-			    },
-			    
-			    tooltip: {
-			    	valueSuffix: '%'
-			    },
-			        
-			    plotOptions: {
-			        series: {
-			        	stacking: 'normal',
-			        	shadow: false,
-			        	groupPadding: 0,
-			        	pointPlacement: 'on'
-			        }
-			    }
+				
+				title: {
+					text: 'Wind rose'
+				},
+				
+				subtitle: {
+					text: 'Source: <a href="http://openweathermap.org">openweathermap.org</a>'
+				},
+				
+				pane: {
+					size: '85%'
+				},
+				
+				legend: {
+					reversed: true,
+					align: 'right',
+					verticalAlign: 'top',
+					y: 100,
+					layout: 'vertical'
+				},
+				
+				xAxis: {
+					tickmarkPlacement: 'on'
+				},
+					
+				yAxis: {
+					min: 0,
+					endOnTick: false,
+					showLastLabel: true,
+					title: {
+						text: 'Frequency (%)'
+					},
+					labels: {
+						formatter: function () {
+							return this.value + '%';
+						}
+					}
+				},
+				
+				tooltip: {
+					valueSuffix: '%'
+				},
+					
+				plotOptions: {
+					series: {
+						stacking: 'normal',
+						shadow: false,
+						groupPadding: 0,
+						pointPlacement: 'on'
+					}
+				}
 			}));
 
 
@@ -382,63 +382,63 @@ function getDeg(d) {
 //console.log(n);
 //console.log(tmp);
 
-    var chart = new Highcharts.Chart({
-        
-	    chart: {
-	        renderTo: chartName,
-	        polar: true
-	    },
+	var chart = new Highcharts.Chart({
+		
+		chart: {
+			renderTo: chartName,
+			polar: true
+		},
 		credits: {
 			enabled: false
 		},
-	    
-	    title: {
-	        text: 'Wind direction'
-	    },
-	    
-	    pane: {
-	        startAngle: 0,
-	        endAngle: 360
-	    },
+		
+		title: {
+			text: 'Wind direction'
+		},
+		
+		pane: {
+			startAngle: 0,
+			endAngle: 360
+		},
 	
-	    xAxis: {
+		xAxis: {
 //		categories: n,
-	        tickInterval: 24,
-	        min: 0,
-	        max: 360,
-	        labels: {
-	        	formatter: function () {
-	        		return this.value + '°';
-	        	}
-	        }
-	    },
-	        
-	    yAxis: {
-	        min: 0
-	    },
-	    
-	    plotOptions: {
-	        series: {
-	            pointStart: 0,
-	            pointInterval: 24
-	        },
-	        column: {
-	            pointPadding: 0,
-	            groupPadding: 0
-	        }
-	    },
+			tickInterval: 24,
+			min: 0,
+			max: 360,
+			labels: {
+				formatter: function () {
+					return this.value + '°';
+				}
+			}
+		},
+			
+		yAxis: {
+			min: 0
+		},
+		
+		plotOptions: {
+			series: {
+				pointStart: 0,
+				pointInterval: 24
+			},
+			column: {
+				pointPadding: 0,
+				groupPadding: 0
+			}
+		},
 	
-	    series: [{
-	        type: 'column',
-	        name: 'Speed',
-	        data: sSpeed,
-	        pointPlacement: 'between'
-	    }, {
-	        type: 'line',
-	        name: 'Gust',
-	        data: sGust,
-	        pointPlacement: 'between'
-	    }]
+		series: [{
+			type: 'column',
+			name: 'Speed',
+			data: sSpeed,
+			pointPlacement: 'between'
+		}, {
+			type: 'line',
+			name: 'Gust',
+			data: sGust,
+			pointPlacement: 'between'
+		}]
 	});
 
 }
@@ -446,88 +446,88 @@ function getDeg(d) {
 
 function chartDoublePress(chartName, forecast)
 {
-    var chart = new Highcharts.Chart({
+	var chart = new Highcharts.Chart({
 	
-	    chart: {
-	        renderTo: chartName,
-	        type: 'gauge',
-	        alignTicks: false,
-	        plotBackgroundColor: null,
-	        plotBackgroundImage: null,
-	        plotBorderWidth: 0,
-	        plotShadow: false
-	    },
+		chart: {
+			renderTo: chartName,
+			type: 'gauge',
+			alignTicks: false,
+			plotBackgroundColor: null,
+			plotBackgroundImage: null,
+			plotBorderWidth: 0,
+			plotShadow: false
+		},
 		credits: {
 			enabled: false
 		},
 	
-	    title: {
-	        text: 'Pressure'
-	    },
-	    
-	    pane: {
-	        startAngle: -150,
-	        endAngle: 150
-	    },	        
+		title: {
+			text: 'Pressure'
+		},
+		
+		pane: {
+			startAngle: -150,
+			endAngle: 150
+		},	        
 	
-	    yAxis: [{
-	        min: 980,
-	        max: 1050,
-	        lineColor: '#339',
-	        tickColor: '#339',
-	        minorTickColor: '#339',
-	        offset: -25,
-	        lineWidth: 2,
-	        labels: {
-	            distance: -20,
-	            rotation: 'auto'
-	        },
-	        tickLength: 5,
-	        minorTickLength: 5,
-	        endOnTick: false
-	    }, {
-	        min: 735,
-	        max: 787,
-	        tickPosition: 'outside',
-	        lineColor: '#933',
-	        lineWidth: 2,
-	        minorTickPosition: 'outside',
-	        tickColor: '#933',
-	        minorTickColor: '#933',
-	        tickLength: 5,
-	        minorTickLength: 5,
-	        labels: {
-	            distance: 12,
-	            rotation: 'auto'
-	        },
-	        offset: -20,
-	        endOnTick: false
-	    }],	
-	    series: [{
-	        name: 'Speed',
-	        data: [1015],
-	        dataLabels: {
-	            formatter: function () {
-	                var pa = this.y,
-	                    mm = Math.round(pa / 1.3333);
-	                    inh = Math.round(pa / 33.8653);
-	                return '<span style="color:#339">'+ pa + ' hPa</span><br>' +
-	                    '<span style="color:#933">' + mm + ' mmHg</span>'; 
-	            },
-	            backgroundColor: {
-	                linearGradient: {
-	                    x1: 0,
-	                    y1: 0,
-	                    x2: 0,
-	                    y2: 1
-	                },
-	                stops: [
-	                    [0, '#DDD'],
-	                    [1, '#FFF']
-	                ]
-	            }
-	        }
-	    }]
+		yAxis: [{
+			min: 980,
+			max: 1050,
+			lineColor: '#339',
+			tickColor: '#339',
+			minorTickColor: '#339',
+			offset: -25,
+			lineWidth: 2,
+			labels: {
+				distance: -20,
+				rotation: 'auto'
+			},
+			tickLength: 5,
+			minorTickLength: 5,
+			endOnTick: false
+		}, {
+			min: 735,
+			max: 787,
+			tickPosition: 'outside',
+			lineColor: '#933',
+			lineWidth: 2,
+			minorTickPosition: 'outside',
+			tickColor: '#933',
+			minorTickColor: '#933',
+			tickLength: 5,
+			minorTickLength: 5,
+			labels: {
+				distance: 12,
+				rotation: 'auto'
+			},
+			offset: -20,
+			endOnTick: false
+		}],	
+		series: [{
+			name: 'Speed',
+			data: [1015],
+			dataLabels: {
+				formatter: function () {
+					var pa = this.y,
+						mm = Math.round(pa / 1.3333);
+						inh = Math.round(pa / 33.8653);
+					return '<span style="color:#339">'+ pa + ' hPa</span><br>' +
+						'<span style="color:#933">' + mm + ' mmHg</span>'; 
+				},
+				backgroundColor: {
+					linearGradient: {
+						x1: 0,
+						y1: 0,
+						x2: 0,
+						y2: 1
+					},
+					stops: [
+						[0, '#DDD'],
+						[1, '#FFF']
+					]
+				}
+			}
+		}]
 	
 	}
 	);
@@ -536,102 +536,102 @@ function chartDoublePress(chartName, forecast)
 
 function chartSpeed(chartName, forecast)
 {
-    var chart = new Highcharts.Chart({
+	var chart = new Highcharts.Chart({
 	
-	    chart: {
-	        renderTo: chartName,
-	        type: 'gauge',
-	        plotBackgroundColor: null,
-	        plotBackgroundImage: null,
-	        plotBorderWidth: 0,
-	        plotShadow: false
-	    },
+		chart: {
+			renderTo: chartName,
+			type: 'gauge',
+			plotBackgroundColor: null,
+			plotBackgroundImage: null,
+			plotBorderWidth: 0,
+			plotShadow: false
+		},
 		credits: {
 			enabled: false
 		},
-	    
-	    title: {
-	        text: 'Pressure'
-	    },
-	    
-	    pane: {
-	        startAngle: -150,
-	        endAngle: 150,
-	        background: [{
-	            backgroundColor: {
-	                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-	                stops: [
-	                    [0, '#FFF'],
-	                    [1, '#333']
-	                ]
-	            },
-	            borderWidth: 0,
-	            outerRadius: '109%'
-	        }, {
-	            backgroundColor: {
-	                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-	                stops: [
-	                    [0, '#333'],
-	                    [1, '#FFF']
-	                ]
-	            },
-	            borderWidth: 1,
-	            outerRadius: '107%'
-	        }, {
-	            // default background
-	        }, {
-	            backgroundColor: '#DDD',
-	            borderWidth: 0,
-	            outerRadius: '105%',
-	            innerRadius: '103%'
-	        }]
-	    },
-	       
-	    // the value axis
-	    yAxis: {
-	        min: 950,
-	        max: 1050,
-	        
-	        minorTickInterval: 'auto',
-	        minorTickWidth: 1,
-	        minorTickLength: 10,
-	        minorTickPosition: 'inside',
-	        minorTickColor: '#666',
+		
+		title: {
+			text: 'Pressure'
+		},
+		
+		pane: {
+			startAngle: -150,
+			endAngle: 150,
+			background: [{
+				backgroundColor: {
+					linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+					stops: [
+						[0, '#FFF'],
+						[1, '#333']
+					]
+				},
+				borderWidth: 0,
+				outerRadius: '109%'
+			}, {
+				backgroundColor: {
+					linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+					stops: [
+						[0, '#333'],
+						[1, '#FFF']
+					]
+				},
+				borderWidth: 1,
+				outerRadius: '107%'
+			}, {
+				// default background
+			}, {
+				backgroundColor: '#DDD',
+				borderWidth: 0,
+				outerRadius: '105%',
+				innerRadius: '103%'
+			}]
+		},
+		   
+		// the value axis
+		yAxis: {
+			min: 950,
+			max: 1050,
+			
+			minorTickInterval: 'auto',
+			minorTickWidth: 1,
+			minorTickLength: 10,
+			minorTickPosition: 'inside',
+			minorTickColor: '#666',
 	
-	        tickPixelInterval: 30,
-	        tickWidth: 2,
-	        tickPosition: 'inside',
-	        tickLength: 10,
-	        tickColor: '#666',
-	        labels: {
-	            step: 2,
-	            rotation: 'auto'
-	        },
-	        title: {
-	            text: 'hPa'
-	        },
-	        plotBands: [{
-	            from: 950,
-	            to: 990,
-	            color: '#55BF3B' // green
-	        }, {
-	            from: 990,
-	            to: 1030,
-	            color: '#DDDF0D' // yellow
-	        }, {
-	            from: 1030,
-	            to: 1050,
-	            color: '#DF5353' // red
-	        }]        
-	    },
+			tickPixelInterval: 30,
+			tickWidth: 2,
+			tickPosition: 'inside',
+			tickLength: 10,
+			tickColor: '#666',
+			labels: {
+				step: 2,
+				rotation: 'auto'
+			},
+			title: {
+				text: 'hPa'
+			},
+			plotBands: [{
+				from: 950,
+				to: 990,
+				color: '#55BF3B' // green
+			}, {
+				from: 990,
+				to: 1030,
+				color: '#DDDF0D' // yellow
+			}, {
+				from: 1030,
+				to: 1050,
+				color: '#DF5353' // red
+			}]        
+		},
 	
-	    series: [{
-	        name: 'Speed',
-	        data: [1020],
-	        tooltip: {
-	            valueSuffix: ' km/h'
-	        }
-	    }]
+		series: [{
+			name: 'Speed',
+			data: [1020],
+			tooltip: {
+				valueSuffix: ' km/h'
+			}
+		}]
 	
 	}
 	);
@@ -652,44 +652,44 @@ function showTempMinMax(chartName, forecast)
 		)
 	}
 //console.log(tmp);
-    	chart = new Highcharts.Chart({
-    	
-		    chart: {
-		        renderTo: chartName,
-		        type: 'arearange'
-		    },
+		chart = new Highcharts.Chart({
+		
+			chart: {
+				renderTo: chartName,
+				type: 'arearange'
+			},
 			credits: {
 				enabled: false
 			},
-		    
-		    title: {
-		        text: 'Temperature variation by day'
-		    },
+			
+			title: {
+				text: 'Temperature variation by day'
+			},
 		
-		    xAxis: {
-		        type: 'datetime'
-		    },
-		    
-		    yAxis: {
-		        title: {
-		            text: null
-		        }
-		    },
+			xAxis: {
+				type: 'datetime'
+			},
+			
+			yAxis: {
+				title: {
+					text: null
+				}
+			},
 		
-		    tooltip: {
-		        crosshairs: true,
-		        shared: true,
-		        valueSuffix: '°C'
-		    },
-		    
-		    legend: {
-		        enabled: false
-		    },
+			tooltip: {
+				crosshairs: true,
+				shared: true,
+				valueSuffix: '°C'
+			},
+			
+			legend: {
+				enabled: false
+			},
 		
-		    series: [{
-		        name: 'Temperatures',
-		        data: tmp
-		    }]
+			series: [{
+				name: 'Temperatures',
+				data: tmp
+			}]
 		
 		});
 }
@@ -711,11 +711,11 @@ for(var i = 0; i <  forecast.length; i ++){
 
 			var url = 'http://openweathermap.org/img/w/' + forecast[i]['weather'][0]['icon'] + '.png';
 			t = {
-		            y: t,
-		            marker: {
-		                symbol: 'url('+url+')',
-		            }
-		        };
+					y: t,
+					marker: {
+						symbol: 'url('+url+')',
+					}
+				};
 
 		}
 		j=0;
@@ -739,7 +739,7 @@ chart = new Highcharts.Chart({
 			enabled: false
 		},
 
-        title: { text: 'Temperature during two days' },
+		title: { text: 'Temperature during two days' },
 
 	yAxis: { title: { text: 'Temperature' }	},
 
@@ -784,7 +784,7 @@ chart = new Highcharts.Chart({
 			enabled: false
 		},
 
-        title: { text: 'Temperature during two days' },
+		title: { text: 'Temperature during two days' },
 
 	yAxis: { title: { text: 'Temperature' }	},
 
@@ -827,150 +827,150 @@ function showWind(chartName, forecast)
 		credits: {
 			enabled: false
 		},
-            title: {
-                text: 'Wind speed during two days'
-            },
-            subtitle: {
-                text: 'Wind speed'
-            },
-            xAxis: {
+			title: {
+				text: 'Wind speed during two days'
+			},
+			subtitle: {
+				text: 'Wind speed'
+			},
+			xAxis: {
 			type: 'datetime',
 //			categories: tm
-            },
-            yAxis: {
-                title: {
-                    text: 'Wind speed (m/s)'
-                },
-                min: 0,
-                minorGridLineWidth: 0,
-                gridLineWidth: 0,
-                alternateGridColor: null,
-                plotBands: [{ // Light air
-                    from: 0.3,
-                    to: 1.6,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: '1 bft',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Light breeze
-                    from: 1.6,
-                    to: 3.4,
-                    color: 'rgba(0, 0, 0, 0)',
-                    label: {
-                        text: '2 bft',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Gentle breeze
-                    from: 3.4,
-                    to: 5.5,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: '3 bft',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Moderate breeze
-                    from: 5.5,
-                    to: 8,
-                    color: 'rgba(0, 0, 0, 0)',
-                    label: {
-                        text: '4 bft',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Fresh breeze
-                    from: 8,
-                    to: 11,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: '5 bft',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Strong breeze
-                    from: 11,
-                    to: 14,
-                    color: 'rgba(0, 0, 0, 0)',
-                    label: {
-                        text: '6 bft',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // High wind
-                    from: 14,
-                    to: 17,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: '7 bft',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }, { // Gale
-                    from: 17,
-                    to: 21,
-                    color: 'rgba(68, 170, 213, 0.1)',
-                    label: {
-                        text: '8 bft',
-                        style: {
-                            color: '#606060'
-                        }
-                    }
-                }]
-            },
-            tooltip: {
-                formatter: function() {
-                        return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y +' m/s';
-                }
-            },
-            plotOptions: {
-                spline: {
-                    lineWidth: 4,
-                    states: {
-                        hover: {
-                            lineWidth: 5
-                        }
-                    },
-                    marker: {
-                        enabled: false,
-                        states: {
-                            hover: {
-                                enabled: true,
-                                symbol: 'circle',
-                                radius: 5,
-                                lineWidth: 1
-                            }
-                        }
-                    },
+			},
+			yAxis: {
+				title: {
+					text: 'Wind speed (m/s)'
+				},
+				min: 0,
+				minorGridLineWidth: 0,
+				gridLineWidth: 0,
+				alternateGridColor: null,
+				plotBands: [{ // Light air
+					from: 0.3,
+					to: 1.6,
+					color: 'rgba(68, 170, 213, 0.1)',
+					label: {
+						text: '1 bft',
+						style: {
+							color: '#606060'
+						}
+					}
+				}, { // Light breeze
+					from: 1.6,
+					to: 3.4,
+					color: 'rgba(0, 0, 0, 0)',
+					label: {
+						text: '2 bft',
+						style: {
+							color: '#606060'
+						}
+					}
+				}, { // Gentle breeze
+					from: 3.4,
+					to: 5.5,
+					color: 'rgba(68, 170, 213, 0.1)',
+					label: {
+						text: '3 bft',
+						style: {
+							color: '#606060'
+						}
+					}
+				}, { // Moderate breeze
+					from: 5.5,
+					to: 8,
+					color: 'rgba(0, 0, 0, 0)',
+					label: {
+						text: '4 bft',
+						style: {
+							color: '#606060'
+						}
+					}
+				}, { // Fresh breeze
+					from: 8,
+					to: 11,
+					color: 'rgba(68, 170, 213, 0.1)',
+					label: {
+						text: '5 bft',
+						style: {
+							color: '#606060'
+						}
+					}
+				}, { // Strong breeze
+					from: 11,
+					to: 14,
+					color: 'rgba(0, 0, 0, 0)',
+					label: {
+						text: '6 bft',
+						style: {
+							color: '#606060'
+						}
+					}
+				}, { // High wind
+					from: 14,
+					to: 17,
+					color: 'rgba(68, 170, 213, 0.1)',
+					label: {
+						text: '7 bft',
+						style: {
+							color: '#606060'
+						}
+					}
+				}, { // Gale
+					from: 17,
+					to: 21,
+					color: 'rgba(68, 170, 213, 0.1)',
+					label: {
+						text: '8 bft',
+						style: {
+							color: '#606060'
+						}
+					}
+				}]
+			},
+			tooltip: {
+				formatter: function() {
+						return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y +' m/s';
+				}
+			},
+			plotOptions: {
+				spline: {
+					lineWidth: 4,
+					states: {
+						hover: {
+							lineWidth: 5
+						}
+					},
+					marker: {
+						enabled: false,
+						states: {
+							hover: {
+								enabled: true,
+								symbol: 'circle',
+								radius: 5,
+								lineWidth: 1
+							}
+						}
+					},
 
-                    pointInterval: 3600000, // one hour
-                    pointStart: tm[0]
+					pointInterval: 3600000, // one hour
+					pointStart: tm[0]
 
-                }
-            },
+				}
+			},
 
 
 		series: [{
-			    name: 'Wind Speed',
+				name: 'Wind Speed',
 			type: 'spline',
-			    data: wind
+				data: wind
 		}
 		],
 
 	navigation: {
-                menuItemStyle: {
-                    fontSize: '10px'
-                }
-            }
+				menuItemStyle: {
+					fontSize: '10px'
+				}
+			}
 
 
 	});
@@ -1016,7 +1016,7 @@ function showTemp(chartName, forecast)
 			categories: tm,
 			tickInterval: 8,
 			labels: {
-			    formatter: function() {
+				formatter: function() {
 					if( Highcharts.dateFormat('%H', this.value) == '00' )
 						return Highcharts.dateFormat('%e. %b', this.value);
 					return Highcharts.dateFormat('%H:00', this.value);
@@ -1040,28 +1040,28 @@ function showTemp(chartName, forecast)
 				color: '#808080'
 			}]
 		},
-            plotOptions: {
-                spline: {
-                    lineWidth: 4,
-                    states: {
-                        hover: {
-                            lineWidth: 5
-                        }
-                    },
-                    marker: {
-                        enabled: false,
-                        states: {
-                            hover: {
-                                enabled: true,
-                                symbol: 'circle',
-                                radius: 5,
-                                lineWidth: 1
-                            }
-                        }
-                    }
+			plotOptions: {
+				spline: {
+					lineWidth: 4,
+					states: {
+						hover: {
+							lineWidth: 5
+						}
+					},
+					marker: {
+						enabled: false,
+						states: {
+							hover: {
+								enabled: true,
+								symbol: 'circle',
+								radius: 5,
+								lineWidth: 1
+							}
+						}
+					}
 
-                }
-            },
+				}
+			},
 
 		series: [{
 			name: 'Temperature min',
