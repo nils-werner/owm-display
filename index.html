@@ -1,0 +1,99 @@
+<html>
+<head>
+	<title>Open Weather Map weather Chart</title>
+	<meta charset="utf-8">
+
+	<script src="http://code.jquery.com/jquery-1.7.min.js" ></script>
+
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/highcharts-more.js"></script>
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="js/charts.js"></script>
+</head>
+
+<body>
+	<div class="row">
+		<div class="span6">
+			<div id="chart-winddir" style="width: 500px; height: 400px; margin: 0 auto" ></div>
+		</div>
+
+		<div class="span6">
+			<div id="chart-press" style="width: 350px; height: 350px; margin: 0 auto" ></div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span12">
+			<div id="chart-temp" style="width: 800px; height: 400px; margin: 0 auto" ></div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span12">
+			<div id="chart-wind" style="width: 800px; height: 400px; margin: 0 auto" ></div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+var time_zone = 1000 * (new Date().getTimezoneOffset())*(-60);
+
+jQuery(document).ready(function() {
+	var curd = new Date();
+	var d = new Date(curd.getFullYear(), curd.getMonth(), curd.getDate());
+	var s = Math.round(( d.getTime() ) /1000) - 3600*6;
+	var e = Math.round(( d.getTime() ) /1000) + 3600*72;
+	var jsonurl = "http://openweathermap.org/data/2.1/history/city/?id=2853260&start="+s+"&end="+e;
+	$.get(jsonurl, getData).error(errorHandler);
+});
+
+
+function getData(JSONtext)
+{
+	JSONobject = ParseJson(JSONtext);
+	data = JSONobject.list;
+	showPolarSpeed('chart-winddir', data);
+//	showPolar('chart-winddir', data);
+	showTempMinMax('chart-temp', data);
+	chartDoublePress('chart-press', data);
+//	chartSpeed('chart-wind', data);
+//	showIconsChart('chart-wind', data);	
+//	showSimpleChart('chart-wind', data);
+//	showBarsDouble('chart-temp', data);
+	showWind('chart-wind', data);		
+}
+
+function  errorHandler(e)
+{
+	console.log(e.status +' '+e.statusText);
+}
+
+
+function ParseJson(JSONtext)
+{
+	try{
+		JSONobject = JSON.parse(JSONtext); 
+	}catch(e){
+		ShowAlertMess('Ошибка JSON');
+		return;
+	}
+
+	if(JSONobject.cod != '200') {
+		ShowAlertMess('Error '+ JSONobject.cod + ' ('+ JSONobject.message +')');
+		return;
+	}
+	var mes = JSONobject.cod;
+	if(JSONobject.calctime)
+		mes = mes + ' ' + JSONobject.calctime;
+	if(JSONobject.message)
+		mes = mes + ' ' + JSONobject.message;
+	return JSONobject;
+}
+
+
+</script>
+
+
+</html>
