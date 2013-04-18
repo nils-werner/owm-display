@@ -16,23 +16,23 @@
 <body>
 	<div class="row">
 		<div class="span6">
-			<div id="chart-winddir" style="width: 500px; height: 400px; margin: 0 auto" ></div>
+			<div id="chart-winddir" style="width: 300px; height: 300px; margin: 0 auto" ></div>
 		</div>
 
 		<div class="span6">
-			<div id="chart-press" style="width: 350px; height: 350px; margin: 0 auto" ></div>
+			<div id="chart-press" style="width: 300px; height: 300px; margin: 0 auto" ></div>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="span12">
-			<div id="chart-temp" style="width: 800px; height: 400px; margin: 0 auto" ></div>
+			<div id="chart-temp" style="width: 800px; height: 300px; margin: 0 auto" ></div>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="span12">
-			<div id="chart-wind" style="width: 800px; height: 400px; margin: 0 auto" ></div>
+			<div id="chart-wind" style="width: 800px; height: 300px; margin: 0 auto" ></div>
 		</div>
 	</div>
 </body>
@@ -43,9 +43,9 @@ var time_zone = 1000 * (new Date().getTimezoneOffset())*(-60);
 jQuery(document).ready(function() {
 	var curd = new Date();
 	var d = new Date(curd.getFullYear(), curd.getMonth(), curd.getDate());
-	var s = Math.round(( d.getTime() ) /1000) - 3600*6;
-	var e = Math.round(( d.getTime() ) /1000) + 3600*72;
-	var jsonurl = "http://openweathermap.org/data/2.1/history/city/?id=2853260&start="+s+"&end="+e;
+	var s = Math.round(( d.getTime() ) /1000) - 3600*-1;
+	var e = Math.round(( d.getTime() ) /1000) + 3600*120;
+	var jsonurl = "http://openweathermap.org/data/2.1/history/city/?id=2853260&cnt=120&start="+s+"&end="+e;
 	$.get(jsonurl, getData).error(errorHandler);
 });
 

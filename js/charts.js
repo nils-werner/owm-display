@@ -59,7 +59,7 @@ function showBarsDouble(chartName, forecast)
 		},
 		
 		title: {
-			text: 'Temperature variation by hours'
+			text: 'Temperatur'
 		},	    
 		subtitle: {
 			text: null
@@ -69,6 +69,11 @@ function showBarsDouble(chartName, forecast)
 			type: 'datetime',
 			categories:  categories,
 		tickInterval: 8,
+			plotLines: [{
+				color: '#FF0000',
+				width: 2,
+				value: +new Date + time_zone
+			}],
 		labels: {
 			formatter: function() {
 				return Highcharts.dateFormat('%H:00', this.value);
@@ -147,7 +152,7 @@ forecast[i]['dt'] * 1000,
 		},
 		
 		title: {
-			text: 'Temperature variation by hours'
+			text: 'Temperatur'
 		},	    
 		subtitle: {
 			text: null
@@ -155,7 +160,11 @@ forecast[i]['dt'] * 1000,
 	
 		xAxis: {
 			type: 'datetime',
-//	        categories:  categories
+			plotLines: [{
+				color: '#FF0000',
+				width: 2,
+				value: +new Date + time_zone
+			}]
 		},
 		
 		yAxis: {
@@ -667,7 +676,12 @@ function showTempMinMax(chartName, forecast)
 			},
 		
 			xAxis: {
-				type: 'datetime'
+				type: 'datetime',
+				plotLines: [{
+					color: '#FF0000',
+					width: 2,
+					value: +new Date + time_zone
+				}]
 			},
 			
 			yAxis: {
@@ -739,7 +753,7 @@ chart = new Highcharts.Chart({
 			enabled: false
 		},
 
-		title: { text: 'Temperature during two days' },
+		title: { text: 'Temperatur' },
 
 	yAxis: { title: { text: 'Temperature' }	},
 
@@ -784,9 +798,9 @@ chart = new Highcharts.Chart({
 			enabled: false
 		},
 
-		title: { text: 'Temperature during two days' },
+		title: { text: 'Temperatur' },
 
-	yAxis: { title: { text: 'Temperature' }	},
+	yAxis: { title: { text: 'Temperatur' }	},
 
 	xAxis: {
 		type: 'datetime',
@@ -828,14 +842,16 @@ function showWind(chartName, forecast)
 			enabled: false
 		},
 			title: {
-				text: 'Wind speed during two days'
-			},
-			subtitle: {
-				text: 'Wind speed'
+				text: 'Windgeschwindigkeit'
 			},
 			xAxis: {
 			type: 'datetime',
 //			categories: tm
+			plotLines: [{
+				color: '#FF0000',
+				width: 2,
+				value: +new Date + time_zone
+			}]
 			},
 			yAxis: {
 				title: {
@@ -1001,7 +1017,7 @@ function showTemp(chartName, forecast)
 			enabled: false
 		},
 		title: {
-			text: 'Temperature',
+			text: 'Temperatur',
 			x: -20 //center
 		},
 
@@ -1022,16 +1038,12 @@ function showTemp(chartName, forecast)
 					return Highcharts.dateFormat('%H:00', this.value);
 				},
 				align: 'right',
-				style: {
-					font: 'normal 13px Verdana, sans-serif'
-				}
-
 			}
 
 		},
 		yAxis: {
 			title: {
-				text: 'Temperature (°C)'
+				text: 'Temperatur (°C)'
 			},
 
 			plotLines: [{
