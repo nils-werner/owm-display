@@ -54,6 +54,9 @@ function showBarsDouble(chartName, forecast)
 	        type: 'columnrange',
 	        //inverted: true
 	    },
+		credits: {
+			enabled: false
+		},
 	    
 	    title: {
 	        text: 'Temperature variation by hours'
@@ -139,6 +142,9 @@ forecast[i]['dt'] * 1000,
 	        type: 'columnrange',
 	        //inverted: true
 	    },
+	    credits: {
+			enabled: false
+		},
 	    
 	    title: {
 	        text: 'Temperature variation by hours'
@@ -264,6 +270,9 @@ series: tmp
 			        polar: true,
 			        type: 'column'
 			    },
+				credits: {
+					enabled: false
+				},
 			    
 			    title: {
 			        text: 'Wind rose'
@@ -379,6 +388,9 @@ function getDeg(d) {
 	        renderTo: chartName,
 	        polar: true
 	    },
+		credits: {
+			enabled: false
+		},
 	    
 	    title: {
 	        text: 'Wind direction'
@@ -445,6 +457,9 @@ function chartDoublePress(chartName, forecast)
 	        plotBorderWidth: 0,
 	        plotShadow: false
 	    },
+		credits: {
+			enabled: false
+		},
 	
 	    title: {
 	        text: 'Pressure'
@@ -531,6 +546,9 @@ function chartSpeed(chartName, forecast)
 	        plotBorderWidth: 0,
 	        plotShadow: false
 	    },
+		credits: {
+			enabled: false
+		},
 	    
 	    title: {
 	        text: 'Pressure'
@@ -640,6 +658,9 @@ function showTempMinMax(chartName, forecast)
 		        renderTo: chartName,
 		        type: 'arearange'
 		    },
+			credits: {
+				enabled: false
+			},
 		    
 		    title: {
 		        text: 'Temperature variation by day'
@@ -714,6 +735,9 @@ chart = new Highcharts.Chart({
 		renderTo: chartName,
 		type: 'spline'
 	},
+		credits: {
+			enabled: false
+		},
 
         title: { text: 'Temperature during two days' },
 
@@ -756,6 +780,9 @@ chart = new Highcharts.Chart({
 		renderTo: chartName,
 		type: 'spline'
 	},
+		credits: {
+			enabled: false
+		},
 
         title: { text: 'Temperature during two days' },
 
@@ -796,6 +823,9 @@ function showWind(chartName, forecast)
 		chart: {
 			renderTo: chartName,
 			type: 'spline'
+		},
+		credits: {
+			enabled: false
 		},
             title: {
                 text: 'Wind speed during two days'
@@ -920,7 +950,7 @@ function showWind(chartName, forecast)
 
 
 		series: [{
-			    name: 'Temperature min',
+			    name: 'Wind Speed',
 			type: 'spline',
 			    data: wind
 		}
@@ -956,6 +986,9 @@ function showTemp(chartName, forecast)
 		chart: {
 			renderTo: chartName,
 			type: 'spline'
+		},
+		credits: {
+			enabled: false
 		},
 		title: {
 			text: 'Temperature',
