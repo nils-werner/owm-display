@@ -452,6 +452,7 @@ function plotPressure(chartName, forecast)
 function plotRain(chartName, forecast)
 {
 	var tmp = new Array();
+	var cloud = new Array();
 	var tm = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
@@ -459,6 +460,7 @@ function plotRain(chartName, forecast)
 			tmp.push(forecast[i]['rain']['3h']);
 		else
 			tmp.push(0);
+		cloud.push(forecast[i]['clouds']['all']);
 		tm.push( new Date(forecast[i]['dt'] * 1000 + time_zone) );
 	}
 
@@ -471,7 +473,7 @@ function plotRain(chartName, forecast)
 			enabled: false
 		},
 		title: {
-			text: 'Regenfall'
+			text: 'Regenfall/Bewölkung'
 		},
 		xAxis: {
 			type: 'datetime',
@@ -488,16 +490,34 @@ function plotRain(chartName, forecast)
 				value: +new Date + time_zone
 			}]
 		},
-		yAxis: {
-			title: {
-				enabled: false,
+		yAxis: [
+			{
+				title: {
+					enabled: false
+				}
 			},
-		},
-		series: [{
+			{
+				title: {
+					enabled: false
+				},
+				opposite: true,
+			}
+		],
+		series: [
+			{
 				showInLegend: false,
 				type: 'spline',
+				yAxis: 0,
 				data: tmp,
 				color: '#427EFF'
-			}]
+			},
+			{
+				showInLegend: false,
+				type: 'spline',
+				yAxis: 1,
+				data: cloud,
+				color: '#A0A0A0'
+			}
+			]
 		});
 }
