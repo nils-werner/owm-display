@@ -117,6 +117,8 @@ function dialWind(chartName, forecast)
 
 function dialPressure(chartName, forecast)
 {
+	var tmp = Array();
+	tmp.push(forecast[0]['main']['pressure']);
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
@@ -179,7 +181,7 @@ function dialPressure(chartName, forecast)
 		],	
 		series: [
 		{
-			data: [1015],
+			data: tmp,
 			dataLabels: {
 				formatter: function () {
 					var pa = this.y;
