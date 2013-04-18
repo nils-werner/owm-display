@@ -461,8 +461,8 @@ function chartDoublePress(chartName, forecast)
 	
 		yAxis: [
 			{
-				min: 980,
-				max: 1050,
+				min: 950,
+				max: 1100,
 				lineColor: '#339',
 				tickColor: '#339',
 				minorTickColor: '#339',
