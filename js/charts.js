@@ -4,205 +4,7 @@
 //***********************************************************
 
 
-function showBarsDouble(chartName, forecast)
-{
-	var tmp_min_max = new Array();
-	var tmp = new Array();
-	var tmp_max = new Array();
-	var tmp_min = new Array();
-
-	var categories = new Array();
-
-//	var categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	for(var i = 0; i <  forecast.length; i ++){
-		categories.push(forecast[i]['dt'] * 1000 + time_zone);
-		tmp.push( 
-//			forecast[i]['dt'] * 1000,
-			Math.round( (forecast[i]['main']['temp']-273.15) * 100) / 100 
-		);
-
-		tmp_min_max.push( 
-			[
-//			forecast[i]['dt'] * 1000,
-			Math.round( (forecast[i]['main']['temp_min']-273.15) * 100) / 100,
-			Math.round( (forecast[i]['main']['temp_max']-273.15) * 100) / 100 
-			]
-		);
-
-		tmp_min.push( 
-			[
-//forecast[i]['dt'] * 1000,
-			Math.round( (forecast[i]['main']['temp_min']-273.15) * 100) / 100,
-			Math.round( (forecast[i]['main']['temp']-273.15) * 100) / 100 
-			]
-		);
-		tmp_max.push( 
-			[
-//forecast[i]['dt'] * 1000,
-			Math.round( (forecast[i]['main']['temp']-273.15) * 100) / 100,
-			Math.round( (forecast[i]['main']['temp_max']-273.15) * 100) / 100 
-			]
-		);
-
-	}
-//console.log(tmp);
-
-	window.chart = new Highcharts.Chart({
-	
-		chart: {
-			renderTo: chartName,
-			type: 'columnrange',
-			//inverted: true
-		},
-		credits: {
-			enabled: false
-		},
-		
-		title: {
-			text: 'Temperatur'
-		},	    
-		subtitle: {
-			text: null
-		},
-	
-		xAxis: {
-			type: 'datetime',
-			categories:  categories,
-		tickInterval: 8,
-			plotLines: [{
-				color: '#FF0000',
-				width: 2,
-				value: +new Date + time_zone
-			}],
-		labels: {
-			formatter: function() {
-				return Highcharts.dateFormat('%H:00', this.value);
-			}
-		}
-
-		},
-		
-		yAxis: {
-			title: {
-				text: 'Temperature ( °C )'
-			}
-		},
-	
-		tooltip: {
-			valueSuffix: '°C'
-		},
-		
-/*	    plotOptions: {
-			columnrange: {
-				dataLabels: {
-					enabled: true,
-					formatter: function () {
-						return this.y + '°C';
-					},
-					y: 0
-				}
-			}
-		}, */
-		
-		legend: {
-			enabled: false
-		},
-	
-		series: [{
-			name: 'Temperatures',
-			data:  tmp_min_max,
-		},{
-			name: 'Temperatures',
-			data:  tmp,
-		type: 'spline'
-
-		}]
-	
-	});
-	
-}
-
-function showBars(chartName, forecast)
-{
-
-	var tmp = new Array();
-	var categories = new Array();
-//	var categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	for(var i = 0; i <  forecast.length; i ++){
-		categories.push(forecast[i]['dt'] * 1000);
-		tmp.push( 
-			[
-forecast[i]['dt'] * 1000,
-			Math.round( (forecast[i]['main']['temp_min']-273.15) * 100) / 100,
-			Math.round( (forecast[i]['main']['temp_max']-273.15) * 100) / 100 
-			]
-		)
-	}
-//console.log(tmp);
-
-	window.chart = new Highcharts.Chart({
-	
-		chart: {
-			renderTo: chartName,
-			type: 'columnrange',
-			//inverted: true
-		},
-		credits: {
-			enabled: false
-		},
-		
-		title: {
-			text: 'Temperatur'
-		},	    
-		subtitle: {
-			text: null
-		},
-	
-		xAxis: {
-			type: 'datetime',
-			plotLines: [{
-				color: '#FF0000',
-				width: 2,
-				value: +new Date + time_zone
-			}]
-		},
-		
-		yAxis: {
-			title: {
-				text: 'Temperature ( °C )'
-			}
-		},
-	
-		tooltip: {
-			valueSuffix: '°C'
-		},
-		
-/*	    plotOptions: {
-			columnrange: {
-				dataLabels: {
-					enabled: true,
-					formatter: function () {
-						return this.y + '°C';
-					},
-					y: 0
-				}
-			}
-		}, */
-		
-		legend: {
-			enabled: false
-		},
-	
-		series: [{
-			name: 'Temperatures',
-			data:  tmp
-		}]
-	
-	});
-	
-}
-
-function showPolarSpeed(chartName, forecast)
+function dialWind(chartName, forecast)
 {
 	var options = {
 		xAxis:{
@@ -283,9 +85,9 @@ function showPolarSpeed(chartName, forecast)
 			align: 'right',
 			verticalAlign: 'top',
 			y: 100,
-			layout: 'vertical'
+			layout: 'vertical',
+			enabled: false
 		},
-		
 		xAxis: {
 			tickmarkPlacement: 'on'
 		},
@@ -294,7 +96,7 @@ function showPolarSpeed(chartName, forecast)
 			endOnTick: false,
 			showLastLabel: true,
 			title: {
-				text: 'Frequency (%)'
+				enabled: false
 			},
 			labels: {
 				formatter: function () {
@@ -302,11 +104,6 @@ function showPolarSpeed(chartName, forecast)
 				}
 			}
 		},
-		
-		tooltip: {
-			valueSuffix: '%'
-		},
-			
 		plotOptions: {
 			series: {
 				stacking: 'normal',
@@ -318,122 +115,7 @@ function showPolarSpeed(chartName, forecast)
 	}));
 }
 
-function showPolar(chartName, forecast)
-{
-	var n = {'N':{cn:0},'NNE':{cn:0},'NE':{cn:0},'ENE':{cn:0},'E':{cn:0},'ESE':{cn:0},'SE':{cn:0},'SSE':{cn:0}, 'S':{cn:0},'SSW':{cn:0}, 'SW':{cn:0},'WSW':{cn:0},'W':{cn:0},'WNW':{cn:0},'NW':{cn:0},'NNW':{cn:0}};
-	var sSpeed = new Array();
-	var sCnt = new Array();
-	var sGust = new Array();	
-
-
-	function getDeg(d)
-	{
-		var step = 24;
-		var n = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
-		for(var i = 0; i <  16; i ++)
-			if(d>= i*step && d < (i+1)*step)
-				return n[i];
-	}
-
-	var tmp = new Array();
-
-	for(var i = 0; i <  forecast.length; i ++) {
-		var l = getDeg(forecast[i]['wind']['deg'] );
-		n[l]['cn'] ++; 
-
-		if(n[l]['speed']) 
-			n[l]['speed'] += forecast[i]['wind']['speed'];
-		else
-			n[l]['speed']  = forecast[i]['wind']['speed'];
-
-		if(forecast[i]['wind']['gust']) {
-			if(n[l]['gust'])
-				n[l]['gust'] +=forecast[i]['wind']['gust'];
-			else
-				n[l]['gust'] =forecast[i]['wind']['gust'];
-		}
-	}
-
-	for(var i in n) {
-		if(n[i]['speed'])
-			sSpeed.push( n[i]['speed'] );
-		else
-			sSpeed.push( 0 );
-
-		if(n[i]['cnt'])
-			sCnt.push( n[i]['speed'] );
-		else
-			sCnt.push( 0 );
-
-		if(n[i]['gust'])
-			sGust.push( n[i]['gust'] );
-		else
-			sGust.push( 0 );
-	}
-
-	var chart = new Highcharts.Chart({
-		chart: {
-			renderTo: chartName,
-			polar: true
-		},
-		credits: {
-			enabled: false
-		},
-		
-		title: {
-			text: 'Wind direction'
-		},
-		
-		pane: {
-			startAngle: 0,
-			endAngle: 360
-		},
-	
-		xAxis: {
-			tickInterval: 24,
-			min: 0,
-			max: 360,
-			labels: {
-				formatter: function () {
-					return this.value + '°';
-				}
-			}
-		},
-			
-		yAxis: {
-			min: 0
-		},
-		
-		plotOptions: {
-			series: {
-				pointStart: 0,
-				pointInterval: 24
-			},
-			column: {
-				pointPadding: 0,
-				groupPadding: 0
-			}
-		},
-	
-		series: [
-			{
-				type: 'column',
-				name: 'Speed',
-				data: sSpeed,
-				pointPlacement: 'between'
-			},
-			{
-				type: 'line',
-				name: 'Gust',
-				data: sGust,
-				pointPlacement: 'between'
-			}
-		]
-	});
-}
-
-
-function chartDoublePress(chartName, forecast)
+function dialPressure(chartName, forecast)
 {
 	var chart = new Highcharts.Chart({
 		chart: {
@@ -451,7 +133,7 @@ function chartDoublePress(chartName, forecast)
 		},
 	
 		title: {
-			text: 'Pressure'
+			text: 'Luftdruck'
 		},
 		
 		pane: {
@@ -491,13 +173,12 @@ function chartDoublePress(chartName, forecast)
 					distance: 12,
 					rotation: 'auto'
 				},
-				offset: -20,
+				offset: -18,
 				endOnTick: false
 			}
 		],	
 		series: [
 		{
-			name: 'Speed',
 			data: [1015],
 			dataLabels: {
 				formatter: function () {
@@ -522,287 +203,26 @@ function chartDoublePress(chartName, forecast)
 			}
 		}
 		]
-	}
-	);
-}
-
-
-function chartSpeed(chartName, forecast)
-{
-	var chart = new Highcharts.Chart({
-		chart: {
-			renderTo: chartName,
-			type: 'gauge',
-			plotBackgroundColor: null,
-			plotBackgroundImage: null,
-			plotBorderWidth: 0,
-			plotShadow: false
-		},
-		credits: {
-			enabled: false
-		},
-		title: {
-			text: 'Pressure'
-		},
-		pane: {
-			startAngle: -150,
-			endAngle: 150,
-			background: [
-				{
-					backgroundColor: {
-						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-						stops: [
-							[0, '#FFF'],
-							[1, '#333']
-						]
-					},
-					borderWidth: 0,
-					outerRadius: '109%'
-				},
-				{
-					backgroundColor: {
-						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-						stops: [
-							[0, '#333'],
-							[1, '#FFF']
-						]
-					},
-					borderWidth: 1,
-					outerRadius: '107%'
-				},
-				{
-					backgroundColor: '#DDD',
-					borderWidth: 0,
-					outerRadius: '105%',
-					innerRadius: '103%'
-				}
-			]
-		},
-
-		yAxis: {
-			min: 950,
-			max: 1050,
-			
-			minorTickInterval: 'auto',
-			minorTickWidth: 1,
-			minorTickLength: 10,
-			minorTickPosition: 'inside',
-			minorTickColor: '#666',
-	
-			tickPixelInterval: 30,
-			tickWidth: 2,
-			tickPosition: 'inside',
-			tickLength: 10,
-			tickColor: '#666',
-			labels: {
-				step: 2,
-				rotation: 'auto'
-			},
-			title: {
-				text: 'hPa'
-			},
-			plotBands: [
-				{
-					from: 950,
-					to: 990,
-					color: '#55BF3B' // green
-				},
-				{
-					from: 990,
-					to: 1030,
-					color: '#DDDF0D' // yellow
-				},
-				{
-					from: 1030,
-					to: 1050,
-					color: '#DF5353' // red
-				}
-			]
-		},
-	
-		series: [
-			{
-				name: 'Speed',
-				data: [1020],
-				tooltip: {
-					valueSuffix: ' km/h'
-				}
-			}
-		]
 	});
 }
 
-function showTempMinMax(chartName, forecast)
+function plotWindSpeed(chartName, forecast)
 {
 	var tmp = new Array();
+	var tm = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
-				forecast[i]['dt'] * 1000,
-				Math.round( (forecast[i]['main']['temp_min']-273.15) * 100) / 100,
-				Math.round( (forecast[i]['main']['temp_max']-273.15) * 100) / 100 
+				forecast[i]['wind']['speed'],
+				forecast[i]['wind']['gust']
 			]);
-	}
-
-	chart = new Highcharts.Chart({
-		chart: {
-			renderTo: chartName,
-			type: 'arearange'
-		},
-		credits: {
-			enabled: false
-		},
-		title: {
-			text: 'Temperature variation by day'
-		},
-		xAxis: {
-			type: 'datetime',
-			plotLines: [{
-				color: '#FF0000',
-				width: 2,
-				value: +new Date + time_zone
-			}]
-		},
-		yAxis: {
-			title: {
-				text: null
-			}
-		},
-		tooltip: {
-			crosshairs: true,
-			shared: true,
-			valueSuffix: '°C'
-		},
-		legend: {
-			enabled: false
-		},
-		series: [{
-			name: 'Temperatures',
-			data: tmp
-		}]
-	});
-}
-
-function showIconsChart(chartName, forecast)
-{
-	var tmp = new Array();
-	var tm = new Array();
-	var j=0;
-
-	for(var i = 0; i <  forecast.length; i ++){
-		var t = Math.round((forecast[i]['main']['temp']-273.15) * 100) / 100;
-
-		if(j==8){
-			if( forecast[i]['weather'] ) {
-				var url = 'http://openweathermap.org/img/w/' + forecast[i]['weather'][0]['icon'] + '.png';
-				t = {
-					y: t,
-					marker: {
-						symbol: 'url('+url+')',
-					}
-				};
-			}
-			j=0;
-		}
-		tmp.push(t);
-		tm.push( new Date(forecast[i]['dt'] * 1000 + time_zone) );
-		j++;
-	}
-
-	chart = new Highcharts.Chart({
-		chart: {
-			renderTo: chartName,
-			type: 'spline'
-		},
-		credits: {
-			enabled: false
-		},
-		title: {
-			text: 'Temperatur'
-		},
-		yAxis: {
-			title: {
-				text: 'Temperature'
-			}
-		},
-		xAxis: {
-			type: 'datetime',
-			categories: tm,
-			tickInterval: 8,
-			labels: {
-				formatter: function() {
-					return Highcharts.dateFormat('%H:00', this.value);
-				}
-			}
-		},
-		series: [{
-				name: 'Temperature',
-				type: 'spline',
-				data: tmp
-			}]
-		});
-}
-
-
-function showSimpleChart(chartName, forecast)
-{
-	var tmp = new Array();
-	var tm = new Array();
-
-	for(var i = 0; i <  forecast.length; i ++){
-		tmp.push(  Math.round( (forecast[i]['main']['temp']	-273.15) * 100) / 100  );
 		tm.push( new Date(forecast[i]['dt'] * 1000 + time_zone) );
 	}
 
 	chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
-			type: 'spline'
-		},
-		credits: {
-			enabled: false
-		},
-		title: {
-			text: 'Temperatur'
-		},
-		yAxis: {
-			title: {
-				text: 'Temperatur'
-			}
-		},
-		xAxis: {
-			type: 'datetime',
-			categories: tm,
-			tickInterval: 8,
-			labels: {
-				formatter: function() {
-					return Highcharts.dateFormat('%H:00', this.value);
-				}
-			}
-		},
-		series: [{
-				name: 'Temperature',
-				type: 'spline',
-				data: tmp
-			}]
-		});
-}
-
-function showWind(chartName, forecast)
-{
-	var wind = new Array();
-	var gust = new Array();
-	var tm = new Array();
-
-	for(var i = 0; i <  forecast.length; i ++){
-		wind.push(  1.0 * forecast[i]['wind']['speed'] );
-		tm.push(forecast[i]['dt'] * 1000 + time_zone );
-	}
-
-	chart = new Highcharts.Chart({
-		chart: {
-			renderTo: chartName,
-			type: 'spline'
+			type: 'areasplinerange'
 		},
 		credits: {
 			enabled: false
@@ -812,6 +232,13 @@ function showWind(chartName, forecast)
 		},
 		xAxis: {
 			type: 'datetime',
+			categories: tm,
+			tickInterval: 8,
+			labels: {
+				formatter: function() {
+					return Highcharts.dateFormat('%H:00', this.value);
+				}
+			},
 			plotLines: [{
 				color: '#FF0000',
 				width: 2,
@@ -820,7 +247,7 @@ function showWind(chartName, forecast)
 		},
 		yAxis: {
 			title: {
-				text: 'Wind speed (m/s)'
+				enabled: false,
 			},
 			min: 0,
 			minorGridLineWidth: 0,
@@ -829,7 +256,7 @@ function showWind(chartName, forecast)
 			plotBands: [{ // Light air
 				from: 0.3,
 				to: 1.6,
-				color: 'rgba(68, 170, 213, 0.1)',
+				color: 'rgba(0, 0, 0, 0.1)',
 				label: {
 					text: '1 bft',
 					style: {
@@ -849,7 +276,7 @@ function showWind(chartName, forecast)
 			}, { // Gentle breeze
 				from: 3.4,
 				to: 5.5,
-				color: 'rgba(68, 170, 213, 0.1)',
+				color: 'rgba(0, 255, 42, 0.1)',
 				label: {
 					text: '3 bft',
 					style: {
@@ -869,7 +296,7 @@ function showWind(chartName, forecast)
 			}, { // Fresh breeze
 				from: 8,
 				to: 11,
-				color: 'rgba(68, 170, 213, 0.1)',
+				color: 'rgba(255, 253, 0, 0.1)',
 				label: {
 					text: '5 bft',
 					style: {
@@ -889,7 +316,7 @@ function showWind(chartName, forecast)
 			}, { // High wind
 				from: 14,
 				to: 17,
-				color: 'rgba(68, 170, 213, 0.1)',
+				color: 'rgba(255, 26, 0, 0.1)',
 				label: {
 					text: '7 bft',
 					style: {
@@ -899,7 +326,7 @@ function showWind(chartName, forecast)
 			}, { // Gale
 				from: 17,
 				to: 21,
-				color: 'rgba(68, 170, 213, 0.1)',
+				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					text: '8 bft',
 					style: {
@@ -908,60 +335,25 @@ function showWind(chartName, forecast)
 				}
 			}]
 		},
-		tooltip: {
-			formatter: function() {
-					return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y +' m/s';
-			}
+		legend: {
+			enabled: false
 		},
-		plotOptions: {
-			spline: {
-				lineWidth: 4,
-				states: {
-					hover: {
-						lineWidth: 5
-					}
-				},
-				marker: {
-					enabled: false,
-					states: {
-						hover: {
-							enabled: true,
-							symbol: 'circle',
-							radius: 5,
-							lineWidth: 1
-						}
-					}
-				},
-				pointInterval: 3600000, // one hour
-				pointStart: tm[0]
-			}
-		},
-		series: [
-			{
-				name: 'Wind Speed',
-				type: 'spline',
-				data: wind
-			}
-		],
-		navigation: {
-			menuItemStyle: {
-				fontSize: '10px'
-			}
-		}
+		series: [{
+			showInLegend: false,
+			data: tmp,
+			color: '#F7814B'
+		}]
 	});
 }
 
-function showTemp(chartName, forecast)
+
+function plotTemperature(chartName, forecast)
 {
 	var tmp = new Array();
-	var tmin = new Array();
-	var tmax = new Array();
 	var tm = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
-		tmp.push(  Math.round( (forecast[i]['main']['temp']	-273.15) * 100) / 100  );
-		tmin.push( Math.round( (forecast[i]['main']['temp_min']	-273.15) * 100) / 100  );
-		tmax.push( Math.round( (forecast[i]['main']['temp_max']	-273.15) * 100) / 100  );
+		tmp.push(forecast[i]['main']['temp']);
 		tm.push( new Date(forecast[i]['dt'] * 1000 + time_zone) );
 	}
 
@@ -974,14 +366,7 @@ function showTemp(chartName, forecast)
 			enabled: false
 		},
 		title: {
-			text: 'Temperatur',
-			x: -20 //center
-		},
-		tooltip: {
-			formatter: function() {
-				return '<b>'+ this.series.name +"</b> <br><p>"+ 
-					Highcharts.dateFormat('%Y-%m-%d %H:%M', this.x)+' '+this.y +'°C </p>';
-			}
+			text: 'Temperatur'
 		},
 		xAxis: {
 			type: 'datetime',
@@ -989,58 +374,130 @@ function showTemp(chartName, forecast)
 			tickInterval: 8,
 			labels: {
 				formatter: function() {
-					if( Highcharts.dateFormat('%H', this.value) == '00' )
-						return Highcharts.dateFormat('%e. %b', this.value);
 					return Highcharts.dateFormat('%H:00', this.value);
-				},
-				align: 'right',
-			}
-
+				}
+			},
+			plotLines: [{
+				color: '#FF0000',
+				width: 2,
+				value: +new Date + time_zone
+			}]
 		},
 		yAxis: {
 			title: {
-				text: 'Temperatur (°C)'
-			},
-
-			plotLines: [{
-				value: 0,
-				width: 1,
-				color: '#808080'
-			}]
+				enabled: false,
+			}
 		},
-			plotOptions: {
-				spline: {
-					lineWidth: 4,
-					states: {
-						hover: {
-							lineWidth: 5
-						}
-					},
-					marker: {
-						enabled: false,
-						states: {
-							hover: {
-								enabled: true,
-								symbol: 'circle',
-								radius: 5,
-								lineWidth: 1
-							}
-						}
-					}
+		series: [{
+				showInLegend: false,
+				type: 'spline',
+				data: tmp,
+				color: '#00A000'
+			}]
+		});
+}
 
+function plotPressure(chartName, forecast)
+{
+	var tmp = new Array();
+	var tm = new Array();
+
+	for(var i = 0; i <  forecast.length; i ++){
+		tmp.push(forecast[i]['main']['pressure']);
+		tm.push( new Date(forecast[i]['dt'] * 1000 + time_zone) );
+	}
+
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: chartName,
+			type: 'spline'
+		},
+		credits: {
+			enabled: false
+		},
+		title: {
+			text: 'Luftdruck'
+		},
+		xAxis: {
+			type: 'datetime',
+			categories: tm,
+			tickInterval: 8,
+			labels: {
+				formatter: function() {
+					return Highcharts.dateFormat('%H:00', this.value);
 				}
 			},
-
-		series: [
-			{
-				name: 'Temperature min',
-				type: 'spline',
-				data: tmin
+			plotLines: [{
+				color: '#FF0000',
+				width: 2,
+				value: +new Date + time_zone
+			}]
+		},
+		yAxis: {
+			title: {
+				enabled: false,
 			},
-			{
-				name: 'Temperature max',
-				data: tmax
-			}
-		]
-	});
+			min: 950,
+			max: 1050
+		},
+		series: [{
+				showInLegend: false,
+				type: 'spline',
+				data: tmp,
+				color: '#B00000'
+			}]
+		});
+}
+
+function plotRain(chartName, forecast)
+{
+	var tmp = new Array();
+	var tm = new Array();
+
+	for(var i = 0; i <  forecast.length; i ++){
+		if(typeof forecast[i]['rain'] != 'undefined')
+			tmp.push(forecast[i]['rain']['3h']);
+		else
+			tmp.push(0);
+		tm.push( new Date(forecast[i]['dt'] * 1000 + time_zone) );
+	}
+
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: chartName,
+			type: 'spline'
+		},
+		credits: {
+			enabled: false
+		},
+		title: {
+			text: 'Regenfall'
+		},
+		xAxis: {
+			type: 'datetime',
+			categories: tm,
+			tickInterval: 8,
+			labels: {
+				formatter: function() {
+					return Highcharts.dateFormat('%H:00', this.value);
+				}
+			},
+			plotLines: [{
+				color: '#FF0000',
+				width: 2,
+				value: +new Date + time_zone
+			}]
+		},
+		yAxis: {
+			title: {
+				enabled: false,
+			},
+		},
+		series: [{
+				showInLegend: false,
+				type: 'spline',
+				data: tmp,
+				color: '#427EFF'
+			}]
+		});
 }

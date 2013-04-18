@@ -41,6 +41,12 @@
 			<div id="chart-wind" style="width: 800px; height: 300px; margin: 0 auto" ></div>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="span12">
+			<div id="chart-rain" style="width: 800px; height: 300px; margin: 0 auto" ></div>
+		</div>
+	</div>
 </body>
 
 <script type="text/javascript">
@@ -51,7 +57,7 @@ jQuery(document).ready(function() {
 	var d = new Date(curd.getFullYear(), curd.getMonth(), curd.getDate());
 	var s = Math.round(( d.getTime() ) /1000) - 3600*12;
 	var e = Math.round(( d.getTime() ) /1000) + 3600*72;
-	var jsonurl = "http://openweathermap.org/data/2.1/forecast/city/?id=2853260&cnt=120&start="+s+"&end="+e;
+	var jsonurl = "http://openweathermap.org/data/2.1/forecast/city/?id=2853260&cnt=120&units=metric&start="+s+"&end="+e;
 	$.get(jsonurl, getData).error(errorHandler);
 });
 
@@ -60,15 +66,12 @@ function getData(JSONtext)
 {
 	JSONobject = ParseJson(JSONtext);
 	data = JSONobject.list;
-	showPolarSpeed('dial-wind', data);
-//	showPolar('chart-winddir', data);
-	showTempMinMax('chart-temp', data);
-	chartDoublePress('dial-pressure', data);
-//	chartSpeed('chart-wind', data);
-//	showIconsChart('chart-wind', data);	
-	showSimpleChart('chart-wind', data);
-//	showBarsDouble('chart-temp', data);
-//	showWind('chart-wind', data);		
+	dialWind('dial-wind', data);
+	dialPressure('dial-pressure', data);
+	plotPressure('chart-pressure', data);
+	plotTemperature('chart-temp', data);
+	plotWindSpeed('chart-wind', data);
+	plotRain('chart-rain', data);
 }
 
 function  errorHandler(e)
