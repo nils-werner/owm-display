@@ -212,14 +212,13 @@ function dialPressure(chartName, forecast)
 function plotWindSpeed(chartName, forecast)
 {
 	var tmp = new Array();
-	var tm = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
+				forecast[i]['dt'] * 1000 + time_zone,
 				forecast[i]['wind']['speed'],
 				forecast[i]['wind']['gust']
 			]);
-		tm.push( new Date(forecast[i]['dt'] * 1000 + time_zone) );
 	}
 
 	chart = new Highcharts.Chart({
@@ -235,11 +234,10 @@ function plotWindSpeed(chartName, forecast)
 		},
 		xAxis: {
 			type: 'datetime',
-			categories: tm,
-			tickInterval: 8,
+			tickInterval: 24 * 3600 * 1000,
 			labels: {
 				formatter: function() {
-					return Highcharts.dateFormat('%H:00', this.value);
+					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
 			plotLines: [{
@@ -353,11 +351,12 @@ function plotWindSpeed(chartName, forecast)
 function plotTemperature(chartName, forecast)
 {
 	var tmp = new Array();
-	var tm = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
-		tmp.push(forecast[i]['main']['temp']);
-		tm.push( new Date(forecast[i]['dt'] * 1000 + time_zone) );
+		tmp.push([
+			forecast[i]['dt'] * 1000 + time_zone,
+			forecast[i]['main']['temp']
+			]);
 	}
 
 	chart = new Highcharts.Chart({
@@ -373,11 +372,10 @@ function plotTemperature(chartName, forecast)
 		},
 		xAxis: {
 			type: 'datetime',
-			categories: tm,
-			tickInterval: 8,
+			tickInterval: 24 * 3600 * 1000,
 			labels: {
 				formatter: function() {
-					return Highcharts.dateFormat('%H:00', this.value);
+					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
 			plotLines: [{
@@ -403,11 +401,12 @@ function plotTemperature(chartName, forecast)
 function plotPressure(chartName, forecast)
 {
 	var tmp = new Array();
-	var tm = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
-		tmp.push(forecast[i]['main']['pressure']);
-		tm.push( new Date(forecast[i]['dt'] * 1000 + time_zone) );
+		tmp.push([
+			forecast[i]['dt'] * 1000 + time_zone,
+			forecast[i]['main']['pressure']
+		]);
 	}
 
 	chart = new Highcharts.Chart({
@@ -423,11 +422,10 @@ function plotPressure(chartName, forecast)
 		},
 		xAxis: {
 			type: 'datetime',
-			categories: tm,
-			tickInterval: 8,
+			tickInterval: 24 * 3600 * 1000,
 			labels: {
 				formatter: function() {
-					return Highcharts.dateFormat('%H:00', this.value);
+					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
 			plotLines: [{
@@ -456,15 +454,22 @@ function plotRain(chartName, forecast)
 {
 	var tmp = new Array();
 	var cloud = new Array();
-	var tm = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
 		if(typeof forecast[i]['rain'] != 'undefined')
-			tmp.push(forecast[i]['rain']['3h']);
+			tmp.push([
+				forecast[i]['dt'] * 1000 + time_zone,
+				forecast[i]['rain']['3h']
+			]);
 		else
-			tmp.push(0);
-		cloud.push(forecast[i]['clouds']['all']);
-		tm.push( new Date(forecast[i]['dt'] * 1000 + time_zone) );
+			tmp.push([
+				forecast[i]['dt'] * 1000 + time_zone,
+				0
+			]);
+		cloud.push([
+			forecast[i]['dt'] * 1000 + time_zone,
+			forecast[i]['clouds']['all']
+		]);
 	}
 
 	chart = new Highcharts.Chart({
@@ -480,11 +485,10 @@ function plotRain(chartName, forecast)
 		},
 		xAxis: {
 			type: 'datetime',
-			categories: tm,
-			tickInterval: 8,
+			tickInterval: 24 * 3600 * 1000,
 			labels: {
 				formatter: function() {
-					return Highcharts.dateFormat('%H:00', this.value);
+					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
 			plotLines: [{
