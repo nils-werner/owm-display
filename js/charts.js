@@ -361,7 +361,7 @@ function plotWindSpeed(chartName, forecast)
 		series: [{
 			showInLegend: false,
 			data: tmp,
-			color: '#F7814B'
+			color: '#EB662A'
 		}]
 	});
 }
