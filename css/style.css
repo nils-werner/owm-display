@@ -60,6 +60,14 @@ body {
 	height: 100px;
 }
 
+#dial-temperature {
+	position: absolute;
+	top: 190px;
+	left: -55px;
+	width: 110px;
+	height: 110px;
+}
+
 .widget {
 	width: 100%;
 	height: 300px;

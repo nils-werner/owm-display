@@ -71,6 +71,7 @@ function dialWind(chartName, forecast)
 
 	window.chart = new Highcharts.Chart(Highcharts.merge(options, {
 		chart: {
+			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			polar: true,
 			type: 'column'
@@ -130,6 +131,7 @@ function dialPressure(chartName, forecast)
 			renderTo: chartName,
 			type: 'gauge',
 			alignTicks: false,
+			backgroundColor:'rgba(255, 255, 255, 0)',
 			plotBackgroundColor: null,
 			plotBackgroundImage: null,
 			plotBorderWidth: 0,
@@ -214,6 +216,78 @@ function dialPressure(chartName, forecast)
 	});
 }
 
+
+function dialTemperature(chartName, forecast)
+{
+	var tmp = Array();
+	tmp.push(forecast['main']['temp']);
+	var chart = new Highcharts.Chart({
+		chart: {
+			renderTo: chartName,
+			type: 'gauge',
+			backgroundColor:'rgba(255, 255, 255, 0)',
+			plotBackgroundColor: null,
+			plotBackgroundImage: null,
+			plotBorderWidth: 0,
+			plotShadow: false
+		},
+
+		credits: {
+			enabled: false
+		},
+
+		title: {
+			text: null
+		},
+
+		pane: {
+			startAngle: -150,
+			endAngle: 150,
+		},
+
+		// the value axis
+		yAxis: {
+			min: 0,
+			max: 45,
+
+			minorTickInterval: 'auto',
+			minorTickWidth: 1,
+			minorTickLength: 10,
+			minorTickPosition: 'inside',
+			minorTickColor: '#666',
+
+			tickPixelInterval: 30,
+			tickWidth: 2,
+			tickPosition: 'inside',
+			tickLength: 10,
+			tickColor: '#666',
+			labels: {
+				enabled: false
+			},
+			title: {
+				text: '°C',
+				y: 5
+			},
+			plotBands: [{
+				from: 0,
+				to: 10,
+				color: '#DF5353' // red
+			}, {
+				from: 10,
+				to: 20,
+				color: '#DDDF0D' // yellow
+			}, {
+				from: 20,
+				to: 45,
+				color: '#55BF3B' // green
+			}]
+		},
+		series: [{
+			data: tmp,
+		}]
+	});
+}
+
 function plotWindSpeedArea(chartName, forecast)
 {
 	var tmp = new Array();
@@ -228,6 +302,7 @@ function plotWindSpeedArea(chartName, forecast)
 
 	chart = new Highcharts.Chart({
 		chart: {
+			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'areasplinerange'
 		},
@@ -449,6 +524,7 @@ function plotWindSpeed(chartName, forecast)
 
 	chart = new Highcharts.Chart({
 		chart: {
+			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
 			marginRight: 60
@@ -671,6 +747,7 @@ function plotTemperature(chartName, forecast)
 
 	chart = new Highcharts.Chart({
 		chart: {
+			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
 			marginRight: 60
@@ -730,6 +807,7 @@ function plotPressure(chartName, forecast)
 
 	chart = new Highcharts.Chart({
 		chart: {
+			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
 			marginRight: 60
@@ -805,6 +883,7 @@ function plotRain(chartName, forecast)
 
 	chart = new Highcharts.Chart({
 		chart: {
+			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline'
 		},

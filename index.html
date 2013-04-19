@@ -29,6 +29,7 @@
 				<h2>Niederschlagsradar</h2>
 			</div>
 			<div id="icon-weather"></div>
+			<div id="dial-temperature"></div>
 		</div>
 
 		<div class="span4">
@@ -109,6 +110,7 @@ function getStation(JSONobject)
 	data = JSONobject;
 	placeIcon('icon-weather', data);
 	dialPressure('dial-pressure', data);
+	dialTemperature('dial-temperature', data);
 }
 
 function  errorHandler(e)
