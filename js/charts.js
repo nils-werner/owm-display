@@ -162,8 +162,8 @@ function dialPressure(chartName, forecast)
 				endOnTick: false
 			},
 			{
-				min: 735,
-				max: 787,
+				min: 950 / 1.33322,
+				max: 1100 / 1.33322,
 				tickPosition: 'outside',
 				lineColor: '#933',
 				lineWidth: 2,
@@ -186,7 +186,7 @@ function dialPressure(chartName, forecast)
 			dataLabels: {
 				formatter: function () {
 					var pa = this.y;
-					var mm = Math.round(pa / 1.3333);
+					var mm = Math.round(pa / 1.33322);
 					var inh = Math.round(pa / 33.8653);
 					return '<span style="color:#339">'+ pa + ' hPa</span><br>' +
 						'<span style="color:#933">' + mm + ' mmHg</span>'; 
