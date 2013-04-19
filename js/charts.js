@@ -325,14 +325,6 @@ function plotWindSpeedArea(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-			plotLines: [{
-				color: '#0000AA',
-				width: 2,
-				value: +new Date + time_zone,
-				label: {
-					text: 'Jetzt'
-				}
-			}]
 		},
 		yAxis: [{
 			title: {
@@ -548,14 +540,7 @@ function plotWindSpeed(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-			plotLines: [{
-				color: '#0000AA',
-				width: 2,
-				value: +new Date + time_zone,
-				label: {
-					text: 'Jetzt'
-				}
-			}]
+
 		},
 		yAxis: [{
 			title: {
@@ -771,14 +756,7 @@ function plotTemperature(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-			plotLines: [{
-				color: '#0000AA',
-				width: 2,
-				value: +new Date + time_zone,
-				label: {
-					text: 'Jetzt'
-				}
-			}]
+
 		},
 		yAxis: {
 			title: {
@@ -831,14 +809,7 @@ function plotPressure(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				},
 			},
-			plotLines: [{
-				color: '#0000AA',
-				width: 2,
-				value: +new Date + time_zone,
-				label: {
-					text: 'Jetzt'
-				}
-			}]
+
 		},
 		yAxis: {
 			title: {
@@ -906,14 +877,7 @@ function plotRain(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-			plotLines: [{
-				color: '#0000AA',
-				width: 2,
-				value: +new Date + time_zone,
-				label: {
-					text: 'Jetzt'
-				}
-			}]
+
 		},
 		yAxis: [
 			{
