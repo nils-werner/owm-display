@@ -678,8 +678,8 @@ function plotPressure(chartName, forecast)
 			},
 			labels: {
 				//align: 'left',
-				x: 8,
-				y: -2
+				x: 0,
+				y: 5
 			}
 		},
 		series: [{
