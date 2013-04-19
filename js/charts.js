@@ -209,7 +209,7 @@ function dialPressure(chartName, forecast)
 	});
 }
 
-function plotWindSpeed(chartName, forecast)
+function plotWindSpeedArea(chartName, forecast)
 {
 	var tmp = new Array();
 
@@ -365,6 +365,176 @@ function plotWindSpeed(chartName, forecast)
 		}]
 	});
 }
+
+
+function plotWindSpeed(chartName, forecast)
+{
+	var wind = new Array();
+	var gust = new Array();
+
+	for(var i = 0; i <  forecast.length; i ++){
+		wind.push([
+				forecast[i]['dt'] * 1000 + time_zone,
+				forecast[i]['wind']['speed']
+			]);
+
+		gust.push([
+				forecast[i]['dt'] * 1000 + time_zone,
+				forecast[i]['wind']['gust']
+			]);
+	}
+
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: chartName,
+			type: 'spline'
+		},
+		credits: {
+			enabled: false
+		},
+		title: {
+			text: 'Windgeschwindigkeit'
+		},
+		xAxis: {
+			type: 'datetime',
+			tickInterval: 24 * 3600 * 1000,
+			labels: {
+				formatter: function() {
+					return Highcharts.dateFormat('%a, %e. %b', this.value);
+				}
+			},
+			plotLines: [{
+				color: '#0000AA',
+				width: 2,
+				value: +new Date + time_zone,
+				label: {
+					text: 'Jetzt'
+				}
+			}]
+		},
+		yAxis: {
+			title: {
+				text: 'm/s'
+			},
+			min: 0,
+			minorGridLineWidth: 0,
+			gridLineWidth: 0,
+			alternateGridColor: null,
+			plotBands: [{ // Light air
+				from: 0.3,
+				to: 1.6,
+				color: 'rgba(0, 0, 0, 0.05)',
+				label: {
+					align: 'right',
+					x: -10,
+					text: '1 bft',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Light breeze
+				from: 1.6,
+				to: 3.4,
+				color: 'rgba(0, 0, 0, 0)',
+				label: {
+					align: 'right',
+					x: -10,
+					text: '2 bft',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Gentle breeze
+				from: 3.4,
+				to: 5.5,
+				color: 'rgba(0, 0, 0, 0.05)',
+				label: {
+					align: 'right',
+					x: -10,
+					text: '3 bft',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Moderate breeze
+				from: 5.5,
+				to: 8,
+				color: 'rgba(0, 0, 0, 0)',
+				label: {
+					align: 'right',
+					x: -10,
+					text: '4 bft',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Fresh breeze
+				from: 8,
+				to: 11,
+				color: 'rgba(0, 0, 0, 0.05)',
+				label: {
+					align: 'right',
+					x: -10,
+					text: '5 bft',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Strong breeze
+				from: 11,
+				to: 14,
+				color: 'rgba(0, 0, 0, 0)',
+				label: {
+					align: 'right',
+					x: -10,
+					text: '6 bft',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // High wind
+				from: 14,
+				to: 17,
+				color: 'rgba(0, 0, 0, 0.05)',
+				label: {
+					align: 'right',
+					x: -10,
+					text: '7 bft',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Gale
+				from: 17,
+				to: 21,
+				color: 'rgba(0, 0, 0, 0)',
+				label: {
+					align: 'right',
+					x: -10,
+					text: '8 bft',
+					style: {
+						color: '#606060'
+					}
+				}
+			}]
+		},
+		series: [
+			{
+				showInLegend: false,
+				type: 'spline',
+				data: wind,
+				color: '#EB662A'
+			},
+			{
+				showInLegend: false,
+				type: 'spline',
+				data: gust,
+				color: '#C0C0C0'
+			}
+			]
+		});
+}
+
 
 
 function plotTemperature(chartName, forecast)
