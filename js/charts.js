@@ -124,7 +124,7 @@ function dialWind(chartName, forecast)
 function dialPressure(chartName, forecast)
 {
 	var tmp = Array();
-	tmp.push(forecast[0]['main']['pressure']);
+	tmp.push(forecast['main']['pressure']);
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
@@ -872,7 +872,7 @@ function plotRain(chartName, forecast)
 
 function placeIcon(chartName, forecast)
 {
-	$('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast[0]['weather'][0]['icon']) + '.png" style="width: 100%;" />');
+	$('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast['weather'][0]['icon']) + '.png" style="width: 100%;" />');
 }
 
 function translateIcon(iconCode)
