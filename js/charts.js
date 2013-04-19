@@ -561,3 +561,47 @@ function plotRain(chartName, forecast)
 			]
 		});
 }
+
+function placeIcon(chartName, forecast)
+{
+	$('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast[0]['weather'][0]['icon']) + '.png" style="width: 100%;" />');
+}
+
+function translateIcon(iconCode)
+{
+	switch(iconCode)
+	{
+		case "01d":
+		case "01n":
+			return "sunny";
+		case "02d":
+		case "02n":
+		case "w50": // eigentlich Windy
+			return "mostlycloudy";
+		case "03d":
+		case "03n":
+		case "04d":
+		case "04n":
+			return "cloudy";
+		case "10d":
+		case "10n":
+			return "slightdrizzle";
+		case "09d":
+		case "09n":
+		case "r":
+			return "drizzle";
+		case "13d":
+		case "13n":
+		case "sn50":
+			return "snow";
+		case "50d":
+		case "50n":
+			return "haze";
+		case "11d":
+		case "11n":
+		case "t50":
+			return "thunderstorms";
+		default:
+			return "sunny";
+	}
+}
