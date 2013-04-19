@@ -259,7 +259,7 @@ function plotWindSpeedArea(chartName, forecast)
 				}
 			}]
 		},
-		yAxis: {
+		yAxis: [{
 			title: {
 				text: 'm/s'
 			},
@@ -274,7 +274,7 @@ function plotWindSpeedArea(chartName, forecast)
 				label: {
 					align: 'right',
 					x: -10,
-					text: '1 bft',
+					text: '1',
 					style: {
 						color: '#606060'
 					}
@@ -286,7 +286,7 @@ function plotWindSpeedArea(chartName, forecast)
 				label: {
 					align: 'right',
 					x: -10,
-					text: '2 bft',
+					text: '2',
 					style: {
 						color: '#606060'
 					}
@@ -298,7 +298,7 @@ function plotWindSpeedArea(chartName, forecast)
 				label: {
 					align: 'right',
 					x: -10,
-					text: '3 bft',
+					text: '3',
 					style: {
 						color: '#606060'
 					}
@@ -310,7 +310,7 @@ function plotWindSpeedArea(chartName, forecast)
 				label: {
 					align: 'right',
 					x: -10,
-					text: '4 bft',
+					text: '4',
 					style: {
 						color: '#606060'
 					}
@@ -322,7 +322,7 @@ function plotWindSpeedArea(chartName, forecast)
 				label: {
 					align: 'right',
 					x: -10,
-					text: '5 bft',
+					text: '5',
 					style: {
 						color: '#606060'
 					}
@@ -334,7 +334,7 @@ function plotWindSpeedArea(chartName, forecast)
 				label: {
 					align: 'right',
 					x: -10,
-					text: '6 bft',
+					text: '6',
 					style: {
 						color: '#606060'
 					}
@@ -346,7 +346,7 @@ function plotWindSpeedArea(chartName, forecast)
 				label: {
 					align: 'right',
 					x: -10,
-					text: '7 bft',
+					text: '7',
 					style: {
 						color: '#606060'
 					}
@@ -358,13 +358,21 @@ function plotWindSpeedArea(chartName, forecast)
 				label: {
 					align: 'right',
 					x: -10,
-					text: '8 bft',
+					text: '8',
 					style: {
 						color: '#606060'
 					}
 				}
 			}]
 		},
+		{
+			title: {
+				margin: 20,
+				text: 'bft',
+			},
+			opposite:true
+		}
+		],
 		legend: {
 			enabled: false
 		},
@@ -428,7 +436,7 @@ function plotWindSpeed(chartName, forecast)
 				}
 			}]
 		},
-		yAxis: {
+		yAxis: [{
 			title: {
 				text: 'm/s'
 			},
@@ -442,8 +450,8 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: 35,
-					text: '1 bft',
+					x: 15,
+					text: '1',
 					style: {
 						color: '#606060'
 					}
@@ -454,8 +462,8 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: 35,
-					text: '2 bft',
+					x: 15,
+					text: '2',
 					style: {
 						color: '#606060'
 					}
@@ -466,8 +474,8 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: 35,
-					text: '3 bft',
+					x: 15,
+					text: '3',
 					style: {
 						color: '#606060'
 					}
@@ -478,8 +486,8 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: 35,
-					text: '4 bft',
+					x: 15,
+					text: '4',
 					style: {
 						color: '#606060'
 					}
@@ -490,8 +498,8 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: 35,
-					text: '5 bft',
+					x: 15,
+					text: '5',
 					style: {
 						color: '#606060'
 					}
@@ -502,8 +510,8 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: 35,
-					text: '6 bft',
+					x: 15,
+					text: '6',
 					style: {
 						color: '#606060'
 					}
@@ -514,8 +522,8 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: 35,
-					text: '7 bft',
+					x: 15,
+					text: '7',
 					style: {
 						color: '#606060'
 					}
@@ -526,14 +534,21 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: 35,
-					text: '8 bft',
+					x: 15,
+					text: '8',
 					style: {
 						color: '#606060'
 					}
 				}
 			}]
 		},
+		{
+			title: {
+				margin: 30,
+				text: 'bft',
+			},
+			opposite:true
+		}],
 		series: [
 			{
 				showInLegend: false,
