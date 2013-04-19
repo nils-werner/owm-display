@@ -241,9 +241,12 @@ function plotWindSpeed(chartName, forecast)
 				}
 			},
 			plotLines: [{
-				color: '#FF0000',
+				color: '#0000AA',
 				width: 2,
-				value: +new Date + time_zone
+				value: +new Date + time_zone,
+				label: {
+					text: 'Jetzt'
+				}
 			}]
 		},
 		yAxis: {
@@ -259,6 +262,8 @@ function plotWindSpeed(chartName, forecast)
 				to: 1.6,
 				color: 'rgba(68, 170, 213, 0.1)',
 				label: {
+					align: 'right',
+					x: -10,
 					text: '1 bft',
 					style: {
 						color: '#606060'
@@ -269,6 +274,8 @@ function plotWindSpeed(chartName, forecast)
 				to: 3.4,
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
+					align: 'right',
+					x: -10,
 					text: '2 bft',
 					style: {
 						color: '#606060'
@@ -279,6 +286,8 @@ function plotWindSpeed(chartName, forecast)
 				to: 5.5,
 				color: 'rgba(68, 170, 213, 0.1)',
 				label: {
+					align: 'right',
+					x: -10,
 					text: '3 bft',
 					style: {
 						color: '#606060'
@@ -289,6 +298,8 @@ function plotWindSpeed(chartName, forecast)
 				to: 8,
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
+					align: 'right',
+					x: -10,
 					text: '4 bft',
 					style: {
 						color: '#606060'
@@ -299,6 +310,8 @@ function plotWindSpeed(chartName, forecast)
 				to: 11,
 				color: 'rgba(68, 170, 213, 0.1)',
 				label: {
+					align: 'right',
+					x: -10,
 					text: '5 bft',
 					style: {
 						color: '#606060'
@@ -309,6 +322,8 @@ function plotWindSpeed(chartName, forecast)
 				to: 14,
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
+					align: 'right',
+					x: -10,
 					text: '6 bft',
 					style: {
 						color: '#606060'
@@ -319,6 +334,8 @@ function plotWindSpeed(chartName, forecast)
 				to: 17,
 				color: 'rgba(68, 170, 213, 0.1)',
 				label: {
+					align: 'right',
+					x: -10,
 					text: '7 bft',
 					style: {
 						color: '#606060'
@@ -329,6 +346,8 @@ function plotWindSpeed(chartName, forecast)
 				to: 21,
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
+					align: 'right',
+					x: -10,
 					text: '8 bft',
 					style: {
 						color: '#606060'
@@ -379,9 +398,12 @@ function plotTemperature(chartName, forecast)
 				}
 			},
 			plotLines: [{
-				color: '#FF0000',
+				color: '#0000AA',
 				width: 2,
-				value: +new Date + time_zone
+				value: +new Date + time_zone,
+				label: {
+					text: 'Jetzt'
+				}
 			}]
 		},
 		yAxis: {
@@ -426,20 +448,28 @@ function plotPressure(chartName, forecast)
 			labels: {
 				formatter: function() {
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
-				}
+				},
 			},
 			plotLines: [{
-				color: '#FF0000',
+				color: '#0000AA',
 				width: 2,
-				value: +new Date + time_zone
+				value: +new Date + time_zone,
+				label: {
+					text: 'Jetzt'
+				}
 			}]
 		},
 		yAxis: {
 			title: {
 				enabled: false,
 			},
+			labels: {
+				//align: 'left',
+				x: 8,
+				y: -2
+			},
 			min: 950,
-			max: 1050
+			max: 1050,
 		},
 		series: [{
 				showInLegend: false,
@@ -492,9 +522,12 @@ function plotRain(chartName, forecast)
 				}
 			},
 			plotLines: [{
-				color: '#FF0000',
+				color: '#0000AA',
 				width: 2,
-				value: +new Date + time_zone
+				value: +new Date + time_zone,
+				label: {
+					text: 'Jetzt'
+				}
 			}]
 		},
 		yAxis: [
