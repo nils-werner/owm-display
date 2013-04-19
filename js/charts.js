@@ -258,7 +258,7 @@ function plotWindSpeed(chartName, forecast)
 			plotBands: [{ // Light air
 				from: 0.3,
 				to: 1.6,
-				color: 'rgba(0, 0, 0, 0.1)',
+				color: 'rgba(68, 170, 213, 0.1)',
 				label: {
 					text: '1 bft',
 					style: {
@@ -278,7 +278,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Gentle breeze
 				from: 3.4,
 				to: 5.5,
-				color: 'rgba(0, 255, 42, 0.1)',
+				color: 'rgba(68, 170, 213, 0.1)',
 				label: {
 					text: '3 bft',
 					style: {
@@ -298,7 +298,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Fresh breeze
 				from: 8,
 				to: 11,
-				color: 'rgba(255, 253, 0, 0.1)',
+				color: 'rgba(68, 170, 213, 0.1)',
 				label: {
 					text: '5 bft',
 					style: {
@@ -318,7 +318,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // High wind
 				from: 14,
 				to: 17,
-				color: 'rgba(255, 26, 0, 0.1)',
+				color: 'rgba(68, 170, 213, 0.1)',
 				label: {
 					text: '7 bft',
 					style: {
