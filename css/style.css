@@ -39,6 +39,18 @@ body {
 	left: 0px;
 }
 
+#map-rain h2 {
+	position: absolute;
+	top: 0px;
+	left: 5px;
+	width: 100%;
+	text-align: center;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size:16px;
+	color:#274b6d;
+}
+
 #icon-weather {
 	position: absolute;
 	z-index: 9;
