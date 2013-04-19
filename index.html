@@ -58,9 +58,9 @@ jQuery(document).ready(function() {
 	var s = Math.round(( d.getTime() ) /1000) - 3600*12;
 	var e = Math.round(( d.getTime() ) /1000) + 3600*72;
 	$.ajax({
-		url: "http://openweathermap.org/data/2.1/forecast/city/?id=2853260&cnt=120&units=metric&start="+s+"&end="+e,
+		url: "http://openweathermap.org/data/2.1/forecast/city/?id=2853260&cnt=120&units=metric&callback=?&start="+s+"&end="+e,
 		type: 'GET',
-		dataType: 'json',
+		dataType: 'jsonp',
 		error: errorHandler,
 		success: getData
 	});
