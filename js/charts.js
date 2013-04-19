@@ -838,11 +838,13 @@ function plotRain(chartName, forecast)
 		},
 		yAxis: [
 			{
+				min: 0,
 				title: {
 					text: 'mm/3h'
 				}
 			},
 			{
+				min: 0,
 				title: {
 					text: '%'
 				},
