@@ -18,10 +18,15 @@ body {
 	width: 240px;
 	height: 240px;
 	overflow: hidden;
-	border-radius: 120px;
 }
 
-#map-rain img {
+#map-rain #mask {
+	position: absolute;
+	left: 40px;
+	top: 40px;
+}
+
+#map-rain #map {
 	width: 270px;
 	height: 250px;
 	position: relative;
