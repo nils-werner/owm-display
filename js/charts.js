@@ -726,7 +726,7 @@ function plotRain(chartName, forecast)
 				type: 'spline',
 				yAxis: 1,
 				data: cloud,
-				color: '#A0A0A0'
+				color: '#808080'
 			}
 			]
 		});
