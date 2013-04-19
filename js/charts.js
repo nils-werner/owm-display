@@ -397,7 +397,8 @@ function plotWindSpeed(chartName, forecast)
 	chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
-			type: 'spline'
+			type: 'spline',
+			marginRight: 60
 		},
 		credits: {
 			enabled: false
@@ -441,7 +442,7 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 35,
 					text: '1 bft',
 					style: {
 						color: '#606060'
@@ -453,7 +454,7 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 35,
 					text: '2 bft',
 					style: {
 						color: '#606060'
@@ -465,7 +466,7 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 35,
 					text: '3 bft',
 					style: {
 						color: '#606060'
@@ -477,7 +478,7 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 35,
 					text: '4 bft',
 					style: {
 						color: '#606060'
@@ -489,7 +490,7 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 35,
 					text: '5 bft',
 					style: {
 						color: '#606060'
@@ -501,7 +502,7 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 35,
 					text: '6 bft',
 					style: {
 						color: '#606060'
@@ -513,7 +514,7 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 35,
 					text: '7 bft',
 					style: {
 						color: '#606060'
@@ -525,7 +526,7 @@ function plotWindSpeed(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 35,
 					text: '8 bft',
 					style: {
 						color: '#606060'
@@ -566,7 +567,8 @@ function plotTemperature(chartName, forecast)
 	chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
-			type: 'spline'
+			type: 'spline',
+			marginRight: 60
 		},
 		credits: {
 			enabled: false
@@ -624,7 +626,8 @@ function plotPressure(chartName, forecast)
 	chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
-			type: 'spline'
+			type: 'spline',
+			marginRight: 60
 		},
 		credits: {
 			enabled: false
