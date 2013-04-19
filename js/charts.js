@@ -23,21 +23,25 @@ function dialWind(chartName, forecast)
 
 	for(var i = 0; i < length; i ++){
 		var deg = forecast[i]['wind']['deg'] 
-		var s = forecast[i]['wind']['speed'];
-		var step = 24;
+		var stmp = [forecast[i]['wind']['speed'], forecast[i]['wind']['gust']] // we're counting gusts, should we?
 
-		for(var l = 0; l <  16; l ++) { 
-			if( deg >= l*step && deg < (l+1)*step)	
-				break;
+		for(var j = 0; j < stmp.length; j ++) {
+			var s = stmp[j];
+			var step = 24;
+
+			for(var l = 0; l <  16; l ++) { 
+				if( deg >= l*step && deg < (l+1)*step)	
+					break;
+			}
+
+			if( s >= 0 && s < 0.5)	tmp[6]['data'][l] ++
+			if( s >= 0.5 && s < 2)	tmp[5]['data'][l] ++
+			if( s >= 2 && s < 4)	tmp[4]['data'][l] ++
+			if( s >= 4 && s < 6)	tmp[3]['data'][l] ++
+			if( s >= 6 && s < 8)	tmp[2]['data'][l] ++
+			if( s >= 8 && s < 11)	tmp[1]['data'][l] ++
+			if( s >= 11 )			tmp[0]['data'][l] ++
 		}
-
-		if( s >= 0 && s < 0.5)	tmp[6]['data'][l] ++
-		if( s >= 0.5 && s < 2)	tmp[5]['data'][l] ++
-		if( s >= 2 && s < 4)	tmp[4]['data'][l] ++
-		if( s >= 4 && s < 6)	tmp[3]['data'][l] ++
-		if( s >= 6 && s < 8)	tmp[2]['data'][l] ++
-		if( s >= 8 && s < 11)	tmp[1]['data'][l] ++
-		if( s >= 11 )			tmp[0]['data'][l] ++
 	}
 
 	var fl= forecast.length;
