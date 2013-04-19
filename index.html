@@ -3,7 +3,7 @@
 	<title>Open Weather Map weather Chart</title>
 	<meta charset="utf-8">
 
-	<script src="http://code.jquery.com/jquery-1.7.min.js" ></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js" ></script>
 
 	<script src="http://code.highcharts.com/highcharts.js"></script>
 	<script src="http://code.highcharts.com/highcharts-more.js"></script>
@@ -57,14 +57,19 @@ jQuery(document).ready(function() {
 	var d = new Date(curd.getFullYear(), curd.getMonth(), curd.getDate());
 	var s = Math.round(( d.getTime() ) /1000) - 3600*12;
 	var e = Math.round(( d.getTime() ) /1000) + 3600*72;
-	var jsonurl = "http://openweathermap.org/data/2.1/forecast/city/?id=2853260&cnt=120&units=metric&start="+s+"&end="+e;
-	$.get(jsonurl, getData).error(errorHandler);
+	$.ajax({
+		url: "http://openweathermap.org/data/2.1/forecast/city/?id=2853260&cnt=120&units=metric&start="+s+"&end="+e,
+		type: 'GET',
+		dataType: 'json',
+		error: errorHandler,
+		success: getData
+	});
 });
 
 
-function getData(JSONtext)
+
+function getData(JSONobject)
 {
-	JSONobject = ParseJson(JSONtext);
 	data = JSONobject.list;
 	dialWind('dial-wind', data);
 	dialPressure('dial-pressure', data);
@@ -78,29 +83,6 @@ function  errorHandler(e)
 {
 	console.log(e.status +' '+e.statusText);
 }
-
-
-function ParseJson(JSONtext)
-{
-	try{
-		JSONobject = JSON.parse(JSONtext); 
-	}catch(e){
-		ShowAlertMess('Ошибка JSON');
-		return;
-	}
-
-	if(JSONobject.cod != '200') {
-		ShowAlertMess('Error '+ JSONobject.cod + ' ('+ JSONobject.message +')');
-		return;
-	}
-	var mes = JSONobject.cod;
-	if(JSONobject.calctime)
-		mes = mes + ' ' + JSONobject.calctime;
-	if(JSONobject.message)
-		mes = mes + ' ' + JSONobject.message;
-	return JSONobject;
-}
-
 
 </script>
 
