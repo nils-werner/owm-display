@@ -13,8 +13,12 @@ body {
 }
 
 #map-rain {
-	margin-top: 40px;
+	margin-top: 45px;
 	margin-left: 40px;
+	position: relative;
+}
+
+#map-rain #map {
 	width: 240px;
 	height: 240px;
 	overflow: hidden;
@@ -22,17 +26,17 @@ body {
 
 #map-rain #mask {
 	position: absolute;
-	left: 40px;
-	top: 40px;
+	left: 0px;
+	top: 0px;
 }
 
 #map-rain #pin {
 	position: absolute;
-	left: 138px;
-	top: 129px;
+	left: 100px;
+	top: 89px;
 }
 
-#map-rain #map {
+#map-rain #map-image {
 	width: 270px;
 	height: 250px;
 	position: relative;
@@ -41,8 +45,8 @@ body {
 
 #map-rain h2 {
 	position: absolute;
-	top: 0px;
-	left: 5px;
+	top: -45px;
+	left: -10px;
 	width: 100%;
 	text-align: center;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
@@ -50,6 +54,19 @@ body {
 	font-size:16px;
 	color:#274b6d;
 }
+
+#map-rain h3 {
+	position: absolute;
+	top: -25px;
+	left: -10px;
+	width: 100%;
+	text-align: center;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#4d759e;
+	font-weight: normal;
+}
+
 
 #icon-weather {
 	position: absolute;
