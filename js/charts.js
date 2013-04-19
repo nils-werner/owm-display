@@ -6,6 +6,7 @@
 
 function dialWind(chartName, forecast)
 {
+	var length = 6;
 	var options = {
 		xAxis:{
 			categories:["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"], 
@@ -36,7 +37,7 @@ function dialWind(chartName, forecast)
 
 	for(var i in n)	for(var g = 0; g <  7; g ++) tmp[g]['data'][i] = 0;
 
-	for(var i = 0; i <  forecast.length; i ++){
+	for(var i = 0; i < length; i ++){
 		var deg = forecast[i]['wind']['deg'] 
 		var s = forecast[i]['wind']['speed'];
 		var step = 24;
@@ -58,7 +59,7 @@ function dialWind(chartName, forecast)
 	var fl= forecast.length;
 	for(var i in n)
 		for(var g = 0; g <  7; g ++)
-			tmp[g]['data'][i] = Math.round(100 * tmp[g]['data'][i] / fl);
+			tmp[g]['data'][i] = Math.round(100 * tmp[g]['data'][i] / length);
 
 	options = {
 		xAxis:{
