@@ -89,6 +89,11 @@ function dialWind(chartName, forecast)
 			layout: 'vertical',
 			enabled: false
 		},
+		tooltip: {
+			formatter: function() {
+				return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
+			}
+		},
 		xAxis: {
 			tickmarkPlacement: 'on'
 		},
@@ -231,6 +236,11 @@ function plotWindSpeedArea(chartName, forecast)
 		},
 		title: {
 			text: 'Windgeschwindigkeit'
+		},
+		tooltip: {
+			formatter: function() {
+				return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
+			}
 		},
 		xAxis: {
 			type: 'datetime',
@@ -394,6 +404,11 @@ function plotWindSpeed(chartName, forecast)
 		},
 		title: {
 			text: 'Windgeschwindigkeit'
+		},
+		tooltip: {
+			formatter: function() {
+				return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
+			}
 		},
 		xAxis: {
 			type: 'datetime',
@@ -559,6 +574,11 @@ function plotTemperature(chartName, forecast)
 		title: {
 			text: 'Temperatur'
 		},
+		tooltip: {
+			formatter: function() {
+				return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
+			}
+		},
 		xAxis: {
 			type: 'datetime',
 			tickInterval: 24 * 3600 * 1000,
@@ -611,6 +631,11 @@ function plotPressure(chartName, forecast)
 		},
 		title: {
 			text: 'Luftdruck'
+		},
+		tooltip: {
+			formatter: function() {
+				return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
+			}
 		},
 		xAxis: {
 			type: 'datetime',
@@ -682,6 +707,11 @@ function plotRain(chartName, forecast)
 		},
 		title: {
 			text: 'Regenfall/Bewölkung'
+		},
+		tooltip: {
+			formatter: function() {
+				return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
+			}
 		},
 		xAxis: {
 			type: 'datetime',
