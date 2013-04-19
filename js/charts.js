@@ -7,7 +7,7 @@
 function dialWind(chartName, forecast)
 {
 	var n = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW']; 
-	var length = 4;
+	var length = forecast.length;
 
 	var tmp = [
 		{name:"6+ bft", data:[]},
@@ -63,7 +63,7 @@ function dialWind(chartName, forecast)
 			text: 'Windrose'
 		},
 		subtitle: {
-			text: 'der nächsten 12 Stunden',
+			text: 'der nächsten Woche',
 			floating: true
 		},
 		legend: {
