@@ -499,6 +499,11 @@ function plotWindSpeed(chartName, forecast)
 {
 	var wind = new Array();
 	var gust = new Array();
+	var icons = new Array();
+	var maxv = 0;
+
+	for(var i = 0; i <  forecast.length; i ++)
+		maxv = Math.max(maxv, forecast[i]['wind']['gust'])
 
 	for(var i = 0; i <  forecast.length; i ++){
 		wind.push([
@@ -510,6 +515,12 @@ function plotWindSpeed(chartName, forecast)
 				forecast[i]['dt'] * 1000 + time_zone,
 				forecast[i]['wind']['gust']
 			]);
+
+		icons.push({
+				x: forecast[i]['dt'] * 1000 + time_zone,
+				y: Math.min(maxv+1,14),
+				marker: { symbol: 'url(img/directions/' + translateToDirection(forecast[i]['wind']['deg']) + '.png)' }
+			});
 	}
 
 	chart = new Highcharts.Chart({
@@ -710,6 +721,11 @@ function plotWindSpeed(chartName, forecast)
 				type: 'spline',
 				data: gust,
 				color: '#C0C0C0'
+			},
+			{
+				showInLegend: false,
+				type: 'scatter',
+				data: icons
 			}
 			]
 		});
@@ -953,4 +969,11 @@ function translateIcon(iconCode)
 		default:
 			return "sunny";
 	}
+}
+
+function translateToDirection(angle) {
+	angle = angle+180;
+	var val=Math.floor((angle/22.5)+.5)
+	var arr=["n","nne","ne","ene","e","ese", "se", "sse","s","ssw","sw","wsw","w","wnw","nw","nnw"]
+	return arr[(val % 16)];
 }
