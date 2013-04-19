@@ -722,7 +722,7 @@ function plotRain(chartName, forecast)
 			enabled: false
 		},
 		title: {
-			text: 'Regenfall/Bewölkung'
+			text: 'Niederschlag/Bewölkung'
 		},
 		tooltip: {
 			formatter: function() {
