@@ -502,9 +502,6 @@ function plotWindSpeed(chartName, forecast)
 	var icons = new Array();
 	var maxv = 0;
 
-	for(var i = 0; i <  forecast.length; i ++)
-		maxv = Math.max(maxv, forecast[i]['wind']['gust'])
-
 	for(var i = 0; i <  forecast.length; i ++){
 		wind.push([
 				forecast[i]['dt'] * 1000 + time_zone,
@@ -518,7 +515,7 @@ function plotWindSpeed(chartName, forecast)
 
 		icons.push({
 				x: forecast[i]['dt'] * 1000 + time_zone,
-				y: Math.min(maxv+1,14),
+				y: -1,
 				marker: { symbol: 'url(img/directions/' + translateToDirection(forecast[i]['wind']['deg']) + '.png)' }
 			});
 	}
@@ -555,7 +552,8 @@ function plotWindSpeed(chartName, forecast)
 			title: {
 				text: 'm/s'
 			},
-			min: 0,
+			min: -2,
+			startOnTick: false,
 			alternateGridColor: null,
 			plotBands: [{ // Light air
 				from: 0.3,
