@@ -665,9 +665,7 @@ function plotPressure(chartName, forecast)
 				//align: 'left',
 				x: 8,
 				y: -2
-			},
-			min: 950,
-			max: 1050,
+			}
 		},
 		series: [{
 				showInLegend: false,
