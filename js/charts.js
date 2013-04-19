@@ -251,7 +251,7 @@ function plotWindSpeed(chartName, forecast)
 		},
 		yAxis: {
 			title: {
-				enabled: false,
+				text: 'm/s'
 			},
 			min: 0,
 			minorGridLineWidth: 0,
@@ -408,7 +408,7 @@ function plotTemperature(chartName, forecast)
 		},
 		yAxis: {
 			title: {
-				enabled: false,
+				text: '°C'
 			}
 		},
 		series: [{
@@ -461,7 +461,7 @@ function plotPressure(chartName, forecast)
 		},
 		yAxis: {
 			title: {
-				enabled: false,
+				text: 'hPa'
 			},
 			labels: {
 				//align: 'left',
@@ -533,12 +533,12 @@ function plotRain(chartName, forecast)
 		yAxis: [
 			{
 				title: {
-					enabled: false
+					text: 'mm/3h'
 				}
 			},
 			{
 				title: {
-					enabled: false
+					text: '%'
 				},
 				opposite: true,
 			}
