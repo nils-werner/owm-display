@@ -264,16 +264,14 @@ function plotWindSpeedArea(chartName, forecast)
 				text: 'm/s'
 			},
 			min: 0,
-			minorGridLineWidth: 0,
-			gridLineWidth: 0,
 			alternateGridColor: null,
 			plotBands: [{ // Light air
 				from: 0.3,
 				to: 1.6,
-				color: 'rgba(68, 170, 213, 0.1)',
+				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 15,
 					text: '1',
 					style: {
 						color: '#606060'
@@ -285,7 +283,7 @@ function plotWindSpeedArea(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 15,
 					text: '2',
 					style: {
 						color: '#606060'
@@ -294,10 +292,10 @@ function plotWindSpeedArea(chartName, forecast)
 			}, { // Gentle breeze
 				from: 3.4,
 				to: 5.5,
-				color: 'rgba(68, 170, 213, 0.1)',
+				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 15,
 					text: '3',
 					style: {
 						color: '#606060'
@@ -309,7 +307,7 @@ function plotWindSpeedArea(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 15,
 					text: '4',
 					style: {
 						color: '#606060'
@@ -318,10 +316,10 @@ function plotWindSpeedArea(chartName, forecast)
 			}, { // Fresh breeze
 				from: 8,
 				to: 11,
-				color: 'rgba(68, 170, 213, 0.1)',
+				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 15,
 					text: '5',
 					style: {
 						color: '#606060'
@@ -333,7 +331,7 @@ function plotWindSpeedArea(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 15,
 					text: '6',
 					style: {
 						color: '#606060'
@@ -342,10 +340,10 @@ function plotWindSpeedArea(chartName, forecast)
 			}, { // High wind
 				from: 14,
 				to: 17,
-				color: 'rgba(68, 170, 213, 0.1)',
+				color: 'rgba(0, 0, 0, 0.05)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 15,
 					text: '7',
 					style: {
 						color: '#606060'
@@ -357,8 +355,55 @@ function plotWindSpeedArea(chartName, forecast)
 				color: 'rgba(0, 0, 0, 0)',
 				label: {
 					align: 'right',
-					x: -10,
+					x: 15,
 					text: '8',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Strong Gale
+				from: 21,
+				to: 25,
+				color: 'rgba(0, 0, 0, 0.05)',
+				label: {
+					align: 'right',
+					x: 15,
+					text: '9',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Storm
+				from: 25,
+				to: 29,
+				color: 'rgba(0, 0, 0, 0)',
+				label: {
+					align: 'right',
+					x: 15,
+					text: '10',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Violent Storm
+				from: 29,
+				to: 33,
+				color: 'rgba(0, 0, 0, 0.05)',
+				label: {
+					align: 'right',
+					x: 15,
+					text: '11',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Hurricane
+				from: 33,
+				color: 'rgba(0, 0, 0, 0)',
+				label: {
+					align: 'right',
+					x: 15,
+					text: '12',
 					style: {
 						color: '#606060'
 					}
@@ -441,8 +486,6 @@ function plotWindSpeed(chartName, forecast)
 				text: 'm/s'
 			},
 			min: 0,
-			minorGridLineWidth: 0,
-			gridLineWidth: 0,
 			alternateGridColor: null,
 			plotBands: [{ // Light air
 				from: 0.3,
@@ -536,6 +579,53 @@ function plotWindSpeed(chartName, forecast)
 					align: 'right',
 					x: 15,
 					text: '8',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Strong Gale
+				from: 21,
+				to: 25,
+				color: 'rgba(0, 0, 0, 0.05)',
+				label: {
+					align: 'right',
+					x: 15,
+					text: '9',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Storm
+				from: 25,
+				to: 29,
+				color: 'rgba(0, 0, 0, 0)',
+				label: {
+					align: 'right',
+					x: 15,
+					text: '10',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Violent Storm
+				from: 29,
+				to: 33,
+				color: 'rgba(0, 0, 0, 0.05)',
+				label: {
+					align: 'right',
+					x: 15,
+					text: '11',
+					style: {
+						color: '#606060'
+					}
+				}
+			}, { // Hurricane
+				from: 33,
+				color: 'rgba(0, 0, 0, 0)',
+				label: {
+					align: 'right',
+					x: 15,
+					text: '12',
 					style: {
 						color: '#606060'
 					}
