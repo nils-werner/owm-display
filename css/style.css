@@ -7,3 +7,32 @@ body {
 	text-align: center;
 	font-size: 8pt;
 }
+
+.pos-rel {
+	position: relative;
+}
+
+#map-rain {
+	margin-top: 40px;
+	margin-left: 40px;
+	width: 240px;
+	height: 240px;
+	overflow: hidden;
+	border-radius: 120px;
+}
+
+#map-rain img {
+	width: 270px;
+	height: 250px;
+	position: relative;
+	left: -10px;
+}
+
+#icon-weather {
+	position: absolute;
+	z-index: 9;
+	top: 200px;
+	left: 260px;
+	width: 100px;
+	height: 100px;
+}
