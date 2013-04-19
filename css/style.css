@@ -26,11 +26,17 @@ body {
 	top: 40px;
 }
 
+#map-rain #pin {
+	position: absolute;
+	left: 138px;
+	top: 129px;
+}
+
 #map-rain #map {
 	width: 270px;
 	height: 250px;
 	position: relative;
-	left: -10px;
+	left: 0px;
 }
 
 #icon-weather {
