@@ -707,9 +707,10 @@ function plotWindSpeed(chartName, forecast)
 		series: [
 			{
 				showInLegend: false,
-				type: 'spline',
+				type: 'areaspline',
 				data: wind,
-				color: '#EB662A'
+				color: '#EB662A',
+				fillOpacity: 0.2
 			},
 			{
 				showInLegend: false,
