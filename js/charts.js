@@ -777,7 +777,7 @@ function plotTemperature(chartName, forecast)
 				showInLegend: false,
 				type: 'spline',
 				data: tmp,
-				color: '#00A000'
+				color: '#B9D10F'
 			}]
 		});
 }
