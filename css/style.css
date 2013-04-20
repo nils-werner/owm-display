@@ -1,6 +1,10 @@
 body {
-	margin-top: 50px;
-	margin-left: 50px;
+	margin-top: 60px;
+}
+
+.row {
+	margin: auto;
+	width: 980px;
 }
 
 #license {
