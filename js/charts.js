@@ -29,10 +29,7 @@ function dialWind(chartName, forecast)
 			var s = stmp[j];
 			var step = 24;
 
-			for(var l = 0; l <  16; l ++) { 
-				if( deg >= l*step && deg < (l+1)*step)	
-					break;
-			}
+			l = quantizeDirection(deg);
 
 			if( s >= 0 && s < 0.5)	tmp[6]['data'][l] ++
 			if( s >= 0.5 && s < 2)	tmp[5]['data'][l] ++
@@ -969,9 +966,13 @@ function translateIcon(iconCode)
 	}
 }
 
+function quantizeDirection(angle) {
+	var val=Math.floor((angle/22.5)+.5)
+	return (val % 16);
+}
+
 function translateToDirection(angle) {
 	angle = angle+180;
-	var val=Math.floor((angle/22.5)+.5)
 	var arr=["n","nne","ne","ene","e","ese", "se", "sse","s","ssw","sw","wsw","w","wnw","nw","nnw"]
-	return arr[(val % 16)];
+	return arr[quantizeDirection(angle)];
 }
