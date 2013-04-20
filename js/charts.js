@@ -830,11 +830,18 @@ function plotPressure(chartName, forecast)
 				y: 5
 			}
 		},
+		plotOptions: {
+			series: {
+				threshold: tmp[0][1]
+			}
+		},
 		series: [{
 				showInLegend: false,
-				type: 'spline',
+				type: 'areaspline',
+				fillOpacity: 0.2,
 				data: tmp,
-				color: '#B00000'
+				color: '#00B000',
+				negativeColor: '#B00000'
 			}]
 		});
 }
