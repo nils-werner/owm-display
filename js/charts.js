@@ -785,6 +785,10 @@ function plotTemperature(chartName, forecast)
 function plotPressure(chartName, forecast)
 {
 	var tmp = new Array();
+	var threshold = forecast[0]['main']['pressure'];
+	var diff = forecast[1]['main']['pressure'] - threshold;
+	diff = diff/Math.abs(diff);
+	threshold -= diff * 0.1;
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
@@ -833,7 +837,7 @@ function plotPressure(chartName, forecast)
 		},
 		plotOptions: {
 			series: {
-				threshold: tmp[0][1]
+				threshold: threshold
 			}
 		},
 		series: [{
