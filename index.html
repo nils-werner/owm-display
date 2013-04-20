@@ -85,13 +85,14 @@ jQuery(document).ready(function() {
 		success: getForecast
 	});
 
-	$.ajax({
-		url: "http://api.openweathermap.org/data/2.1/weather/city/2853260?type=json&units=metric&callback=?",
-		type: 'GET',
-		dataType: 'jsonp',
-		error: errorHandler,
-		success: getStation
-	});
+
+//	$.ajax({
+//		url: "http://api.openweathermap.org/data/2.1/weather/city/2853260?type=json&units=metric&callback=?",
+//		type: 'GET',
+//		dataType: 'jsonp',
+//		error: errorHandler,
+//		success: getStation
+//	});
 
 });
 
@@ -101,19 +102,18 @@ function getForecast(JSONobject)
 {
 	data = JSONobject.list;
 	dialWind('dial-wind', data);
+	dialPressure('dial-pressure', data);
+	dialTemperature('dial-temperature', data);
 	plotPressure('chart-pressure', data);
 	plotTemperature('chart-temp', data);
 	plotWindSpeed('chart-wind', data);
 	plotRain('chart-rain', data);
-
+	placeIcon('icon-weather', data);
 }
 
 function getStation(JSONobject)
 {
 	data = JSONobject;
-	placeIcon('icon-weather', data);
-	dialPressure('dial-pressure', data);
-	dialTemperature('dial-temperature', data);
 }
 
 function  errorHandler(e)

@@ -115,7 +115,7 @@ function dialWind(chartName, forecast)
 function dialPressure(chartName, forecast)
 {
 	var tmp = Array();
-	tmp.push(forecast['main']['pressure']);
+	tmp.push(forecast[0]['main']['pressure']);
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
@@ -136,11 +136,6 @@ function dialPressure(chartName, forecast)
 			text: 'Luftdruck'
 		},
 
-		subtitle: {
-			text: 'gemessen in Pleinfeld',
-			floating: true
-		},
-		
 		pane: {
 			startAngle: -150,
 			endAngle: 150
@@ -215,7 +210,7 @@ function dialPressure(chartName, forecast)
 function dialTemperature(chartName, forecast)
 {
 	var tmp = Array();
-	tmp.push(Math.round(forecast['main']['temp']*10)/10);
+	tmp.push(Math.round(forecast[0]['main']['temp']*10)/10);
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
@@ -938,7 +933,7 @@ function plotRain(chartName, forecast)
 
 function placeIcon(chartName, forecast)
 {
-	$('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast['weather'][0]['icon']) + '.png" style="width: 100%;" />');
+	$('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast[0]['weather'][0]['icon']) + '.png" style="width: 100%;" />');
 }
 
 function translateIcon(iconCode)
