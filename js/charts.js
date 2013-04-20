@@ -906,18 +906,19 @@ function plotRain(chartName, forecast)
 		series: [
 			{
 				showInLegend: false,
+				type: 'areaspline',
+				yAxis: 1,
+				data: cloud,
+				color: '#808080',
+				fillOpacity: 0.2
+			},
+			{
+				showInLegend: false,
 				type: 'column',
 				pointWidth: 10,
 				yAxis: 0,
 				data: tmp,
 				color: '#427EFF'
-			},
-			{
-				showInLegend: false,
-				type: 'spline',
-				yAxis: 1,
-				data: cloud,
-				color: '#808080'
 			}
 			]
 		});
