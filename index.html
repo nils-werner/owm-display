@@ -76,10 +76,11 @@
 
 <script type="text/javascript">
 var time_zone = 1000 * (new Date().getTimezoneOffset())*(-60);
+var station = 2853260;
 
 jQuery(document).ready(function() {
 	$.ajax({
-		url: "http://openweathermap.org/data/2.1/forecast/city/?id=2853260&units=metric&callback=?",
+		url: "http://openweathermap.org/data/2.1/forecast/city/?id=" + station + "&units=metric&callback=?",
 		type: 'GET',
 		dataType: 'jsonp',
 		error: errorHandler,
@@ -88,7 +89,7 @@ jQuery(document).ready(function() {
 
 
 //	$.ajax({
-//		url: "http://api.openweathermap.org/data/2.1/weather/city/2853260?type=json&units=metric&callback=?",
+//		url: "http://api.openweathermap.org/data/2.1/weather/city/" + station + "?type=json&units=metric&callback=?",
 //		type: 'GET',
 //		dataType: 'jsonp',
 //		error: errorHandler,
