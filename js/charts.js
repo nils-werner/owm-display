@@ -853,7 +853,7 @@ function plotRain(chartName, forecast)
 		else
 			tmp.push([
 				forecast[i]['dt'] * 1000 + time_zone,
-				-0.5
+				0
 			]);
 		cloud.push([
 			forecast[i]['dt'] * 1000 + time_zone,
@@ -906,7 +906,8 @@ function plotRain(chartName, forecast)
 		series: [
 			{
 				showInLegend: false,
-				type: 'areaspline',
+				type: 'column',
+				pointWidth: 10,
 				yAxis: 0,
 				data: tmp,
 				color: '#427EFF'
