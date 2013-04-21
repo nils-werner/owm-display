@@ -143,8 +143,8 @@ function dialPressure(chartName, forecast)
 	
 		yAxis: [
 			{
-				min: 950,
-				max: 1100,
+				min: 945,
+				max: 1055,
 				lineColor: '#339',
 				tickColor: '#339',
 				minorTickColor: '#339',
@@ -156,7 +156,8 @@ function dialPressure(chartName, forecast)
 				},
 				tickLength: 5,
 				minorTickLength: 5,
-				endOnTick: false
+				endOnTick: false,
+				startOnTick: false
 			},
 			{
 				min: 950 / 1.33322,
