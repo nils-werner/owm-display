@@ -77,6 +77,7 @@
 <script type="text/javascript">
 var time_zone = 1000 * (new Date().getTimezoneOffset())*(-60);
 var station = 2853260;
+var dataReceived = false;
 
 jQuery(document).ready(function() {
 	$.ajax({
@@ -96,12 +97,19 @@ jQuery(document).ready(function() {
 //		success: getStation
 //	});
 
+	setTimeout(function () {
+		if(!dataReceived) {
+			location.reload(true);
+		}
+	}, 60000);
+
 });
 
 
 
 function getForecast(JSONobject)
 {
+	dataReceived = true;
 	data = JSONobject.list;
 	dialWind('dial-wind', data);
 	dialPressure('dial-pressure', data);
