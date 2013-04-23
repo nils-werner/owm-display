@@ -72,6 +72,9 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div id="loading" class="span12">Lade Daten...</div>
+	</div>
 </body>
 
 <script type="text/javascript">
@@ -111,6 +114,8 @@ function getForecast(JSONobject)
 {
 	dataReceived = true;
 	data = JSONobject.list;
+	hide('loading');
+	show('map-rain');
 	dialWind('dial-wind', data);
 	dialPressure('dial-pressure', data);
 	dialTemperature('dial-temperature', data);

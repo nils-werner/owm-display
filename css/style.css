@@ -3,6 +3,13 @@ body {
 	margin-bottom: 60px;
 }
 
+#loading {
+	position: absolute;
+	top: 300px;
+	text-align: center;
+	font-size: 20pt;
+}
+
 .row {
 	margin: auto;
 	width: 980px;
@@ -22,6 +29,7 @@ body {
 	margin-top: 45px;
 	margin-left: 40px;
 	position: relative;
+	display: none;
 }
 
 #map-rain #map {

@@ -4,6 +4,17 @@
 //***********************************************************
 
 
+function hide(chartName)
+{
+	$('#' + chartName).hide();
+}
+
+function show(chartName)
+{
+	$('#' + chartName).show();
+}
+
+
 function dialWind(chartName, forecast)
 {
 	var n = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW']; 
