@@ -42,13 +42,13 @@ function dialWind(chartName, forecast)
 
 			l = quantizeDirection(deg);
 
-			if( s >= 0 && s < 0.5)	tmp[6]['data'][l] ++
-			if( s >= 0.5 && s < 2)	tmp[5]['data'][l] ++
-			if( s >= 2 && s < 4)	tmp[4]['data'][l] ++
-			if( s >= 4 && s < 6)	tmp[3]['data'][l] ++
-			if( s >= 6 && s < 8)	tmp[2]['data'][l] ++
-			if( s >= 8 && s < 11)	tmp[1]['data'][l] ++
-			if( s >= 11 )			tmp[0]['data'][l] ++
+			if( s >= 0 && s < 0.5)	tmp[6]['data'][l] += 1 - j/2; // Gusts are half as likely, hence the substraction
+			if( s >= 0.5 && s < 2)	tmp[5]['data'][l] += 1 - j/2;
+			if( s >= 2 && s < 4)	tmp[4]['data'][l] += 1 - j/2;
+			if( s >= 4 && s < 6)	tmp[3]['data'][l] += 1 - j/2;
+			if( s >= 6 && s < 8)	tmp[2]['data'][l] += 1 - j/2;
+			if( s >= 8 && s < 11)	tmp[1]['data'][l] += 1 - j/2;
+			if( s >= 11 )			tmp[0]['data'][l] += 1 - j/2;
 		}
 	}
 
