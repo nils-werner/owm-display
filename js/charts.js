@@ -52,10 +52,9 @@ function dialWind(chartName, forecast)
 		}
 	}
 
-	var fl= forecast.length;
 	for(var i in n)
 		for(var g = 0; g <  7; g ++)
-			tmp[g]['data'][i] = Math.round(100 * tmp[g]['data'][i] / length);
+			tmp[g]['data'][i] = Math.round(100 * tmp[g]['data'][i] / (length*1.5));
 
 	window.chart = new Highcharts.Chart({
 		chart: {
