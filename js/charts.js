@@ -88,7 +88,7 @@ function dialWind(chartName, forecast)
 		},
 		tooltip: {
 			formatter: function() {
-				return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
+				return this.x +': '+ this.y;
 			}
 		},
 		xAxis: {
