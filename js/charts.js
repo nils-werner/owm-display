@@ -738,6 +738,12 @@ function placeIcon(chartName, forecast)
 	$('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast[0]['weather'][0]['icon']) + '.png" style="width: 100%;" />');
 }
 
+function placeDate(chartName, forecast)
+{
+	var date = new Date();
+	$('#' + chartName).html("Letztes Update: " + date.toLocaleString());
+}
+
 function translateIcon(iconCode)
 {
 	switch(iconCode)

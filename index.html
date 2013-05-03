@@ -65,11 +65,13 @@
 			<div id="chart-rain" class="widget"></div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row footer">
 		<div class="span12">
 			<div id="license">
 				Vorhersagen: openweathermap.org<br />
 				Niederschlagsradar: Deutscher Wetterdienst
+			</div>
+			<div id="date">
 			</div>
 		</div>
 	</div>
@@ -125,6 +127,7 @@ function getForecast(JSONobject)
 	plotWindSpeed('chart-wind', data);
 	plotRain('chart-rain', data);
 	placeIcon('icon-weather', data);
+	placeDate('date', data);
 }
 
 function getStation(JSONobject)

@@ -15,7 +15,7 @@ body {
 	width: 980px;
 }
 
-#license {
+.footer div {
 	text-align: center;
 	font-size: 8pt;
 	line-height: 10px;
