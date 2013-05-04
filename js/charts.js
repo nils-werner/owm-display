@@ -124,8 +124,9 @@ function dialWind(chartName, forecast)
 
 function dialPressure(chartName, forecast)
 {
+	var correction = 40;
 	var tmp = Array();
-	tmp.push(forecast[0]['main']['pressure']);
+	tmp.push(forecast[0]['main']['pressure'] + correction);
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
@@ -581,16 +582,17 @@ function plotTemperature(chartName, forecast)
 
 function plotPressure(chartName, forecast)
 {
+	var correction = 40;
 	var tmp = new Array();
-	var threshold = forecast[0]['main']['pressure'];
-	var diff = forecast[1]['main']['pressure'] - threshold;
+	var threshold = forecast[0]['main']['pressure'] + correction;
+	var diff = forecast[1]['main']['pressure'] + correction - threshold;
 	diff = diff/Math.abs(diff);
 	threshold -= diff * 0.1;
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
 			forecast[i]['dt'] * 1000 + time_zone,
-			forecast[i]['main']['pressure']
+			forecast[i]['main']['pressure'] + correction
 		]);
 	}
 
