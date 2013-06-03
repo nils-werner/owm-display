@@ -632,7 +632,8 @@ function plotPressure(chartName, forecast)
 				//align: 'left',
 				x: 0,
 				y: 5
-			}
+			},
+			minRange: 20
 		},
 		plotOptions: {
 			series: {
