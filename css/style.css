@@ -1,6 +1,6 @@
 body {
 	margin-top: 60px;
-	margin-bottom: 60px;
+	margin-bottom: 0px;
 }
 
 #loading {
@@ -13,6 +13,7 @@ body {
 .row {
 	margin: auto;
 	width: 980px;
+	margin-top: 50px;
 }
 
 .footer div {
@@ -104,3 +105,4 @@ body {
 	height: 300px;
 	margin: 0 auto;
 }
+
