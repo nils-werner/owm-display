@@ -26,39 +26,46 @@ body {
 	position: relative;
 }
 
-#map-rain {
+#map-rain, #map-lightning {
 	margin-top: 45px;
 	margin-left: 40px;
 	position: relative;
 	display: none;
 }
 
-#map-rain #map {
+.map-widget {
 	width: 240px;
 	height: 240px;
 	overflow: hidden;
 }
 
-#map-rain #mask {
+.mask {
 	position: absolute;
 	left: 0px;
 	top: 0px;
 }
 
-#map-rain #pin {
+.pin {
 	position: absolute;
 	left: 100px;
 	top: 89px;
 }
 
-#map-rain #map-image {
+.map-image {
 	width: 270px;
 	height: 250px;
 	position: relative;
 	left: 0px;
 }
 
-#map-rain h2 {
+#map-lightning .map-image {
+	width: 890px;
+	height: 890px;
+	top: -470px;
+	left: -385px;
+}
+
+.map h2 {
 	position: absolute;
 	top: -45px;
 	left: -10px;
@@ -70,7 +77,7 @@ body {
 	color:#274b6d;
 }
 
-#map-rain h3 {
+.map h3 {
 	position: absolute;
 	top: -25px;
 	left: -10px;

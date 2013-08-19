@@ -22,13 +22,13 @@
 			<div id="dial-wind" class="widget"></div>
 		</div>
 
-		<div class="span4 pos-rel">
+		<div class="span4 map pos-rel">
 			<div id="map-rain">
-				<div id="map">
-					<!-- <img src="http://www.dwd.de/wundk/radar/Radarfilm_WEB_SE.gif" id="map-image" /> <!-- 4 Stunden, 3 MB -->
-					<img src="http://images.wetterdienst.de/maps/radar/Radarfilm_Suedost.gif" id="map-image" /> <!-- 2,5 Std, 300KB -->
-					<img src="img/map-pin.png" id="pin" />
-					<img src="img/map-mask.png" id="mask" />
+				<div class="map-widget">
+					<!-- <img src="http://www.dwd.de/wundk/radar/Radarfilm_WEB_SE.gif" class="map-image" /> <!-- 4 Stunden, 3 MB -->
+					<img src="http://images.wetterdienst.de/maps/radar/Radarfilm_Suedost.gif" class="map-image" /> <!-- 2,5 Std, 300KB -->
+					<img src="img/map-pin.png" class="pin" />
+					<img src="img/map-mask.png" class="mask" />
 				</div>
 				<h2>Niederschlagsradar</h2>
 				<h3>der letzten 2,5 Stunden</h3>
@@ -37,9 +37,24 @@
 			<div id="dial-temperature"></div>
 		</div>
 
+		<div class="span4 map pos-rel">
+			<div id="map-lightning">
+				<div class="map-widget">
+					<!-- <img src="http://www.dwd.de/wundk/radar/Radarfilm_WEB_SE.gif" class="map-image" /> <!-- 4 Stunden, 3 MB -->
+					<img src="http://images.blitzortung.org/Images/image_b_de.png" class="map-image" /> <!-- 2,5 Std, 300KB -->
+					<img src="img/map-pin.png" class="pin" />
+					<img src="img/map-mask.png" class="mask" />
+				</div>
+				<h2>Blitzradar</h2>
+				<h3>jetzt</h3>
+			</div>
+		</div>
+
+		<!--
 		<div class="span4">
 			<div id="dial-pressure" class="widget" ></div>
 		</div>
+		-->
 	</div>
 
 	<div class="row">
@@ -119,8 +134,8 @@ function getForecast(JSONobject)
 	data = JSONobject.list;
 	hide('loading');
 	show('map-rain');
+	show('map-lightning');
 	dialWind('dial-wind', data);
-	dialPressure('dial-pressure', data);
 	dialTemperature('dial-temperature', data);
 	plotPressure('chart-pressure', data);
 	plotTemperature('chart-temp', data);
