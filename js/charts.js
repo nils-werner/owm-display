@@ -299,17 +299,17 @@ function plotWindSpeed(chartName, forecast)
 
 	for(var i = 0; i <  forecast.length; i ++){
 		wind.push([
-				forecast[i]['dt'] * 1000 + time_zone,
+				milliSeconds(fixTimezone(forecast[i]['dt'])),
 				forecast[i]['wind']['speed']
 			]);
 
 		gust.push([
-				forecast[i]['dt'] * 1000 + time_zone,
+				milliSeconds(fixTimezone(forecast[i]['dt'])),
 				forecast[i]['wind']['gust']
 			]);
 
 		icons.push({
-				x: forecast[i]['dt'] * 1000 + time_zone,
+				x: milliSeconds(fixTimezone(forecast[i]['dt'])),
 				y: -1,
 				marker: { symbol: 'url(img/directions/' + translateToDirection(forecast[i]['wind']['deg']) + '.png)' }
 			});
@@ -533,7 +533,7 @@ function plotTemperature(chartName, forecast)
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
-			forecast[i]['dt'] * 1000 + time_zone,
+			milliSeconds(fixTimezone(forecast[i]['dt'])),
 			forecast[i]['main']['temp']
 			]);
 	}
@@ -591,7 +591,7 @@ function plotPressure(chartName, forecast)
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
-			forecast[i]['dt'] * 1000 + time_zone,
+			milliSeconds(fixTimezone(forecast[i]['dt'])),
 			forecast[i]['main']['pressure'] + correction
 		]);
 	}
@@ -659,16 +659,16 @@ function plotRain(chartName, forecast)
 	for(var i = 0; i <  forecast.length; i ++){
 		if(typeof forecast[i]['rain'] != 'undefined')
 			tmp.push([
-				forecast[i]['dt'] * 1000 + time_zone,
+				milliSeconds(fixTimezone(forecast[i]['dt'])),
 				forecast[i]['rain']['3h']
 			]);
 		else
 			tmp.push([
-				forecast[i]['dt'] * 1000 + time_zone,
+				milliSeconds(fixTimezone(forecast[i]['dt'])),
 				0
 			]);
 		cloud.push([
-			forecast[i]['dt'] * 1000 + time_zone,
+			milliSeconds(fixTimezone(forecast[i]['dt'])),
 			forecast[i]['clouds']['all']
 		]);
 	}
@@ -749,7 +749,7 @@ function placeDate(chartName, forecast)
 
 function isNight(timestamp)
 {
-	var date = new Date(timestamp*1000 + time_zone);
+	var date = new Date(milliSeconds(fixTimezone(timestamp)));
 
 	if(date.getHours() <= 9 || date.getHours() >= 20)
 		return true;
@@ -778,8 +778,8 @@ function stripeDays(forecast)
 
 			stripes.push({
 				color: 'rgba(0, 0, 0, .1)',
-				from: begin['dt'] * 1000 + time_zone,
-				to: end['dt'] * 1000 + time_zone
+				from: milliSeconds(fixTimezone(begin['dt'])),
+				to: milliSeconds(fixTimezone(end['dt']))
 			});
 		}
 	}
@@ -836,3 +836,19 @@ function translateToDirection(angle) {
 	var arr=["n","nne","ne","ene","e","ese", "se", "sse","s","ssw","sw","wsw","w","wnw","nw","nnw"]
 	return arr[quantizeDirection(angle)];
 }
+
+function milliSeconds(timestamp)
+{
+	return 1000 * timestamp;
+}
+
+function fixTimezone(timestamp)
+{
+	return timestamp - (new Date().getTimezoneOffset()*60);
+}
+
+Highcharts.setOptions({
+	global: {
+		useUTC: false
+	}
+});
