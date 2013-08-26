@@ -341,7 +341,7 @@ function plotWindSpeed(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-
+			plotBands: stripeDays(forecast)
 		},
 		yAxis: [{
 			title: {
@@ -564,7 +564,7 @@ function plotTemperature(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-
+			plotBands: stripeDays(forecast),
 		},
 		yAxis: {
 			title: {
@@ -622,7 +622,7 @@ function plotPressure(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				},
 			},
-
+			plotBands: stripeDays(forecast),
 		},
 		yAxis: {
 			title: {
@@ -698,7 +698,7 @@ function plotRain(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-
+			plotBands: stripeDays(forecast),
 		},
 		yAxis: [
 			{
@@ -745,6 +745,46 @@ function placeDate(chartName, forecast)
 {
 	var date = new Date();
 	$('#' + chartName).html("Letztes Update: " + date.toLocaleString());
+}
+
+function isNight(timestamp)
+{
+	var date = new Date(timestamp*1000 + time_zone);
+
+	if(date.getHours() <= 9 || date.getHours() >= 20)
+		return true;
+	else
+		return false;
+}
+
+function stripeDays(forecast)
+{
+	var stripes = new Array();
+	var day = true;
+
+	var begins = new Array();
+	var ends = new Array();
+
+	for(var i = 0; i <  forecast.length; i ++){
+		if(isNight(forecast[i]['dt']))
+		{
+			var begin = forecast[i];
+
+			while(i < forecast.length && isNight(forecast[i]['dt']))
+			{
+				var end = forecast[i];
+				++i;
+			}
+
+			stripes.push({
+				color: 'rgba(0, 0, 0, .1)',
+				from: begin['dt'] * 1000 + time_zone,
+				to: end['dt'] * 1000 + time_zone
+			});
+		}
+	}
+
+	return stripes;
 }
 
 function translateIcon(iconCode)
