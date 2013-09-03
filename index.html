@@ -104,7 +104,7 @@ var dataReceived = false;
 
 jQuery(document).ready(function() {
 	$.ajax({
-		url: "http://openweathermap.org/data/2.1/forecast/city/?id=" + station + "&units=metric&callback=?",
+		url: "http://api.openweathermap.org/data/2.1/forecast/city/?id=" + station + "&units=metric&callback=?",
 		type: 'GET',
 		dataType: 'jsonp',
 		error: errorHandler,
