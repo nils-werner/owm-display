@@ -311,7 +311,7 @@ function plotWindSpeed(chartName, forecast)
 		if(i % 3 == 0) {
 			icons.push({
 					x: milliSeconds(fixTimezone(forecast[i].time)),
-					y: -1,
+					y: -0.5,
 					marker: { symbol: 'url(img/directions/' + translateToDirection(forecast[i].windBearing) + '.png)' }
 				});
 		}
@@ -357,7 +357,7 @@ function plotWindSpeed(chartName, forecast)
 			title: {
 				text: 'm/s'
 			},
-			min: -2,
+			min: -1,
 			startOnTick: false,
 			alternateGridColor: null,
 			plotBands: [{ // Light air
@@ -590,11 +590,13 @@ function plotTemperature(chartName, forecast)
 		yAxis: {
 			title: {
 				text: '°C'
-			}
+			},
+			min: 5,
 		},
 		series: [{
 				showInLegend: false,
-				type: 'spline',
+				type: 'areaspline',
+				fillOpacity: 0.2,
 				data: tmp,
 				color: '#37AEBE'
 			}]
