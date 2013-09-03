@@ -322,7 +322,8 @@ function plotWindSpeed(chartName, forecast)
 			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
-			marginRight: 60
+			marginRight: 60,
+			marginLeft: 64
 		},
 		credits: {
 			enabled: false
@@ -555,7 +556,8 @@ function plotTemperature(chartName, forecast)
 			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
-			marginRight: 60
+			marginRight: 60,
+			marginLeft: 64
 		},
 		credits: {
 			enabled: false
@@ -619,7 +621,8 @@ function plotPressure(chartName, forecast)
 			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
-			marginRight: 60
+			marginRight: 60,
+			marginLeft: 64
 		},
 		credits: {
 			enabled: false
@@ -810,6 +813,12 @@ function stripeDays(forecast)
 				to: milliSeconds(fixTimezone(end.time))
 			});
 		}
+
+		stripes.push({
+			color: 'rgba(255, 0, 0, .1)',
+			from: Date.now() - 500000,
+			to: Date.now() + 500000
+		});
 	}
 
 	return stripes;
