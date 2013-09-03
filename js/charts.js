@@ -33,8 +33,8 @@ function dialWind(chartName, forecast)
 	for(var i in n)	for(var g = 0; g <  7; g ++) tmp[g]['data'][i] = 0;
 
 	for(var i = 0; i < length; i ++){
-		var deg = forecast[i]['wind']['deg'] 
-		var stmp = [forecast[i]['wind']['speed'], forecast[i]['wind']['gust']] // we're counting gusts, should we?
+		var deg = forecast[i].windBearing 
+		var stmp = [forecast[i].windSpeed, forecast[i].windGust] // we're counting gusts, should we?
 
 		for(var j = 0; j < stmp.length; j ++) {
 			var s = stmp[j];
@@ -126,7 +126,7 @@ function dialPressure(chartName, forecast)
 {
 	var correction = 40;
 	var tmp = Array();
-	tmp.push(forecast[0]['main']['pressure'] + correction);
+	tmp.push(forecast[0].pressure + correction);
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
@@ -222,7 +222,7 @@ function dialPressure(chartName, forecast)
 function dialTemperature(chartName, forecast)
 {
 	var tmp = Array();
-	tmp.push(Math.round(forecast[0]['main']['temp']*10)/10);
+	tmp.push(Math.round(forecast[0].temperature*10)/10);
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
@@ -299,20 +299,22 @@ function plotWindSpeed(chartName, forecast)
 
 	for(var i = 0; i <  forecast.length; i ++){
 		wind.push([
-				milliSeconds(fixTimezone(forecast[i]['dt'])),
-				forecast[i]['wind']['speed']
+				milliSeconds(fixTimezone(forecast[i].time)),
+				forecast[i].windSpeed
 			]);
 
 		gust.push([
-				milliSeconds(fixTimezone(forecast[i]['dt'])),
-				forecast[i]['wind']['gust']
+				milliSeconds(fixTimezone(forecast[i].time)),
+				forecast[i].windGust
 			]);
 
-		icons.push({
-				x: milliSeconds(fixTimezone(forecast[i]['dt'])),
-				y: -1,
-				marker: { symbol: 'url(img/directions/' + translateToDirection(forecast[i]['wind']['deg']) + '.png)' }
-			});
+		if(i % 3 == 0) {
+			icons.push({
+					x: milliSeconds(fixTimezone(forecast[i].time)),
+					y: -1,
+					marker: { symbol: 'url(img/directions/' + translateToDirection(forecast[i].windBearing) + '.png)' }
+				});
+		}
 	}
 
 	chart = new Highcharts.Chart({
@@ -342,6 +344,13 @@ function plotWindSpeed(chartName, forecast)
 				}
 			},
 			plotBands: stripeDays(forecast)
+		},
+		plotOptions: {
+			series: {
+				marker: {
+					enabled: false
+				}
+			}
 		},
 		yAxis: [{
 			title: {
@@ -519,7 +528,10 @@ function plotWindSpeed(chartName, forecast)
 			{
 				showInLegend: false,
 				type: 'scatter',
-				data: icons
+				data: icons,
+				marker: {
+					enabled: true
+				}
 			}
 			]
 		});
@@ -533,8 +545,8 @@ function plotTemperature(chartName, forecast)
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
-			milliSeconds(fixTimezone(forecast[i]['dt'])),
-			forecast[i]['main']['temp']
+			milliSeconds(fixTimezone(forecast[i].time)),
+			forecast[i].temperature
 			]);
 	}
 
@@ -554,6 +566,13 @@ function plotTemperature(chartName, forecast)
 		tooltip: {
 			formatter: function() {
 				return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
+			}
+		},
+		plotOptions: {
+			series: {
+				marker: {
+					enabled: false
+				}
 			}
 		},
 		xAxis: {
@@ -582,17 +601,16 @@ function plotTemperature(chartName, forecast)
 
 function plotPressure(chartName, forecast)
 {
-	var correction = 40;
 	var tmp = new Array();
-	var threshold = forecast[0]['main']['pressure'] + correction;
-	var diff = forecast[1]['main']['pressure'] + correction - threshold;
+	var threshold = forecast[0].pressure;
+	var diff = forecast[1].pressure - threshold;
 	diff = diff/Math.abs(diff);
 	threshold -= diff * 0.1;
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
-			milliSeconds(fixTimezone(forecast[i]['dt'])),
-			forecast[i]['main']['pressure'] + correction
+			milliSeconds(fixTimezone(forecast[i].time)),
+			forecast[i].pressure
 		]);
 	}
 
@@ -637,7 +655,10 @@ function plotPressure(chartName, forecast)
 		},
 		plotOptions: {
 			series: {
-				threshold: threshold
+				threshold: threshold,
+				marker: {
+					enabled: false
+				}
 			}
 		},
 		series: [{
@@ -657,19 +678,19 @@ function plotRain(chartName, forecast)
 	var cloud = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
-		if(typeof forecast[i]['rain'] != 'undefined')
+		if(typeof forecast[i].precipIntensity != 'undefined')
 			tmp.push([
-				milliSeconds(fixTimezone(forecast[i]['dt'])),
-				forecast[i]['rain']['3h']
+				milliSeconds(fixTimezone(forecast[i].time)),
+				forecast[i].precipIntensity
 			]);
 		else
 			tmp.push([
-				milliSeconds(fixTimezone(forecast[i]['dt'])),
+				milliSeconds(fixTimezone(forecast[i].time)),
 				0
 			]);
 		cloud.push([
-			milliSeconds(fixTimezone(forecast[i]['dt'])),
-			forecast[i]['clouds']['all']
+			milliSeconds(fixTimezone(forecast[i].time)),
+			forecast[i].cloudCover*100
 		]);
 	}
 
@@ -704,7 +725,7 @@ function plotRain(chartName, forecast)
 			{
 				min: 0,
 				title: {
-					text: 'mm/3h'
+					text: 'mm/h'
 				}
 			},
 			{
@@ -715,6 +736,13 @@ function plotRain(chartName, forecast)
 				opposite: true,
 			}
 		],
+		plotOptions: {
+			series: {
+				marker: {
+					enabled: false
+				}
+			}
+		},
 		series: [
 			{
 				showInLegend: false,
@@ -727,7 +755,7 @@ function plotRain(chartName, forecast)
 			{
 				showInLegend: false,
 				type: 'column',
-				pointWidth: 10,
+				pointWidth: 4,
 				yAxis: 0,
 				data: tmp,
 				color: '#427EFF'
@@ -738,7 +766,7 @@ function plotRain(chartName, forecast)
 
 function placeIcon(chartName, forecast)
 {
-	$('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast[0]['weather'][0]['icon']) + '.png" style="width: 100%;" />');
+	$('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast[0]['icon']) + '.png" style="width: 100%;" />');
 }
 
 function placeDate(chartName, forecast)
@@ -766,11 +794,11 @@ function stripeDays(forecast)
 	var ends = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
-		if(isNight(forecast[i]['dt']))
+		if(isNight(forecast[i].time))
 		{
 			var begin = forecast[i];
 
-			while(i < forecast.length && isNight(forecast[i]['dt']))
+			while(i < forecast.length && isNight(forecast[i].time))
 			{
 				var end = forecast[i];
 				++i;
@@ -778,8 +806,8 @@ function stripeDays(forecast)
 
 			stripes.push({
 				color: 'rgba(0, 0, 0, .1)',
-				from: milliSeconds(fixTimezone(begin['dt'])),
-				to: milliSeconds(fixTimezone(end['dt']))
+				from: milliSeconds(fixTimezone(begin.time)),
+				to: milliSeconds(fixTimezone(end.time))
 			});
 		}
 	}

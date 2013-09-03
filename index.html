@@ -131,7 +131,7 @@ jQuery(document).ready(function() {
 function getForecast(JSONobject)
 {
 	dataReceived = true;
-	data = JSONobject.list;
+	data = JSONobject.hourly.data;
 	hide('loading');
 	show('map-rain');
 	show('map-lightning');
