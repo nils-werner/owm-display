@@ -99,21 +99,19 @@
 </body>
 
 <script type="text/javascript">
-var station = 2853260;
 var dataReceived = false;
 
 jQuery(document).ready(function() {
 	$.ajax({
-		url: "http://api.openweathermap.org/data/2.1/forecast/city/?id=" + station + "&units=metric&callback=?",
+		url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222?extend=hourly&units=si&callback=?",
 		type: 'GET',
 		dataType: 'jsonp',
 		error: errorHandler,
 		success: getForecast
 	});
 
-
 //	$.ajax({
-//		url: "http://api.openweathermap.org/data/2.1/weather/city/" + station + "?type=json&units=metric&callback=?",
+//		url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222?extend=hourly&units=si",
 //		type: 'GET',
 //		dataType: 'jsonp',
 //		error: errorHandler,
