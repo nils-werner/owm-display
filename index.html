@@ -100,8 +100,23 @@
 
 <script type="text/javascript">
 var dataReceived = false;
+var date = new Date();
+date.setHours(date.getHours() - 12);
+date.setMilliseconds(0);
+console.log(date.toISOString());
+
+var past = Array();
+var forecast = Array();
 
 jQuery(document).ready(function() {
+	$.ajax({
+		url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222," + date.toISOString().replace(/\.000/,"") + "?extend=hourly&units=si&callback=?",
+		type: 'GET',
+		dataType: 'jsonp',
+		error: errorHandler,
+		success: getPast
+	});
+
 	$.ajax({
 		url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222?extend=hourly&units=si&callback=?",
 		type: 'GET',
@@ -109,14 +124,6 @@ jQuery(document).ready(function() {
 		error: errorHandler,
 		success: getForecast
 	});
-
-//	$.ajax({
-//		url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222?extend=hourly&units=si",
-//		type: 'GET',
-//		dataType: 'jsonp',
-//		error: errorHandler,
-//		success: getStation
-//	});
 
 	setTimeout(function () {
 		if(!dataReceived) {
@@ -130,8 +137,37 @@ jQuery(document).ready(function() {
 
 function getForecast(JSONobject)
 {
-	dataReceived = true;
-	data = JSONobject.hourly.data;
+	console.log("getForecast")
+	forecast = JSONobject.hourly.data;
+	mergeData();
+}
+
+function getPast(JSONobject)
+{
+	console.log("getPast")
+	past = JSONobject.hourly.data;
+	mergeData();
+}
+
+function mergeData()
+{
+	if(past.length > 0 && forecast.length > 0) {
+		data = Array();
+		dataReceived = true;
+		for(var i = 0; i <  past.length; i ++) {
+			if(past[i].time < forecast[0].time) {
+				data.push(past[i])
+			}
+		}
+		for(var i = 0; i <  forecast.length; i ++) {
+			data.push(forecast[i])
+		}
+		renderData(data);
+	}
+}
+
+function renderData(data)
+{
 	hide('loading');
 	show('map-rain');
 	show('map-lightning');
@@ -143,11 +179,6 @@ function getForecast(JSONobject)
 	plotRain('chart-rain', data);
 	placeIcon('icon-weather', data);
 	placeDate('date', data);
-}
-
-function getStation(JSONobject)
-{
-	data = JSONobject;
 }
 
 function  errorHandler(e)
