@@ -30,11 +30,13 @@ function dialWind(chartName, forecast)
 		{name:"0 bft", data:[]}
 	];
 
-	for(var i in n)	for(var g = 0; g <  7; g ++) tmp[g]['data'][i] = 0;
+	for(var g = 0; g <  7; g ++)
+		for(var i in n)
+			tmp[g]['data'][i] = 0;
 
 	for(var i = 0; i < length; i ++){
 		var deg = forecast[i].windBearing 
-		var stmp = [forecast[i].windSpeed, forecast[i].windGust] // we're counting gusts, should we?
+		var stmp = [forecast[i].windSpeed] // we're counting gusts, should we?
 
 		for(var j = 0; j < stmp.length; j ++) {
 			var s = stmp[j];
@@ -52,9 +54,9 @@ function dialWind(chartName, forecast)
 		}
 	}
 
-	for(var i in n)
-		for(var g = 0; g <  7; g ++)
-			tmp[g]['data'][i] = Math.round(100 * tmp[g]['data'][i] / (length*1.5));
+	for(var g = 0; g <  7; g ++)
+		for(var i in n)
+			tmp[g]['data'][i] = Math.sqrt(Math.round(100 * tmp[g]['data'][i] / (length*1.5)));
 
 	window.chart = new Highcharts.Chart({
 		chart: {
@@ -88,7 +90,7 @@ function dialWind(chartName, forecast)
 		},
 		tooltip: {
 			formatter: function() {
-				return this.x +': '+ this.y;
+				return this.x +': '+ this.y * this.y;
 			}
 		},
 		xAxis: {
@@ -106,7 +108,7 @@ function dialWind(chartName, forecast)
 			},
 			labels: {
 				formatter: function () {
-					return this.value + '%';
+					return this.value * this.value + '%';
 				}
 			}
 		},
