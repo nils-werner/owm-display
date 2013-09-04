@@ -110,73 +110,69 @@ function ISODateString(d){
 }
 
 var dataReceived = false;
+
 var date = new Date();
 date.setHours(0);
 date.setMilliseconds(0);
 date.setMinutes(0);
 date.setSeconds(0);
-var datestr = ISODateString(date)
-console.log(datestr)
 
-var past = Array();
-var forecast = Array();
+var minus1 = ISODateString(date)
+
+date.setDate(date.getDate() - 1)
+var minus2 = ISODateString(date)
 
 jQuery(document).ready(function() {
-	$.ajax({
-		url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222," + datestr + "?extend=hourly&units=si&callback=?",
-		type: 'GET',
-		dataType: 'jsonp',
-		error: errorHandler,
-		success: getPast
-	});
-
-	$.ajax({
-		url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222?extend=hourly&units=si&callback=?",
-		type: 'GET',
-		dataType: 'jsonp',
-		error: errorHandler,
-		success: getForecast
-	});
-
 	setTimeout(function () {
 		if(!dataReceived) {
 			location.reload(true);
 		}
 	}, 60000);
 
+	$.when(
+		$.ajax({
+			url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222," + minus1 + "?extend=hourly&units=si&callback=?",
+			type: 'GET',
+			dataType: 'jsonp',
+			error: errorHandler
+		}),
+		$.ajax({
+			url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222," + minus2 + "?extend=hourly&units=si&callback=?",
+			type: 'GET',
+			dataType: 'jsonp',
+			error: errorHandler
+		}),
+		$.ajax({
+			url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222?extend=hourly&units=si&callback=?",
+			type: 'GET',
+			dataType: 'jsonp',
+			error: errorHandler
+		})
+		).done(
+			function(a1, a2, a3){
+				mergeData(a1[0].hourly.data, a2[0].hourly.data, a3[0].hourly.data);
+			});
 });
 
 
-
-function getForecast(JSONobject)
+function mergeData(minus1, minus2, forecast)
 {
-	console.log("getForecast")
-	forecast = JSONobject.hourly.data;
-	mergeData();
-}
-
-function getPast(JSONobject)
-{
-	console.log("getPast")
-	past = JSONobject.hourly.data;
-	mergeData();
-}
-
-function mergeData()
-{
-	if(past.length > 0 && forecast.length > 0) {
-		data = Array();
-		dataReceived = true;
-		for(var i = 0; i <  past.length; i ++) {
-			if(past[i].time < forecast[0].time) {
-				data.push(past[i])
-			}
+	data = Array();
+	dataReceived = true;
+	for(var i = 1; i < minus2.length; i ++) {
+		if(minus2[i].time < minus1[0].time) {
+			data.push(minus2[i])
 		}
-		for(var i = 0; i <  forecast.length; i ++) {
-			data.push(forecast[i])
-		}
-		renderData(data);
 	}
+	for(var i = 0; i < minus1.length; i ++) {
+		if(minus1[i].time < forecast[0].time) {
+			data.push(minus1[i])
+		}
+	}
+	for(var i = 0; i <  forecast.length; i ++) {
+		data.push(forecast[i])
+	}
+	renderData(data);
 }
 
 function renderData(data)
