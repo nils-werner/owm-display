@@ -224,7 +224,7 @@ function dialPressure(chartName, forecast)
 function dialTemperature(chartName, forecast)
 {
 	var tmp = Array();
-	tmp.push(Math.round(forecast[0].temperature*10)/10);
+	tmp.push(Math.round(forecast[38].temperature*10)/10);
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
