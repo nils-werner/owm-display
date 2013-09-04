@@ -783,6 +783,11 @@ function placeDate(chartName, forecast)
 	$('#' + chartName).html("Letztes Update: " + date.toLocaleString());
 }
 
+function placeHostname(chartName, hostname)
+{
+	$('#' + chartName).html("IP Adresse: " + hostname);
+}
+
 function isNight(timestamp)
 {
 	var date = new Date(milliSeconds(fixTimezone(timestamp)));

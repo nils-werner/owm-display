@@ -91,6 +91,8 @@
 			</div>
 			<div id="date">
 			</div>
+			<div id="hostname">
+			</div>
 		</div>
 	</div>
 	<div class="row">
@@ -151,6 +153,16 @@ jQuery(document).ready(function() {
 		).done(
 			function(a1, a2, a3){
 				mergeData(a1[0].hourly.data, a2[0].hourly.data, a3[0].hourly.data);
+			});
+
+		$.ajax({
+			url: "./json/hostname.json",
+			type: 'GET',
+			dataType: 'json',
+			error: errorHandler
+		}).done(
+			function(a1){
+				placeHostname('hostname', a1.hostname)
 			});
 });
 
