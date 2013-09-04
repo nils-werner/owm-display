@@ -838,36 +838,22 @@ function translateIcon(iconCode)
 {
 	switch(iconCode)
 	{
-		case "01d":
-		case "01n":
+		case "clear-day":
+		case "clear-night":
 			return "sunny";
-		case "02d":
-		case "02n":
-		case "w50": // eigentlich Windy
+		case "partly-cloudy-day":
+		case "partly-cloudy-night":
+		case "wind":
 			return "mostlycloudy";
-		case "03d":
-		case "03n":
-		case "04d":
-		case "04n":
+		case "cloudy":
 			return "cloudy";
-		case "10d":
-		case "10n":
-			return "slightdrizzle";
-		case "09d":
-		case "09n":
-		case "r":
+		case "rain":
 			return "drizzle";
-		case "13d":
-		case "13n":
-		case "sn50":
+		case "snow":
+		case "sleet":
 			return "snow";
-		case "50d":
-		case "50n":
+		case "fog":
 			return "haze";
-		case "11d":
-		case "11n":
-		case "t50":
-			return "thunderstorms";
 		default:
 			return "sunny";
 	}
