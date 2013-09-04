@@ -360,6 +360,7 @@ function plotWindSpeed(chartName, forecast)
 				text: 'm/s'
 			},
 			min: -1,
+			minRange: 9,
 			startOnTick: false,
 			alternateGridColor: null,
 			plotBands: [{ // Light air
