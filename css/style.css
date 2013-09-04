@@ -3,6 +3,10 @@ body {
 	margin-bottom: 0px;
 }
 
+a, a:link, a:visited, a:hover {
+	color: #333333;
+}
+
 #loading {
 	position: absolute;
 	top: 300px;
