@@ -345,7 +345,8 @@ function plotWindSpeed(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-			plotBands: stripeDays(forecast)
+			plotBands: stripeDays(forecast),
+			plotLines: stripeNow(forecast),
 		},
 		plotOptions: {
 			series: {
@@ -588,6 +589,7 @@ function plotTemperature(chartName, forecast)
 				}
 			},
 			plotBands: stripeDays(forecast),
+			plotLines: stripeNow(forecast),
 		},
 		yAxis: {
 			title: {
@@ -648,6 +650,7 @@ function plotPressure(chartName, forecast)
 				},
 			},
 			plotBands: stripeDays(forecast),
+			plotLines: stripeNow(forecast),
 		},
 		yAxis: {
 			title: {
@@ -727,6 +730,7 @@ function plotRain(chartName, forecast)
 				}
 			},
 			plotBands: stripeDays(forecast),
+			plotLines: stripeNow(forecast),
 		},
 		yAxis: [
 			{
@@ -823,15 +827,17 @@ function stripeDays(forecast)
 				to: milliSeconds(fixTimezone(end.time))
 			});
 		}
-
-		stripes.push({
-			color: 'rgba(255, 0, 0, .1)',
-			from: Date.now() - 500000,
-			to: Date.now() + 500000
-		});
 	}
 
 	return stripes;
+}
+
+function stripeNow(forecast)
+{
+		return Array({
+			color: 'rgba(255, 0, 0, .1)',
+			value: Date.now()
+		});
 }
 
 function translateIcon(iconCode)
