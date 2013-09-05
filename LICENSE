@@ -1,7 +1,9 @@
-All data visualized by this tool is courtesy of openweathermap.org and, licensed under CC-BY-SA 2.0.
-All code is, if not specifically mentioned otherwise in the file, licensed under the following license:
+All data visualized by this tool is courtesy of forecast.io.
 Images are provided, without license, by http://bharathp666.deviantart.com/
 Radar film provided by http://www.dwd.de/
+Lightningh radar image provided by http://www.blitzortung.org/
+
+All code is, if not specifically mentioned otherwise in the file, licensed under the following license:
 
 The MIT License (MIT)
 Copyright (c) 2013 Nils Werner
