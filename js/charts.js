@@ -365,7 +365,7 @@ function plotWindSpeed(chartName, forecast)
 			plotBands: [{ // Light air
 				from: 0.3,
 				to: 1.6,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -389,7 +389,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Gentle breeze
 				from: 3.4,
 				to: 5.5,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -413,7 +413,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Fresh breeze
 				from: 8,
 				to: 11,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -437,7 +437,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // High wind
 				from: 14,
 				to: 17,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -461,7 +461,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Strong Gale
 				from: 21,
 				to: 25,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -485,7 +485,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Violent Storm
 				from: 29,
 				to: 33,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -817,7 +817,8 @@ function stripeDays(forecast)
 			}
 
 			stripes.push({
-				color: 'rgba(0, 0, 0, .1)',
+				color: 'rgba(0, 26, 84, .1)',
+				//color: 'rgba(0, 0, 0, .1)',
 				from: milliSeconds(fixTimezone(begin.time)),
 				to: milliSeconds(fixTimezone(end.time))
 			});
