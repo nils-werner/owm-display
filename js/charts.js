@@ -363,13 +363,58 @@ function plotWindSpeed(chartName, forecast)
 			minRange: 9,
 			startOnTick: false,
 			alternateGridColor: null,
+			opposite: true,
+			gridLineWidth: 0,
+			plotLines: [{
+				value: 1.6,
+				color: '#C0C0C0',
+				width: 1
+			}, {
+				value: 3.4,
+				color: '#C0C0C0',
+				width: 1
+			}, {
+				value: 5.5,
+				color: '#C0C0C0',
+				width: 1
+			}, {
+				value: 8,
+				color: '#C0C0C0',
+				width: 1
+			}, {
+				value: 11,
+				color: '#C0C0C0',
+				width: 1
+			}, {
+				value: 14,
+				color: '#C0C0C0',
+				width: 1
+			}, {
+				value: 17,
+				color: '#C0C0C0',
+				width: 1
+			}, {
+				value: 21,
+				color: '#C0C0C0',
+				width: 1
+			}, {
+				value: 25,
+				color: '#C0C0C0',
+				width: 1
+			}, {
+				value: 29,
+				color: '#C0C0C0',
+				width: 1
+			}, {
+				value: 23,
+				color: '#C0C0C0',
+				width: 1
+			}],
 			plotBands: [{ // Light air
 				from: 0.3,
 				to: 1.6,
-				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '1',
 					style: {
 						color: '#606060'
@@ -378,10 +423,8 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Light breeze
 				from: 1.6,
 				to: 3.4,
-				color: 'rgba(0, 0, 0, 0)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '2',
 					style: {
 						color: '#606060'
@@ -390,10 +433,8 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Gentle breeze
 				from: 3.4,
 				to: 5.5,
-				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '3',
 					style: {
 						color: '#606060'
@@ -402,10 +443,8 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Moderate breeze
 				from: 5.5,
 				to: 8,
-				color: 'rgba(0, 0, 0, 0)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '4',
 					style: {
 						color: '#606060'
@@ -414,10 +453,8 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Fresh breeze
 				from: 8,
 				to: 11,
-				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '5',
 					style: {
 						color: '#606060'
@@ -426,10 +463,8 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Strong breeze
 				from: 11,
 				to: 14,
-				color: 'rgba(0, 0, 0, 0)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '6',
 					style: {
 						color: '#606060'
@@ -438,10 +473,8 @@ function plotWindSpeed(chartName, forecast)
 			}, { // High wind
 				from: 14,
 				to: 17,
-				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '7',
 					style: {
 						color: '#606060'
@@ -450,10 +483,8 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Gale
 				from: 17,
 				to: 21,
-				color: 'rgba(0, 0, 0, 0)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '8',
 					style: {
 						color: '#606060'
@@ -462,10 +493,8 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Strong Gale
 				from: 21,
 				to: 25,
-				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '9',
 					style: {
 						color: '#606060'
@@ -474,10 +503,8 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Storm
 				from: 25,
 				to: 29,
-				color: 'rgba(0, 0, 0, 0)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '10',
 					style: {
 						color: '#606060'
@@ -486,10 +513,8 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Violent Storm
 				from: 29,
 				to: 33,
-				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '11',
 					style: {
 						color: '#606060'
@@ -497,10 +522,8 @@ function plotWindSpeed(chartName, forecast)
 				}
 			}, { // Hurricane
 				from: 33,
-				color: 'rgba(0, 0, 0, 0)',
 				label: {
-					align: 'right',
-					x: 15,
+					x: -15,
 					text: '12',
 					style: {
 						color: '#606060'
@@ -513,7 +536,6 @@ function plotWindSpeed(chartName, forecast)
 				margin: 30,
 				text: 'bft',
 			},
-			opposite:true
 		}],
 		series: [
 			{
