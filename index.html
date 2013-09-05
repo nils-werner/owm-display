@@ -85,11 +85,13 @@
 	<div class="row footer">
 		<div class="span12">
 			<div id="license">
-				Vorhersagen: openweathermap.org<br />
-				Niederschlagsradar: Deutscher Wetterdienst<br />
-				Regenradar: blitzortung.org
+				Vorhersagen: <a href="http://forecast.io/">forecast.io</a><br />
+				Niederschlagsradar: <a href="http://dwd.de/">Deutscher Wetterdienst</a><br />
+				Regenradar: <a href="http://blitzortung.org/">blitzortung.org</a>
 			</div>
 			<div id="date">
+			</div>
+			<div id="hostname">
 			</div>
 		</div>
 	</div>
@@ -99,57 +101,108 @@
 </body>
 
 <script type="text/javascript">
-var station = 2853260;
+function ISODateString(d){
+  function pad(n){return n<10 ? '0'+n : n}
+  return d.getFullYear()+'-'
+      + pad(d.getMonth()+1)+'-'
+      + pad(d.getDate())+'T'
+      + pad(d.getHours())+':'
+      + pad(d.getMinutes())+':'
+      + pad(d.getSeconds())
+}
+
 var dataReceived = false;
 
+var date = new Date();
+date.setHours(0);
+date.setMilliseconds(0);
+date.setMinutes(0);
+date.setSeconds(0);
+
+var minus1 = ISODateString(date)
+
+date.setDate(date.getDate() - 1)
+var minus2 = ISODateString(date)
+
 jQuery(document).ready(function() {
-	$.ajax({
-		url: "http://api.openweathermap.org/data/2.1/forecast/city/?id=" + station + "&units=metric&callback=?",
-		type: 'GET',
-		dataType: 'jsonp',
-		error: errorHandler,
-		success: getForecast
-	});
-
-
-//	$.ajax({
-//		url: "http://api.openweathermap.org/data/2.1/weather/city/" + station + "?type=json&units=metric&callback=?",
-//		type: 'GET',
-//		dataType: 'jsonp',
-//		error: errorHandler,
-//		success: getStation
-//	});
-
 	setTimeout(function () {
 		if(!dataReceived) {
 			location.reload(true);
 		}
 	}, 60000);
 
+	$.when(
+		$.ajax({
+			url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222," + minus1 + "?extend=hourly&units=si&callback=?",
+			type: 'GET',
+			dataType: 'jsonp',
+			error: errorHandler
+		}),
+		$.ajax({
+			url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222," + minus2 + "?extend=hourly&units=si&callback=?",
+			type: 'GET',
+			dataType: 'jsonp',
+			error: errorHandler
+		}),
+		$.ajax({
+			url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222?extend=hourly&units=si&callback=?",
+			type: 'GET',
+			dataType: 'jsonp',
+			error: errorHandler
+		})
+		).done(
+			function(a1, a2, a3){
+				mergeData(a1[0], a2[0], a3[0]);
+			});
+
+		$.ajax({
+			url: "./json/hostname.json",
+			type: 'GET',
+			dataType: 'json',
+			error: errorHandler
+		}).done(
+			function(a1){
+				placeHostname('hostname', a1.hostname)
+			});
 });
 
 
-
-function getForecast(JSONobject)
+function mergeData(minus1, minus2, forecast)
 {
-	dataReceived = true;
-	data = JSONobject.list;
+	var span = Array();
+	var dataReceived = true;
+	for(var i = 1; i < minus2.hourly.data.length; i ++) {
+		if(minus2.hourly.data[i].time < minus1.hourly.data[0].time) {
+			span.push(minus2.hourly.data[i])
+		}
+	}
+	for(var i = 0; i < minus1.hourly.data.length; i ++) {
+		if(minus1.hourly.data[i].time < forecast.hourly.data[0].time) {
+			span.push(minus1.hourly.data[i])
+		}
+	}
+	for(var i = 0; i <  forecast.hourly.data.length; i ++) {
+		span.push(forecast.hourly.data[i])
+	}
+	var current = forecast.currently
+	renderData(span, forecast.hourly.data, current);
+}
+
+function renderData(span, future, current)
+{
 	hide('loading');
 	show('map-rain');
 	show('map-lightning');
-	dialWind('dial-wind', data);
-	dialTemperature('dial-temperature', data);
-	plotPressure('chart-pressure', data);
-	plotTemperature('chart-temp', data);
-	plotWindSpeed('chart-wind', data);
-	plotRain('chart-rain', data);
-	placeIcon('icon-weather', data);
-	placeDate('date', data);
-}
 
-function getStation(JSONobject)
-{
-	data = JSONobject;
+	dialTemperature('dial-temperature', current);
+	placeIcon('icon-weather', current);
+
+	dialWind('dial-wind', future);
+	plotPressure('chart-pressure', span);
+	plotTemperature('chart-temp', span);
+	plotWindSpeed('chart-wind', span);
+	plotRain('chart-rain', span);
+	placeDate('date', span);
 }
 
 function  errorHandler(e)

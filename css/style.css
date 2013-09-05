@@ -3,6 +3,10 @@ body {
 	margin-bottom: 0px;
 }
 
+a, a:link, a:visited, a:hover {
+	color: #333333;
+}
+
 #loading {
 	position: absolute;
 	top: 300px;
@@ -59,10 +63,10 @@ body {
 }
 
 #map-lightning .map-image {
-	width: 890px;
-	height: 890px;
-	top: -470px;
-	left: -385px;
+	width: 770px;
+	height: 770px;
+	top: -395px;
+	left: -315px;
 }
 
 .map h2 {

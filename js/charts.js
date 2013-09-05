@@ -30,11 +30,13 @@ function dialWind(chartName, forecast)
 		{name:"0 bft", data:[]}
 	];
 
-	for(var i in n)	for(var g = 0; g <  7; g ++) tmp[g]['data'][i] = 0;
+	for(var g = 0; g <  7; g ++)
+		for(var i in n)
+			tmp[g]['data'][i] = 0;
 
 	for(var i = 0; i < length; i ++){
-		var deg = forecast[i]['wind']['deg'] 
-		var stmp = [forecast[i]['wind']['speed'], forecast[i]['wind']['gust']] // we're counting gusts, should we?
+		var deg = forecast[i].windBearing 
+		var stmp = [forecast[i].windSpeed] // we're counting gusts, should we?
 
 		for(var j = 0; j < stmp.length; j ++) {
 			var s = stmp[j];
@@ -52,9 +54,9 @@ function dialWind(chartName, forecast)
 		}
 	}
 
-	for(var i in n)
-		for(var g = 0; g <  7; g ++)
-			tmp[g]['data'][i] = Math.round(100 * tmp[g]['data'][i] / (length*1.5));
+	for(var g = 0; g <  7; g ++)
+		for(var i in n)
+			tmp[g]['data'][i] = Math.sqrt(Math.round(100 * tmp[g]['data'][i] / (length*1.5)));
 
 	window.chart = new Highcharts.Chart({
 		chart: {
@@ -88,7 +90,7 @@ function dialWind(chartName, forecast)
 		},
 		tooltip: {
 			formatter: function() {
-				return this.x +': '+ this.y;
+				return this.x +': '+ this.y * this.y;
 			}
 		},
 		xAxis: {
@@ -106,7 +108,7 @@ function dialWind(chartName, forecast)
 			},
 			labels: {
 				formatter: function () {
-					return this.value + '%';
+					return this.value * this.value + '%';
 				}
 			}
 		},
@@ -124,9 +126,8 @@ function dialWind(chartName, forecast)
 
 function dialPressure(chartName, forecast)
 {
-	var correction = 40;
 	var tmp = Array();
-	tmp.push(forecast[0]['main']['pressure'] + correction);
+	tmp.push(forecast.pressure);
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
@@ -222,7 +223,7 @@ function dialPressure(chartName, forecast)
 function dialTemperature(chartName, forecast)
 {
 	var tmp = Array();
-	tmp.push(Math.round(forecast[0]['main']['temp']*10)/10);
+	tmp.push(Math.round(forecast.temperature*10)/10);
 	var chart = new Highcharts.Chart({
 		chart: {
 			renderTo: chartName,
@@ -299,20 +300,22 @@ function plotWindSpeed(chartName, forecast)
 
 	for(var i = 0; i <  forecast.length; i ++){
 		wind.push([
-				milliSeconds(fixTimezone(forecast[i]['dt'])),
-				forecast[i]['wind']['speed']
+				milliSeconds(fixTimezone(forecast[i].time)),
+				forecast[i].windSpeed
 			]);
 
 		gust.push([
-				milliSeconds(fixTimezone(forecast[i]['dt'])),
-				forecast[i]['wind']['gust']
+				milliSeconds(fixTimezone(forecast[i].time)),
+				forecast[i].windGust
 			]);
 
-		icons.push({
-				x: milliSeconds(fixTimezone(forecast[i]['dt'])),
-				y: -1,
-				marker: { symbol: 'url(img/directions/' + translateToDirection(forecast[i]['wind']['deg']) + '.png)' }
-			});
+		if(i % 3 == 0) {
+			icons.push({
+					x: milliSeconds(fixTimezone(forecast[i].time)),
+					y: -0.5,
+					marker: { symbol: 'url(img/directions/' + translateToDirection(forecast[i].windBearing) + '.png)' }
+				});
+		}
 	}
 
 	chart = new Highcharts.Chart({
@@ -320,7 +323,8 @@ function plotWindSpeed(chartName, forecast)
 			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
-			marginRight: 60
+			marginRight: 60,
+			marginLeft: 64
 		},
 		credits: {
 			enabled: false
@@ -343,17 +347,25 @@ function plotWindSpeed(chartName, forecast)
 			},
 			plotBands: stripeDays(forecast)
 		},
+		plotOptions: {
+			series: {
+				marker: {
+					enabled: false
+				}
+			}
+		},
 		yAxis: [{
 			title: {
 				text: 'm/s'
 			},
-			min: -2,
+			min: -1,
+			minRange: 9,
 			startOnTick: false,
 			alternateGridColor: null,
 			plotBands: [{ // Light air
 				from: 0.3,
 				to: 1.6,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -377,7 +389,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Gentle breeze
 				from: 3.4,
 				to: 5.5,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -401,7 +413,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Fresh breeze
 				from: 8,
 				to: 11,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -425,7 +437,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // High wind
 				from: 14,
 				to: 17,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -449,7 +461,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Strong Gale
 				from: 21,
 				to: 25,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -473,7 +485,7 @@ function plotWindSpeed(chartName, forecast)
 			}, { // Violent Storm
 				from: 29,
 				to: 33,
-				color: 'rgba(0, 0, 0, 0.05)',
+				color: 'rgba(0, 0, 0, 0.03)',
 				label: {
 					align: 'right',
 					x: 15,
@@ -519,7 +531,10 @@ function plotWindSpeed(chartName, forecast)
 			{
 				showInLegend: false,
 				type: 'scatter',
-				data: icons
+				data: icons,
+				marker: {
+					enabled: true
+				}
 			}
 			]
 		});
@@ -533,8 +548,8 @@ function plotTemperature(chartName, forecast)
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
-			milliSeconds(fixTimezone(forecast[i]['dt'])),
-			forecast[i]['main']['temp']
+			milliSeconds(fixTimezone(forecast[i].time)),
+			forecast[i].temperature
 			]);
 	}
 
@@ -543,7 +558,8 @@ function plotTemperature(chartName, forecast)
 			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
-			marginRight: 60
+			marginRight: 60,
+			marginLeft: 64
 		},
 		credits: {
 			enabled: false
@@ -554,6 +570,13 @@ function plotTemperature(chartName, forecast)
 		tooltip: {
 			formatter: function() {
 				return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
+			}
+		},
+		plotOptions: {
+			series: {
+				marker: {
+					enabled: false
+				}
 			}
 		},
 		xAxis: {
@@ -569,11 +592,13 @@ function plotTemperature(chartName, forecast)
 		yAxis: {
 			title: {
 				text: '°C'
-			}
+			},
+			min: 5,
 		},
 		series: [{
 				showInLegend: false,
-				type: 'spline',
+				type: 'areaspline',
+				fillOpacity: 0.2,
 				data: tmp,
 				color: '#37AEBE'
 			}]
@@ -582,17 +607,16 @@ function plotTemperature(chartName, forecast)
 
 function plotPressure(chartName, forecast)
 {
-	var correction = 40;
 	var tmp = new Array();
-	var threshold = forecast[0]['main']['pressure'] + correction;
-	var diff = forecast[1]['main']['pressure'] + correction - threshold;
+	var threshold = forecast[0].pressure;
+	var diff = forecast[1].pressure - threshold;
 	diff = diff/Math.abs(diff);
 	threshold -= diff * 0.1;
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
-			milliSeconds(fixTimezone(forecast[i]['dt'])),
-			forecast[i]['main']['pressure'] + correction
+			milliSeconds(fixTimezone(forecast[i].time)),
+			forecast[i].pressure
 		]);
 	}
 
@@ -601,7 +625,8 @@ function plotPressure(chartName, forecast)
 			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
-			marginRight: 60
+			marginRight: 60,
+			marginLeft: 64
 		},
 		credits: {
 			enabled: false
@@ -637,7 +662,10 @@ function plotPressure(chartName, forecast)
 		},
 		plotOptions: {
 			series: {
-				threshold: threshold
+				threshold: threshold,
+				marker: {
+					enabled: false
+				}
 			}
 		},
 		series: [{
@@ -657,19 +685,19 @@ function plotRain(chartName, forecast)
 	var cloud = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
-		if(typeof forecast[i]['rain'] != 'undefined')
+		if(typeof forecast[i].precipIntensity != 'undefined')
 			tmp.push([
-				milliSeconds(fixTimezone(forecast[i]['dt'])),
-				forecast[i]['rain']['3h']
+				milliSeconds(fixTimezone(forecast[i].time)),
+				forecast[i].precipIntensity
 			]);
 		else
 			tmp.push([
-				milliSeconds(fixTimezone(forecast[i]['dt'])),
+				milliSeconds(fixTimezone(forecast[i].time)),
 				0
 			]);
 		cloud.push([
-			milliSeconds(fixTimezone(forecast[i]['dt'])),
-			forecast[i]['clouds']['all']
+			milliSeconds(fixTimezone(forecast[i].time)),
+			forecast[i].cloudCover*100
 		]);
 	}
 
@@ -704,7 +732,7 @@ function plotRain(chartName, forecast)
 			{
 				min: 0,
 				title: {
-					text: 'mm/3h'
+					text: 'mm/h'
 				}
 			},
 			{
@@ -715,6 +743,13 @@ function plotRain(chartName, forecast)
 				opposite: true,
 			}
 		],
+		plotOptions: {
+			series: {
+				marker: {
+					enabled: false
+				}
+			}
+		},
 		series: [
 			{
 				showInLegend: false,
@@ -727,7 +762,7 @@ function plotRain(chartName, forecast)
 			{
 				showInLegend: false,
 				type: 'column',
-				pointWidth: 10,
+				pointWidth: 4,
 				yAxis: 0,
 				data: tmp,
 				color: '#427EFF'
@@ -738,13 +773,18 @@ function plotRain(chartName, forecast)
 
 function placeIcon(chartName, forecast)
 {
-	$('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast[0]['weather'][0]['icon']) + '.png" style="width: 100%;" />');
+	$('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast['icon']) + '.png" style="width: 100%;" />');
 }
 
 function placeDate(chartName, forecast)
 {
 	var date = new Date();
 	$('#' + chartName).html("Letztes Update: " + date.toLocaleString());
+}
+
+function placeHostname(chartName, hostname)
+{
+	$('#' + chartName).html("IP Adresse: " + hostname);
 }
 
 function isNight(timestamp)
@@ -766,22 +806,29 @@ function stripeDays(forecast)
 	var ends = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
-		if(isNight(forecast[i]['dt']))
+		if(isNight(forecast[i].time))
 		{
 			var begin = forecast[i];
 
-			while(i < forecast.length && isNight(forecast[i]['dt']))
+			while(i < forecast.length && isNight(forecast[i].time))
 			{
 				var end = forecast[i];
 				++i;
 			}
 
 			stripes.push({
-				color: 'rgba(0, 0, 0, .1)',
-				from: milliSeconds(fixTimezone(begin['dt'])),
-				to: milliSeconds(fixTimezone(end['dt']))
+				color: 'rgba(0, 26, 84, .1)',
+				//color: 'rgba(0, 0, 0, .1)',
+				from: milliSeconds(fixTimezone(begin.time)),
+				to: milliSeconds(fixTimezone(end.time))
 			});
 		}
+
+		stripes.push({
+			color: 'rgba(255, 0, 0, .1)',
+			from: Date.now() - 500000,
+			to: Date.now() + 500000
+		});
 	}
 
 	return stripes;
@@ -791,36 +838,22 @@ function translateIcon(iconCode)
 {
 	switch(iconCode)
 	{
-		case "01d":
-		case "01n":
+		case "clear-day":
+		case "clear-night":
 			return "sunny";
-		case "02d":
-		case "02n":
-		case "w50": // eigentlich Windy
+		case "partly-cloudy-day":
+		case "partly-cloudy-night":
+		case "wind":
 			return "mostlycloudy";
-		case "03d":
-		case "03n":
-		case "04d":
-		case "04n":
+		case "cloudy":
 			return "cloudy";
-		case "10d":
-		case "10n":
-			return "slightdrizzle";
-		case "09d":
-		case "09n":
-		case "r":
+		case "rain":
 			return "drizzle";
-		case "13d":
-		case "13n":
-		case "sn50":
+		case "snow":
+		case "sleet":
 			return "snow";
-		case "50d":
-		case "50n":
+		case "fog":
 			return "haze";
-		case "11d":
-		case "11n":
-		case "t50":
-			return "thunderstorms";
 		default:
 			return "sunny";
 	}
