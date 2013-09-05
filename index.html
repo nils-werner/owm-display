@@ -152,7 +152,7 @@ jQuery(document).ready(function() {
 		})
 		).done(
 			function(a1, a2, a3){
-				mergeData(a1[0].hourly.data, a2[0].hourly.data, a3[0].hourly.data);
+				mergeData(a1[0], a2[0], a3[0]);
 			});
 
 		$.ajax({
@@ -169,37 +169,40 @@ jQuery(document).ready(function() {
 
 function mergeData(minus1, minus2, forecast)
 {
-	data = Array();
-	dataReceived = true;
-	for(var i = 1; i < minus2.length; i ++) {
-		if(minus2[i].time < minus1[0].time) {
-			data.push(minus2[i])
+	var span = Array();
+	var dataReceived = true;
+	for(var i = 1; i < minus2.hourly.data.length; i ++) {
+		if(minus2.hourly.data[i].time < minus1.hourly.data[0].time) {
+			span.push(minus2.hourly.data[i])
 		}
 	}
-	for(var i = 0; i < minus1.length; i ++) {
-		if(minus1[i].time < forecast[0].time) {
-			data.push(minus1[i])
+	for(var i = 0; i < minus1.hourly.data.length; i ++) {
+		if(minus1.hourly.data[i].time < forecast.hourly.data[0].time) {
+			span.push(minus1.hourly.data[i])
 		}
 	}
-	for(var i = 0; i <  forecast.length; i ++) {
-		data.push(forecast[i])
+	for(var i = 0; i <  forecast.hourly.data.length; i ++) {
+		span.push(forecast.hourly.data[i])
 	}
-	renderData(data);
+	var current = forecast.currently
+	renderData(span, forecast.hourly.data, current);
 }
 
-function renderData(data)
+function renderData(span, future, current)
 {
 	hide('loading');
 	show('map-rain');
 	show('map-lightning');
-	dialWind('dial-wind', data);
-	dialTemperature('dial-temperature', data);
-	plotPressure('chart-pressure', data);
-	plotTemperature('chart-temp', data);
-	plotWindSpeed('chart-wind', data);
-	plotRain('chart-rain', data);
-	placeIcon('icon-weather', data);
-	placeDate('date', data);
+
+	dialTemperature('dial-temperature', current);
+	placeIcon('icon-weather', current);
+
+	dialWind('dial-wind', future);
+	plotPressure('chart-pressure', span);
+	plotTemperature('chart-temp', span);
+	plotWindSpeed('chart-wind', span);
+	plotRain('chart-rain', span);
+	placeDate('date', span);
 }
 
 function  errorHandler(e)
