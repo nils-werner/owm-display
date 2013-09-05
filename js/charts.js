@@ -832,7 +832,8 @@ function stripeDays(forecast)
 function stripeNow(forecast)
 {
 		return Array({
-			color: 'rgba(255, 0, 0, .1)',
+			color: 'rgba(255, 0, 0, .3)',
+			width: 2,
 			value: Date.now()
 		});
 }
