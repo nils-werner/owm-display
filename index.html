@@ -170,7 +170,7 @@ jQuery(document).ready(function() {
 function mergeData(minus1, minus2, forecast)
 {
 	var span = Array();
-	var dataReceived = true;
+	dataReceived = true;
 	for(var i = 1; i < minus2.hourly.data.length; i ++) {
 		if(minus2.hourly.data[i].time < minus1.hourly.data[0].time) {
 			span.push(minus2.hourly.data[i])
