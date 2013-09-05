@@ -607,13 +607,10 @@ function plotTemperature(chartName, forecast)
 		});
 }
 
-function plotPressure(chartName, forecast)
+function plotPressure(chartName, forecast, current)
 {
 	var tmp = new Array();
-	var threshold = forecast[0].pressure;
-	var diff = forecast[1].pressure - threshold;
-	diff = diff/Math.abs(diff);
-	threshold -= diff * 0.1;
+	var threshold = current.pressure;
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
