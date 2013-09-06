@@ -158,7 +158,9 @@ jQuery(document).ready(function() {
 		$.ajax({
 			url: "./json/hostname.json",
 			type: 'GET',
-			dataType: 'json',
+			dataType: 'jsonp',
+			jsonp: false,
+			jsonpCallback: 'hostnamecallback',
 			error: errorHandler
 		}).done(
 			function(a1){
