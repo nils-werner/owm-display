@@ -717,10 +717,16 @@ function plotRain(chartName, forecast)
 				milliSeconds(fixTimezone(forecast[i].time)),
 				0
 			]);
-		cloud.push([
-			milliSeconds(fixTimezone(forecast[i].time)),
-			forecast[i].cloudCover*100
-		]);
+		if(typeof forecast[i].cloudCover != 'undefined')
+			cloud.push([
+					milliSeconds(fixTimezone(forecast[i].time)),
+					Math.floor(forecast[i].cloudCover*100)
+				]);
+		else
+			cloud.push([
+					milliSeconds(fixTimezone(forecast[i].time)),
+					Math.floor(0)
+				]);
 	}
 
 	chart = new Highcharts.Chart({
