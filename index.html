@@ -153,7 +153,10 @@ jQuery(document).ready(function() {
 		).done(
 			function(a1, a2, a3){
 				mergeData(a1[0], a2[0], a3[0]);
-			});
+		}).fail(
+			function () {
+				location.reload(true);
+		});
 
 		$.ajax({
 			url: "./json/hostname.json",
