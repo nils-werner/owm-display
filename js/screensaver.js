@@ -1,10 +1,10 @@
 jQuery(document).ready(function() {
-    screensaverOffset(50);
+    screensaverOffset(25);
 });
 
 function screensaverOffset(pixels) {
-    vertical = Math.floor(Math.random()*pixels+1);
-    horizontal = Math.floor(Math.random()*pixels+1);
+    vertical = Math.floor(Math.random()*pixels*2+1) - pixels;
+    horizontal = Math.floor(Math.random()*pixels*2+1) - pixels;
 
     $("body").css("position", "relative");
     $("body").css("top", vertical);
