@@ -617,14 +617,14 @@ function plotTemperature(chartName, forecast)
 			title: {
 				text: '°C'
 			},
-			min: 5,
 		},
 		series: [{
 				showInLegend: false,
 				type: 'areaspline',
 				fillOpacity: 0.2,
 				data: tmp,
-				color: '#37AEBE'
+				color: '#37AEBE',
+				negativeColor: '#0076E2'
 			}]
 		});
 }
