@@ -89,7 +89,7 @@ function mergeData(minus1, minus2, forecast)
     }
 
     var dailyspan = Array();
-    for(var i = 1; i < minus2.daily.data.length; i ++) {
+    for(var i = 0; i < minus2.daily.data.length; i ++) {
         if(minus2.daily.data[i].time < minus1.daily.data[0].time) {
             dailyspan.push(minus2.daily.data[i])
         }
@@ -117,10 +117,10 @@ function renderData(span, future, current, daily)
     placeIcon('icon-weather', current);
 
     dialWind('dial-wind', future);
-    plotPressure('chart-pressure', span, current);
-    plotTemperature('chart-temp', span);
-    plotWindSpeed('chart-wind', span);
-    plotRain('chart-rain', span);
+    plotPressure('chart-pressure', span, current, daily);
+    plotTemperature('chart-temp', span, daily);
+    plotWindSpeed('chart-wind', span, daily);
+    plotRain('chart-rain', span, daily);
     placeDate('date', span);
 }
 

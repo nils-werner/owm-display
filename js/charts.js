@@ -291,7 +291,7 @@ function dialTemperature(chartName, forecast)
 	});
 }
 
-function plotWindSpeed(chartName, forecast)
+function plotWindSpeed(chartName, forecast, daily)
 {
 	var wind = new Array();
 	var gust = new Array();
@@ -345,7 +345,7 @@ function plotWindSpeed(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-			plotBands: stripeDays(forecast),
+			plotBands: stripeDays(daily),
 			plotLines: stripeNow(forecast),
 		},
 		plotOptions: {
@@ -565,7 +565,7 @@ function plotWindSpeed(chartName, forecast)
 
 
 
-function plotTemperature(chartName, forecast)
+function plotTemperature(chartName, forecast, daily)
 {
 	var tmp = new Array();
 
@@ -610,7 +610,7 @@ function plotTemperature(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-			plotBands: stripeDays(forecast),
+			plotBands: stripeDays(daily),
 			plotLines: stripeNow(forecast),
 		},
 		yAxis: {
@@ -629,7 +629,7 @@ function plotTemperature(chartName, forecast)
 		});
 }
 
-function plotPressure(chartName, forecast, current)
+function plotPressure(chartName, forecast, current, daily)
 {
 	var tmp = new Array();
 	var threshold = current.pressure;
@@ -668,7 +668,7 @@ function plotPressure(chartName, forecast, current)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				},
 			},
-			plotBands: stripeDays(forecast),
+			plotBands: stripeDays(daily),
 			plotLines: stripeNow(forecast),
 		},
 		yAxis: {
@@ -701,7 +701,7 @@ function plotPressure(chartName, forecast, current)
 		});
 }
 
-function plotRain(chartName, forecast)
+function plotRain(chartName, forecast, daily)
 {
 	var tmp = new Array();
 	var cloud = new Array();
@@ -766,7 +766,7 @@ function plotRain(chartName, forecast)
 					return Highcharts.dateFormat('%a, %e. %b', this.value);
 				}
 			},
-			plotBands: stripeDays(forecast),
+			plotBands: stripeDays(daily),
 			plotLines: stripeNow(forecast),
 		},
 		yAxis: [
@@ -841,29 +841,23 @@ function isNight(timestamp)
 function stripeDays(forecast)
 {
 	var stripes = new Array();
-	var day = true;
 
-	var begins = new Array();
-	var ends = new Array();
+	stripes.push({
+		color: 'rgba(0, 26, 84, .1)',
+		//color: 'rgba(256, 256, 256, 1)',
+		//color: 'rgba(0, 0, 0, .1)',
+		from: milliSeconds(fixTimezone(forecast[0].time)),
+		to: milliSeconds(fixTimezone(forecast[0].sunriseTime))
+	});
 
-	for(var i = 0; i <  forecast.length; i ++){
-		if(isNight(forecast[i].time))
-		{
-			var begin = forecast[i];
-
-			while(i < forecast.length && isNight(forecast[i].time))
-			{
-				var end = forecast[i];
-				++i;
-			}
-
-			stripes.push({
-				color: 'rgba(0, 26, 84, .1)',
-				//color: 'rgba(0, 0, 0, .1)',
-				from: milliSeconds(fixTimezone(begin.time)),
-				to: milliSeconds(fixTimezone(end.time))
-			});
-		}
+	for(var i = 0; i <  forecast.length-1; i ++){
+		stripes.push({
+			color: 'rgba(0, 26, 84, .1)',
+			//color: 'rgba(256, 256, 256, 1)',
+			//color: 'rgba(0, 0, 0, .1)',
+			from: milliSeconds(fixTimezone(forecast[i].sunsetTime)),
+			to: milliSeconds(fixTimezone(forecast[i+1].sunriseTime))
+		});
 	}
 
 	return stripes;
