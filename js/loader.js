@@ -71,26 +71,43 @@ jQuery(document).ready(function() {
 
 function mergeData(minus1, minus2, forecast)
 {
-    var span = Array();
     dataReceived = true;
+
+    var hourlyspan = Array();
     for(var i = 1; i < minus2.hourly.data.length; i ++) {
         if(minus2.hourly.data[i].time < minus1.hourly.data[0].time) {
-            span.push(minus2.hourly.data[i])
+            hourlyspan.push(minus2.hourly.data[i])
         }
     }
     for(var i = 0; i < minus1.hourly.data.length; i ++) {
         if(minus1.hourly.data[i].time < forecast.hourly.data[0].time) {
-            span.push(minus1.hourly.data[i])
+            hourlyspan.push(minus1.hourly.data[i])
         }
     }
     for(var i = 0; i <  forecast.hourly.data.length; i ++) {
-        span.push(forecast.hourly.data[i])
+        hourlyspan.push(forecast.hourly.data[i])
     }
+
+    var dailyspan = Array();
+    for(var i = 1; i < minus2.daily.data.length; i ++) {
+        if(minus2.daily.data[i].time < minus1.daily.data[0].time) {
+            dailyspan.push(minus2.daily.data[i])
+        }
+    }
+    for(var i = 0; i < minus1.daily.data.length; i ++) {
+        if(minus1.daily.data[i].time < forecast.daily.data[0].time) {
+            dailyspan.push(minus1.daily.data[i])
+        }
+    }
+    for(var i = 0; i <  forecast.daily.data.length; i ++) {
+        dailyspan.push(forecast.daily.data[i])
+    }
+
     var current = forecast.currently
-    renderData(span, forecast.hourly.data, current);
+    renderData(hourlyspan, forecast.hourly.data, current, dailyspan);
 }
 
-function renderData(span, future, current)
+function renderData(span, future, current, daily)
 {
     hide('loading');
     show('map-rain');
