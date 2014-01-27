@@ -707,16 +707,28 @@ function plotRain(chartName, forecast)
 	var cloud = new Array();
 
 	for(var i = 0; i <  forecast.length; i ++){
-		if(typeof forecast[i].precipIntensity != 'undefined')
-			tmp.push([
-				milliSeconds(fixTimezone(forecast[i].time)),
-				forecast[i].precipIntensity
-			]);
-		else
+		if(typeof forecast[i].precipIntensity != 'undefined') {
+			if(forecast[i].temperature < 1) {
+				tmp.push({
+					x: milliSeconds(fixTimezone(forecast[i].time)),
+					y: forecast[i].precipIntensity,
+					color: 'white',
+					borderColor: '#A8C4FF'
+				});
+			}
+			else {
+				tmp.push([
+					milliSeconds(fixTimezone(forecast[i].time)),
+					forecast[i].precipIntensity
+				]);
+			}
+		}
+		else {
 			tmp.push([
 				milliSeconds(fixTimezone(forecast[i].time)),
 				0
 			]);
+		}
 		if(typeof forecast[i].cloudCover != 'undefined')
 			cloud.push([
 					milliSeconds(fixTimezone(forecast[i].time)),
