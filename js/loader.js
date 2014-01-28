@@ -122,6 +122,7 @@ function renderData(span, future, current, daily)
     plotWindSpeed('chart-wind', span, daily);
     plotRain('chart-rain', span, daily);
     placeDate('date', span);
+    placeSuntimes('suntimes', daily);
 }
 
 function  errorHandler(e)

@@ -823,6 +823,14 @@ function placeDate(chartName, forecast)
 	$('#' + chartName).html("Letztes Update: " + date.toLocaleString());
 }
 
+function placeSuntimes(chartName, forecast)
+{
+	var sunrise = new Date(forecast[0]['sunriseTime'] * 1000);
+	var sunset = new Date(forecast[0]['sunsetTime'] * 1000);
+
+	$('#' + chartName).html(sunrise.toTimeString().replace(/(\d+:\d+).*/, "$1") + " - " + sunset.toTimeString().replace(/(\d+:\d+).*/, "$1"));
+}
+
 function placeHostname(chartName, hostname)
 {
 	$('#' + chartName).html("IP Adresse: " + hostname);

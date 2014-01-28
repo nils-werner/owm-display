@@ -107,6 +107,20 @@ a, a:link, a:visited, a:hover {
 	height: 100px;
 }
 
+#suntimes {
+	position: absolute;
+	z-index: 9;
+	top: 00px;
+	left: 270px;
+	width: 100px;
+	height: 100px;
+	padding-top: 26px;
+	text-align: center;
+	background-image: url(../img/daytime.png);
+	background-repeat: no-repeat;
+	background-position: 50% 0px;
+}
+
 #dial-temperature {
 	position: absolute;
 	top: 190px;
