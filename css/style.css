@@ -119,6 +119,7 @@ a, a:link, a:visited, a:hover {
 	background-image: url(../img/daytime.png);
 	background-repeat: no-repeat;
 	background-position: 50% 0px;
+	display: none;
 }
 
 #dial-temperature {

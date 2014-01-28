@@ -112,6 +112,7 @@ function renderData(span, future, current, daily)
     hide('loading');
     show('map-rain');
     show('map-lightning');
+    show('suntimes');
 
     dialTemperature('dial-temperature', current);
     placeIcon('icon-weather', current);
