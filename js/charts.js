@@ -825,10 +825,18 @@ function placeDate(chartName, forecast)
 
 function placeSuntimes(chartName, forecast)
 {
-	var sunrise = new Date(forecast[0]['sunriseTime'] * 1000);
-	var sunset = new Date(forecast[0]['sunsetTime'] * 1000);
+	var text = "";
+	for(var i = 1; i < 4; i ++){
+		var sunrise = new Date(forecast[i]['sunriseTime'] * 1000);
+		var sunset = new Date(forecast[i]['sunsetTime'] * 1000);
+		if(i == 1)
+			text = text + "<strong>";
+		text = text + sunrise.toTimeString().replace(/(\d+:\d+).*/, "$1") + " - " + sunset.toTimeString().replace(/(\d+:\d+).*/, "$1") + "<br />";
+		if(i == 1)
+			text = text + "</strong>";
+	}
 
-	$('#' + chartName).html(sunrise.toTimeString().replace(/(\d+:\d+).*/, "$1") + " - " + sunset.toTimeString().replace(/(\d+:\d+).*/, "$1"));
+	$('#' + chartName).html(text);
 }
 
 function placeHostname(chartName, hostname)
