@@ -60,8 +60,8 @@ a, a:link, a:visited, a:hover {
 }
 
 .map-image {
-	width: 270px;
-	height: 250px;
+	width: 285px;
+	top: -15px;
 	position: relative;
 	left: 0px;
 }
