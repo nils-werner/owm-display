@@ -30,19 +30,19 @@ jQuery(document).ready(function() {
 
     $.when(
         $.ajax({
-            url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222," + minus1 + "?extend=hourly&units=si&callback=?",
+            url: "http://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222," + minus1 + "?extend=hourly&units=si&callback=?",
             type: 'GET',
             dataType: 'jsonp',
             error: errorHandler
         }),
         $.ajax({
-            url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222," + minus2 + "?extend=hourly&units=si&callback=?",
+            url: "http://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222," + minus2 + "?extend=hourly&units=si&callback=?",
             type: 'GET',
             dataType: 'jsonp',
             error: errorHandler
         }),
         $.ajax({
-            url: "https://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222?extend=hourly&units=si&callback=?",
+            url: "http://api.forecast.io/forecast/929a06588b68f79d5a6ed239dd55bd61/49.106389,10.987222?extend=hourly&units=si&callback=?",
             type: 'GET',
             dataType: 'jsonp',
             error: errorHandler
