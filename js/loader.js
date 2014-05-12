@@ -54,18 +54,6 @@ jQuery(document).ready(function() {
             function () {
                 location.reload(true);
         });
-
-        $.ajax({
-            url: "./json/hostname.json",
-            type: 'GET',
-            dataType: 'jsonp',
-            jsonp: false,
-            jsonpCallback: 'hostnamecallback',
-            error: errorHandler
-        }).done(
-            function(a1){
-                placeHostname('hostname', a1.hostname)
-            });
 });
 
 

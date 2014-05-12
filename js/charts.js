@@ -839,11 +839,6 @@ function placeSuntimes(chartName, forecast)
 	$('#' + chartName).html(text);
 }
 
-function placeHostname(chartName, hostname)
-{
-	$('#' + chartName).html("IP Adresse: " + hostname);
-}
-
 function isNight(timestamp)
 {
 	var date = new Date(milliSeconds(fixTimezone(timestamp)));
