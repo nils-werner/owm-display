@@ -772,6 +772,7 @@ function plotRain(chartName, forecast, daily)
 		yAxis: [
 			{
 				min: 0,
+				minRange: 3,
 				title: {
 					text: 'mm/h'
 				}
