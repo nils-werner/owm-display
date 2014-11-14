@@ -1,0 +1,26 @@
+{
+  "name": "WSpZ Wettertafel",
+  "icons": [
+  	{
+      "src": "img/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "density": "0.75"
+    },
+  	{
+      "src": "img/favicon-196.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "density": "4.0"
+    },
+  	{
+      "src": "img/favicon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "density": "3.0"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
