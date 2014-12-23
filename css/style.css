@@ -22,6 +22,10 @@ a, a:link, a:visited, a:hover {
 	font-size: 20pt;
 }
 
+#apimissing {
+	display: none;
+}
+
 .row {
 	margin: auto;
 	width: 980px;
