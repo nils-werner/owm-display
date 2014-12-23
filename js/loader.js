@@ -34,19 +34,19 @@ jQuery(document).ready(function() {
     if(apikey != "") {
         $.when(
             $.ajax({
-                url: "http://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
+                url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
                 error: errorHandler
             }),
             $.ajax({
-                url: "http://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
+                url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
                 error: errorHandler
             }),
             $.ajax({
-                url: "http://api.forecast.io/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
+                url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
                 error: errorHandler
