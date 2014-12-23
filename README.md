@@ -1,14 +1,15 @@
 Weather Display
 ===============
 
-This page is a small, HTML- and JS-only, website to show basic weather information
-for a sailing spot in southern germany.
+This page is a small, HTML- and JS-only, website to show basic weather information for a sailing spot in southern germany.
 
-When using this site for any other spot, please edit the settings `position` and
-`apikey` in the file `js/loader.js`:
+The API key must be provided using the URL hash, like
+
+    index.html#!abcdef
+
+When using this site for any other spot, please edit the settings `position` in the file `js/loader.js`:
 
     position = "49.106389,10.987222";
-    apikey = "your-api-key";
 
 Then open the file in your browser.
 
