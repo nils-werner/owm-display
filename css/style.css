@@ -11,10 +11,14 @@ a, a:link, a:visited, a:hover {
 	color: #333333;
 }
 
-#loading {
+#loading, #apimissing {
 	position: absolute;
-	top: 300px;
+	top: 380px;
 	text-align: center;
+}
+
+#loading {
+	top: 300px;
 	font-size: 20pt;
 }
 
@@ -135,4 +139,3 @@ a, a:link, a:visited, a:hover {
 	height: 300px;
 	margin: 0 auto;
 }
-

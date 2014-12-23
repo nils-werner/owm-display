@@ -29,34 +29,39 @@ jQuery(document).ready(function() {
     }, 60000);
 
     position = "49.106389,10.987222";
-    apikey = "929a06588b68f79d5a6ed239dd55bd61";
+    apikey = location.hash.replace(/^#!/, '');
 
-    $.when(
-        $.ajax({
-            url: "http://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
-            type: 'GET',
-            dataType: 'jsonp',
-            error: errorHandler
-        }),
-        $.ajax({
-            url: "http://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
-            type: 'GET',
-            dataType: 'jsonp',
-            error: errorHandler
-        }),
-        $.ajax({
-            url: "http://api.forecast.io/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
-            type: 'GET',
-            dataType: 'jsonp',
-            error: errorHandler
-        })
-        ).done(
-            function(a1, a2, a3){
-                mergeData(a1[0], a2[0], a3[0]);
-        }).fail(
-            function () {
-                location.reload(true);
-        });
+    if(apikey != "") {
+        $.when(
+            $.ajax({
+                url: "http://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
+                type: 'GET',
+                dataType: 'jsonp',
+                error: errorHandler
+            }),
+            $.ajax({
+                url: "http://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
+                type: 'GET',
+                dataType: 'jsonp',
+                error: errorHandler
+            }),
+            $.ajax({
+                url: "http://api.forecast.io/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
+                type: 'GET',
+                dataType: 'jsonp',
+                error: errorHandler
+            })
+            ).done(
+                function(a1, a2, a3){
+                    mergeData(a1[0], a2[0], a3[0]);
+            }).fail(
+                function () {
+                    location.reload(true);
+            });
+    }
+    else {
+        show("apimissing");
+    }
 });
 
 
