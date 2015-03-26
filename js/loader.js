@@ -29,7 +29,7 @@ jQuery(document).ready(function() {
     }, 60000);
 
     position = "49.106389,10.987222";
-    apikey = location.hash.replace(/^#!/, '');
+    apikey = location.search.substr(1) || location.hash.replace(/^#!/, '');
 
     if(apikey != "") {
         $.when(
