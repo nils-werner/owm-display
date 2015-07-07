@@ -63,7 +63,22 @@ function dialWind(chartName, forecast)
 			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			polar: true,
-			type: 'column'
+			type: 'column',
+			marginLeft: 0,
+			marginRight: 0
+		},
+		pane: {
+			background: [
+				{
+					backgroundColor: {
+						linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+						stops: [
+							[0, '#2a2a2b'],
+							[1, '#3e3e40']
+						]
+					}
+				}
+			]
 		},
 		credits: {
 			enabled: false
@@ -118,7 +133,8 @@ function dialWind(chartName, forecast)
 				stacking: 'normal',
 				shadow: false,
 				groupPadding: 0,
-				pointPlacement: 'on'
+				pointPlacement: 'on',
+				borderColor: 'transparent'
 			}
 		}
 	});
@@ -137,7 +153,9 @@ function dialPressure(chartName, forecast)
 			plotBackgroundColor: null,
 			plotBackgroundImage: null,
 			plotBorderWidth: 0,
-			plotShadow: false
+			plotShadow: false,
+			marginLeft: 0,
+			marginRight: 0
 		},
 
 		credits: {
@@ -150,7 +168,12 @@ function dialPressure(chartName, forecast)
 
 		pane: {
 			startAngle: -150,
-			endAngle: 150
+			endAngle: 150,
+			background: [
+				{
+					backgroundColor:'rgba(255, 255, 255, 0)'
+				}
+			]
 		},
 	
 		yAxis: [
@@ -232,7 +255,9 @@ function dialTemperature(chartName, forecast)
 			plotBackgroundColor: null,
 			plotBackgroundImage: null,
 			plotBorderWidth: 0,
-			plotShadow: false
+			plotShadow: false,
+			marginLeft: 0,
+			marginRight: 0
 		},
 
 		credits: {
@@ -246,12 +271,31 @@ function dialTemperature(chartName, forecast)
 		pane: {
 			startAngle: -150,
 			endAngle: 150,
+			background: [
+				{
+					backgroundColor: {
+						linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+						stops: [
+							[0, '#2a2a2b'],
+							[1, '#3e3e40']
+						]
+					}
+				}
+			]
+		},
+		
+		plotOptions: {
+			gauge: {
+				dial: {
+					backgroundColor: '#ffffff'
+				}
+			}
 		},
 
 		// the value axis
 		yAxis: {
-			min: 0,
-			max: 45,
+			min: -10,
+			max: 40,
 
 			minorTickInterval: 'auto',
 			minorTickWidth: 1,
@@ -272,7 +316,7 @@ function dialTemperature(chartName, forecast)
 				y: 5
 			},
 			plotBands: [{
-				from: 0,
+				from: -10,
 				to: 10,
 				color: '#DF5353' // red
 			}, {
@@ -281,8 +325,12 @@ function dialTemperature(chartName, forecast)
 				color: '#DDDF0D' // yellow
 			}, {
 				from: 20,
-				to: 45,
+				to: 36,
 				color: '#55BF3B' // green
+			}, {
+				from: 36,
+				to: 40,
+				color: '#DDDF0D' // yellow
 			}]
 		},
 		series: [{
@@ -320,11 +368,8 @@ function plotWindSpeed(chartName, forecast, daily)
 
 	chart = new Highcharts.Chart({
 		chart: {
-			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
-			marginRight: 60,
-			marginLeft: 64
 		},
 		credits: {
 			enabled: false
@@ -367,47 +412,47 @@ function plotWindSpeed(chartName, forecast, daily)
 			gridLineWidth: 0,
 			plotLines: [{
 				value: 1.6,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}, {
 				value: 3.4,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}, {
 				value: 5.5,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}, {
 				value: 8,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}, {
 				value: 11,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}, {
 				value: 14,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}, {
 				value: 17,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}, {
 				value: 21,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}, {
 				value: 25,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}, {
 				value: 29,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}, {
 				value: 23,
-				color: '#C0C0C0',
+				color: '#707073',
 				width: 1
 			}],
 			plotBands: [{ // Light air
@@ -578,11 +623,8 @@ function plotTemperature(chartName, forecast, daily)
 
 	chart = new Highcharts.Chart({
 		chart: {
-			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
-			marginRight: 60,
-			marginLeft: 64
 		},
 		credits: {
 			enabled: false
@@ -643,11 +685,8 @@ function plotPressure(chartName, forecast, current, daily)
 
 	chart = new Highcharts.Chart({
 		chart: {
-			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline',
-			marginRight: 60,
-			marginLeft: 64
 		},
 		credits: {
 			enabled: false
@@ -743,7 +782,6 @@ function plotRain(chartName, forecast, daily)
 
 	chart = new Highcharts.Chart({
 		chart: {
-			backgroundColor:'rgba(255, 255, 255, 0)',
 			renderTo: chartName,
 			type: 'spline'
 		},
@@ -807,7 +845,8 @@ function plotRain(chartName, forecast, daily)
 				pointWidth: 4,
 				yAxis: 0,
 				data: tmp,
-				color: '#427EFF'
+				color: '#427EFF',
+				borderColor: 'transparent'
 			}
 			]
 		});
@@ -853,9 +892,10 @@ function isNight(timestamp)
 function stripeDays(forecast)
 {
 	var stripes = new Array();
+	var color = 'rgba(0, 0, 0, .2)';
 
 	stripes.push({
-		color: 'rgba(0, 26, 84, .1)',
+		color: color,
 		//color: 'rgba(256, 256, 256, 1)',
 		//color: 'rgba(0, 0, 0, .1)',
 		from: milliSeconds(fixTimezone(forecast[0].time)),
@@ -864,7 +904,7 @@ function stripeDays(forecast)
 
 	for(var i = 0; i <  forecast.length-1; i ++){
 		stripes.push({
-			color: 'rgba(0, 26, 84, .1)',
+			color: color,
 			//color: 'rgba(256, 256, 256, 1)',
 			//color: 'rgba(0, 0, 0, .1)',
 			from: milliSeconds(fixTimezone(forecast[i].sunsetTime)),
@@ -878,7 +918,7 @@ function stripeDays(forecast)
 function stripeNow(forecast)
 {
 		return Array({
-			color: 'rgba(255, 0, 0, .3)',
+			color: 'rgba(255, 255, 255, .4)',
 			width: 2,
 			value: Date.now()
 		});
