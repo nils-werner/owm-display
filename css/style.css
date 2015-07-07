@@ -20,7 +20,7 @@ a, a:link, a:visited, a:hover {
 	text-align: center;
 }
 
-#loading {
+#loading div {
 	top: 300px;
 	font-size: 20pt;
 }
