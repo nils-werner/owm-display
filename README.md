@@ -3,6 +3,8 @@ Weather Display
 
 This page is a small, HTML- and JS-only, website to show basic weather information for a sailing spot in southern germany.
 
+![Screenshot](img/screenshot.png)
+
 The API key must be provided using the URL hash, like
 
     index.html#!abcdef
