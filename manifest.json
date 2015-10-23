@@ -20,7 +20,8 @@
       "density": "3.0"
     }
   ],
-  "start_url": "index.html",
+  "background_color": "#202020",
+  "theme_color": "#FF9800",
   "display": "standalone",
   "orientation": "portrait"
 }
