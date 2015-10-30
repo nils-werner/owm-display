@@ -17,14 +17,14 @@ function show(chartName)
 
 function dialWind(chartName, forecast)
 {
-	var n = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW']; 
+	var n = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
 	var length = forecast.length;
 
 	var tmp = [
 		{name:"6+ bft", data:[]},
-		{name:"5 bft",data:[]}, 
-		{name:"4 bft", data:[]}, 
-		{name:"3 bft", data:[]}, 
+		{name:"5 bft",data:[]},
+		{name:"4 bft", data:[]},
+		{name:"3 bft", data:[]},
 		{name:"2 bft", data:[]},
 		{name:"1 bft", data:[]},
 		{name:"0 bft", data:[]}
@@ -35,7 +35,7 @@ function dialWind(chartName, forecast)
 			tmp[g]['data'][i] = 0;
 
 	for(var i = 0; i < length; i ++){
-		var deg = forecast[i].windBearing 
+		var deg = forecast[i].windBearing
 		var stmp = [forecast[i].windSpeed] // we're counting gusts, should we?
 
 		for(var j = 0; j < stmp.length; j ++) {
@@ -110,7 +110,7 @@ function dialWind(chartName, forecast)
 		},
 		xAxis: {
 			tickmarkPlacement: 'on',
-			categories:["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"], 
+			categories:["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"],
 			type:(void 0)
 		},
 		yAxis: {
@@ -161,7 +161,7 @@ function dialPressure(chartName, forecast)
 		credits: {
 			enabled: false
 		},
-	
+
 		title: {
 			text: 'Luftdruck'
 		},
@@ -175,7 +175,7 @@ function dialPressure(chartName, forecast)
 				}
 			]
 		},
-	
+
 		yAxis: [
 			{
 				min: 945,
@@ -212,7 +212,7 @@ function dialPressure(chartName, forecast)
 				offset: -18,
 				endOnTick: false
 			}
-		],	
+		],
 		series: [
 		{
 			data: tmp,
@@ -222,7 +222,7 @@ function dialPressure(chartName, forecast)
 					var mm = Math.round(pa / 1.33322);
 					var inh = Math.round(pa / 33.8653);
 					return '<span style="color:#339">'+ pa + ' hPa</span><br>' +
-						'<span style="color:#933">' + mm + ' mmHg</span>'; 
+						'<span style="color:#933">' + mm + ' mmHg</span>';
 				},
 				backgroundColor: {
 					linearGradient: {
@@ -283,7 +283,7 @@ function dialTemperature(chartName, forecast)
 				}
 			]
 		},
-		
+
 		plotOptions: {
 			gauge: {
 				dial: {
