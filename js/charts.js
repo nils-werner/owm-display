@@ -675,6 +675,7 @@ function plotPressure(chartName, forecast, current, daily)
 {
 	var tmp = new Array();
 	var threshold = current.pressure;
+	threshold = 1015;
 
 	for(var i = 0; i <  forecast.length; i ++){
 		tmp.push([
