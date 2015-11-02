@@ -462,7 +462,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '1',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // Light breeze
@@ -472,7 +472,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '2',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // Gentle breeze
@@ -482,7 +482,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '3',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // Moderate breeze
@@ -492,7 +492,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '4',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // Fresh breeze
@@ -502,7 +502,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '5',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // Strong breeze
@@ -512,7 +512,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '6',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // High wind
@@ -522,7 +522,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '7',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // Gale
@@ -532,7 +532,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '8',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // Strong Gale
@@ -542,7 +542,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '9',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // Storm
@@ -552,7 +552,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '10',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // Violent Storm
@@ -562,7 +562,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '11',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}, { // Hurricane
@@ -571,7 +571,7 @@ function plotWindSpeed(chartName, forecast, daily)
 					x: -15,
 					text: '12',
 					style: {
-						color: '#606060'
+						color: '#E0E0E3'
 					}
 				}
 			}]
