@@ -144,7 +144,7 @@
             }
         }, 60000);
 
-        position = "51.22,6.77";
+        position = "49.106389,10.987222";
         apikey = location.search.substr(1) || location.hash.replace(/^#!/, '');
 
         if(apikey != "") {

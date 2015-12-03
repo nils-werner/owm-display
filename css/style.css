@@ -68,8 +68,8 @@ a, a:link, a:visited, a:hover {
 
 .pin {
 	position: absolute;
-    left: 70px;
-    top: 112px;
+    left: 100px;
+	top: 89px;
 }
 
 .map-image {
@@ -82,8 +82,8 @@ a, a:link, a:visited, a:hover {
 #map-lightning .map-image {
 	width: 770px;
     height: 770px;
-    top: -209px;
-    left: -148px;
+    top: -395px;
+	left: -315px;
 }
 
 .map h2 {

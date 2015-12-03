@@ -246,7 +246,7 @@
 					text: 'Windrose'
 				},
 				subtitle: {
-					text: 'the coming week',
+					text: 'der nächsten Woche',
 					floating: true
 				},
 				legend: {
@@ -328,7 +328,7 @@
 				},
 
 				title: {
-					text: 'Air pressure'
+					text: 'Luftdruck'
 				},
 
 				pane: {
@@ -550,7 +550,7 @@
 					enabled: false
 				},
 				title: {
-					text: 'Wind speed'
+					text: 'Windgeschwindigkeit'
 				},
 				tooltip: {
 					formatter: function () {
@@ -808,7 +808,7 @@
 					enabled: false
 				},
 				title: {
-					text: 'Temperature'
+					text: 'Temperatur'
 				},
 				tooltip: {
 					formatter: function () {
@@ -874,7 +874,7 @@
 					enabled: false
 				},
 				title: {
-					text: 'Humidity'
+					text: 'Luftfeuchtigkeit'
 				},
 				tooltip: {
 					formatter: function () {
@@ -943,7 +943,7 @@
 					enabled: false
 				},
 				title: {
-					text: 'Air pressure'
+					text: 'Luftdruck'
 				},
 				tooltip: {
 					formatter: function() {
@@ -1045,7 +1045,7 @@
 					enabled: false
 				},
 				title: {
-					text: 'Precipitation / Cloudiness'
+					text: 'Niederschlag/Bewölkung'
 				},
 				tooltip: {
 					formatter: function() {

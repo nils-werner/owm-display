@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title>Weather Düsseldorf</title>
+	<title>WSpZ Wettertafel</title>
 	<meta charset="utf-8" />
 
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -33,12 +33,12 @@
 			<div id="map-rain">
 				<div class="map-widget">
 					<!-- <img src="http://www.dwd.de/wundk/radar/Radarfilm_WEB_SE.gif" class="map-image" /> <!-- 4 Stunden, 3 MB -->
-					<img src="http://images2.wetterdienst.de/maps/radar/Radarfilm_West.gif" class="map-image" /> <!-- 2,5 Std, 300KB -->
+					<img src="http://images.wetterdienst.de/maps/radar/Radarfilm_Suedost.gif" class="map-image" /> <!-- 2,5 Std, 300KB -->
 					<img src="img/map-pin.png" class="pin" />
 					<img src="img/map-mask.png" class="mask" />
 				</div>
-				<h2>Rainradar</h2>
-				<h3>for the last 2.5 Hours</h3>
+				<h2>Niederschlagsradar</h2>
+				<h3>der letzten 2,5 Stunden</h3>
 			</div>
 			<div id="suntimes"></div>
 			<div id="icon-weather"></div>
@@ -53,8 +53,8 @@
 					<img src="img/map-pin.png" class="pin" />
 					<img src="img/map-mask.png" class="mask" />
 				</div>
-				<h2>Lightningradar</h2>
-				<h3>for the last 2.5 Hours</h3>
+				<h2>Blitzradar</h2>
+				<h3>der letzten 2,5 Stunden</h3>
 			</div>
 		</div>
 
@@ -67,7 +67,19 @@
 
 	<div class="row">
 		<div class="span12">
+			<div id="chart-pressure" class="widget"></div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span12">
 			<div id="chart-temp" class="widget"></div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span12">
+			<div id="chart-wind" class="widget"></div>
 		</div>
 	</div>
 
@@ -83,24 +95,12 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="span12">
-			<div id="chart-wind" class="widget"></div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="span12">
-			<div id="chart-pressure" class="widget"></div>
-		</div>
-	</div>
-
 	<div class="row footer">
 		<div class="span12">
 			<div id="license">
-				Forecasts: <a href="http://forecast.io/">forecast.io</a><br />
-				Rainradar: <a href="http://dwd.de/">Deutscher Wetterdienst</a><br />
-				Lightningradar: <a href="http://blitzortung.org/">blitzortung.org</a>
+				Vorhersagen: <a href="http://forecast.io/">forecast.io</a><br />
+				Niederschlagsradar: <a href="http://dwd.de/">Deutscher Wetterdienst</a><br />
+				Blitzradar: <a href="http://blitzortung.org/">blitzortung.org</a>
 			</div>
 			<div id="date">
 			</div>
@@ -108,7 +108,7 @@
 	</div>
 
 	<div id="loading" class="row">
-		<div class="span12">Loading Data&hellip;</div>
+		<div class="span12">Lade Daten&hellip;</div>
 	</div>
 
 	<div id="apimissing" class="row">
