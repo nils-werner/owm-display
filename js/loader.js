@@ -125,6 +125,7 @@
         owm.dialWind('dial-wind', future);
         owm.plotPressure('chart-pressure', span, current, daily);
         owm.plotTemperature('chart-temp', span, daily);
+        owm.plotHumidity('chart-humidity', span, daily);
         owm.plotWindSpeed('chart-wind', span, daily);
         owm.plotRain('chart-rain', span, daily);
         owm.placeDate('date', span);

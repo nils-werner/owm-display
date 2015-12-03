@@ -854,6 +854,72 @@
 		 * @param {array} forecast
 		 * @param {array} daily
 		 */
+		var plotHumidity = function (chartName, forecast, daily) {
+
+			var tmp = [];
+
+			for (var i = 0; i < forecast.length; i++) {
+				tmp.push([
+					milliSeconds(fixTimezone(forecast[i].time)),
+					forecast[i].humidity * 100
+				]);
+			}
+
+			new Highcharts.Chart({
+				chart: {
+					renderTo: chartName,
+					type: 'spline',
+				},
+				credits: {
+					enabled: false
+				},
+				title: {
+					text: 'Humidity'
+				},
+				tooltip: {
+					formatter: function () {
+						return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) + ': ' + this.y + '%';
+					}
+				},
+				plotOptions: {
+					series: {
+						marker: {
+							enabled: false
+						}
+					}
+				},
+				xAxis: {
+					type: 'datetime',
+					tickInterval: 24 * 3600 * 1000,
+					labels: {
+						formatter: function () {
+							return Highcharts.dateFormat('%a, %e. %b', this.value);
+						}
+					},
+					plotBands: stripeDays(daily),
+					plotLines: stripeNow(forecast),
+				},
+				yAxis: {
+					title: {
+						text: '%'
+					},
+				},
+				series: [{
+						showInLegend: false,
+						type: 'areaspline',
+						fillOpacity: 0.2,
+						data: tmp,
+						color: '#0F06E9',
+						negativeColor: '#0076E2'
+					}]
+				});
+		};
+
+		/**
+		 * @param {string} chartName
+		 * @param {array} forecast
+		 * @param {array} daily
+		 */
 		var plotPressure = function (chartName, forecast, current, daily) {
 
 			var tmp = [];
@@ -1054,6 +1120,7 @@
 			dialWind: dialWind,
 			plotPressure: plotPressure,
 			plotTemperature: plotTemperature,
+			plotHumidity: plotHumidity,
 			plotWindSpeed: plotWindSpeed,
 			plotRain: plotRain,
 			placeDate: placeDate,
