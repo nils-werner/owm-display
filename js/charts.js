@@ -87,7 +87,7 @@ function dialWind(chartName, forecast)
 			text: 'Windrose'
 		},
 		subtitle: {
-			text: 'der nächsten Woche',
+			text: 'the coming week',
 			floating: true
 		},
 		legend: {
@@ -163,7 +163,7 @@ function dialPressure(chartName, forecast)
 		},
 
 		title: {
-			text: 'Luftdruck'
+			text: 'Air pressure'
 		},
 
 		pane: {
@@ -375,7 +375,7 @@ function plotWindSpeed(chartName, forecast, daily)
 			enabled: false
 		},
 		title: {
-			text: 'Windgeschwindigkeit'
+			text: 'Wind speed'
 		},
 		tooltip: {
 			formatter: function() {
@@ -693,7 +693,7 @@ function plotPressure(chartName, forecast, current, daily)
 			enabled: false
 		},
 		title: {
-			text: 'Luftdruck'
+			text: 'Air pressure'
 		},
 		tooltip: {
 			formatter: function() {
@@ -790,7 +790,7 @@ function plotRain(chartName, forecast, daily)
 			enabled: false
 		},
 		title: {
-			text: 'Niederschlag/Bewölkung'
+			text: 'Precipitation / Cloudiness'
 		},
 		tooltip: {
 			formatter: function() {
@@ -861,7 +861,7 @@ function placeIcon(chartName, forecast)
 function placeDate(chartName, forecast)
 {
 	var date = new Date();
-	$('#' + chartName).html("Letztes Update: " + date.toLocaleString());
+	$('#' + chartName).html("Last Update: " + date.toLocaleString());
 }
 
 function placeSuntimes(chartName, forecast)

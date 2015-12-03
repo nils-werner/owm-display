@@ -28,7 +28,7 @@ jQuery(document).ready(function() {
         }
     }, 60000);
 
-    position = "49.106389,10.987222";
+    position = "51.22,6.77";
     apikey = location.search.substr(1) || location.hash.replace(/^#!/, '');
 
     if(apikey != "") {

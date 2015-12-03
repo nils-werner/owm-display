@@ -1,6 +1,7 @@
+<!doctype html>
 <html>
 <head>
-	<title>WSpZ Wettertafel</title>
+	<title>Weather Düsseldorf</title>
 	<meta charset="utf-8" />
 
 	<script src="js/jquery-1.9.1.min.js" ></script>
@@ -38,12 +39,12 @@
 			<div id="map-rain">
 				<div class="map-widget">
 					<!-- <img src="http://www.dwd.de/wundk/radar/Radarfilm_WEB_SE.gif" class="map-image" /> <!-- 4 Stunden, 3 MB -->
-					<img src="http://images.wetterdienst.de/maps/radar/Radarfilm_Suedost.gif" class="map-image" /> <!-- 2,5 Std, 300KB -->
+					<img src="http://images2.wetterdienst.de/maps/radar/Radarfilm_West.gif" class="map-image" /> <!-- 2,5 Std, 300KB -->
 					<img src="img/map-pin.png" class="pin" />
 					<img src="img/map-mask.png" class="mask" />
 				</div>
-				<h2>Niederschlagsradar</h2>
-				<h3>der letzten 2,5 Stunden</h3>
+				<h2>Rainradar</h2>
+				<h3>for the last 2.5 Hours</h3>
 			</div>
 			<div id="suntimes"></div>
 			<div id="icon-weather"></div>
@@ -58,8 +59,8 @@
 					<img src="img/map-pin.png" class="pin" />
 					<img src="img/map-mask.png" class="mask" />
 				</div>
-				<h2>Blitzradar</h2>
-				<h3>der letzten 2,5 Stunden</h3>
+				<h2>Lightningradar</h2>
+				<h3>for the last 2.5 Hours</h3>
 			</div>
 		</div>
 
@@ -96,16 +97,16 @@
 	<div class="row footer">
 		<div class="span12">
 			<div id="license">
-				Vorhersagen: <a href="http://forecast.io/">forecast.io</a><br />
-				Niederschlagsradar: <a href="http://dwd.de/">Deutscher Wetterdienst</a><br />
-				Blitzradar: <a href="http://blitzortung.org/">blitzortung.org</a>
+				Forecasts: <a href="http://forecast.io/">forecast.io</a><br />
+				Rainradar: <a href="http://dwd.de/">Deutscher Wetterdienst</a><br />
+				Lightningradar: <a href="http://blitzortung.org/">blitzortung.org</a>
 			</div>
 			<div id="date">
 			</div>
 		</div>
 	</div>
 	<div id="loading" class="row">
-		<div class="span12">Lade Daten...</div>
+		<div class="span12">Loading Data&hellip;</div>
 	</div>
 	<div id="apimissing" class="row">
 		<div class="span12">
