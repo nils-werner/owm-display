@@ -1,13 +1,8 @@
+<!doctype html>
 <html>
 <head>
 	<title>WSpZ Wettertafel</title>
 	<meta charset="utf-8" />
-
-	<script src="js/jquery-1.9.1.min.js" ></script>
-
-	<script src="js/highcharts.js"></script>
-	<script src="js/highcharts-more.js"></script>
-	<script src="js/dark-unica.js"></script>
 
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
 	<link href="css/style.css" rel="stylesheet" />
@@ -93,6 +88,7 @@
 			<div id="chart-rain" class="widget"></div>
 		</div>
 	</div>
+
 	<div class="row footer">
 		<div class="span12">
 			<div id="license">
@@ -104,19 +100,27 @@
 			</div>
 		</div>
 	</div>
+
 	<div id="loading" class="row">
-		<div class="span12">Lade Daten...</div>
+		<div class="span12">Lade Daten&hellip;</div>
 	</div>
+
 	<div id="apimissing" class="row">
 		<div class="span12">
 			It seems the API key is missing.<br />
 			Please append it to the URL like <code>index.html#!abcdef</code>
 		</div>
 	</div>
-</body>
+
+<script src="js/jquery-1.9.1.min.js" ></script>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-more.js"></script>
+<script src="js/dark-unica.js"></script>
 
 <script src="js/charts.js"></script>
 <script src="js/loader.js"></script>
 <script src="js/screensaver.js"></script>
+
+</body>
 
 </html>
