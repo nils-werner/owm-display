@@ -1,12 +1,22 @@
-jQuery(document).ready(function() {
+(function ($) {
+
+    "use strict";
+
+    /**
+     * @param {number} pixels
+     */
+    var screensaverOffset = function (pixels) {
+
+        var vertical = Math.floor(Math.random() * pixels * 2 + 1) - pixels;
+        var horizontal = Math.floor(Math.random() * pixels * 2 + 1) - pixels;
+
+        $("body").css({
+            "position": "relative",
+            "top": vertical,
+            "left": horizontal
+        });
+    };
+
     screensaverOffset(25);
-});
 
-function screensaverOffset(pixels) {
-    vertical = Math.floor(Math.random()*pixels*2+1) - pixels;
-    horizontal = Math.floor(Math.random()*pixels*2+1) - pixels;
-
-    $("body").css("position", "relative");
-    $("body").css("top", vertical);
-    $("body").css("left", horizontal);
-}
+}(jQuery));
