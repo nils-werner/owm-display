@@ -1,20 +1,35 @@
 {
-  "name": "WSpZ Wettertafel",
-  "short_name": "WSpZ Wettertafel",
+  "name": "Brombachsee Wetter",
+  "short_name": "Brombachsee Wetter",
   "icons": [
   	{
-      "src": "img/favicon-32.png",
+      "src": "img/favicon/android-chrome-32x32.png",
       "sizes": "32x32",
       "type": "image/png",
     },
-  	{
-      "src": "img/favicon-196.png",
-      "sizes": "196x196",
+    {
+      "src": "img/favicon/android-chrome-152x152.png",
+      "sizes": "152x152",
       "type": "image/png",
     },
   	{
-      "src": "img/favicon-152.png",
-      "sizes": "152x152",
+      "src": "img/favicon/android-chrome-196x196.png",
+      "sizes": "196x196",
+      "type": "image/png",
+    },
+    {
+      "src": "img/favicon/android-chrome-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+    },
+    {
+      "src": "img/favicon/android-chrome-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+    },
+  	{
+      "src": "img/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
     }
   ],
