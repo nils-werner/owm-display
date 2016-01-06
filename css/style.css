@@ -8,6 +8,7 @@ body {
 	font-family: 'Unica One';
 	text-transform: uppercase;
 	background-color: #202020;
+	background-image: url('../img/background.png');
 	color: #C0C0C0;
 }
 
