@@ -1,7 +1,8 @@
 CACHE MANIFEST
-# c3cdaed
+# b8525da
 
 CACHE:
+/
 js/charts.js
 js/dark-unica.js
 js/highcharts-more.js
@@ -78,6 +79,4 @@ img/weather/sunny.png
 img/weather/thunderstorms.png
 
 NETWORK:
-http://images.wetterdienst.de/*
-http://images.blitzortung.org/*
-https://api.forecast.io/forecast/*
+*
