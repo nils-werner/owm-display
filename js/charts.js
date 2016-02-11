@@ -95,7 +95,7 @@
 		 */
 		var stripeNow = function (forecast) {
 				return [{
-					color: 'rgba(255, 255, 255, .4)',
+					color: 'rgba(0, 255, 33, 0.4)',
 					width: 2,
 					value: Date.now()
 				}];
