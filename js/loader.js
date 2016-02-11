@@ -5,6 +5,34 @@
     "use strict";
 
     /**
+     * @param {string|number} name
+     * @param {string} [url]
+     */
+    var urlParam = function(name, url) {
+        if (!url) {
+            url = window.location.href;
+        }
+        if (typeof name == "string") {
+            var results = new RegExp('[\\#&?]!?' + name + '=([^&#]*)').exec(url);
+            if (!results) {
+                return undefined;
+            }
+            return results[1] || undefined;
+        }
+        else if (typeof name == "number") {
+            var regex = /[\\#&?]!?([^&]*)/g
+            var i = 0;
+            while ((results = regex.exec(url)) !== null) {
+                if (i == name) {
+                    return results[1] || undefined;
+                }
+                i++;
+            }
+            return undefined;
+        }
+    };
+
+    /**
      * @param {object} d
      */
     var ISODateString = function (d) {
@@ -144,10 +172,10 @@
             }
         }, 60000);
 
-        position = "49.106389,10.987222";
-        apikey = location.search.substr(1) || location.hash.replace(/^#!/, '');
+        position = urlParam('position') || "49.106389,10.987222";
+        apikey = urlParam('apikey') || urlParam(0);
 
-        if(apikey != "") {
+        if(apikey) {
             $.when(
                 $.ajax({
                     url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",

@@ -9,11 +9,23 @@ The API key must be provided using the URL hash, like
 
     index.html#!abcdef
 
-When using this site for any other spot, please edit the settings `position` in the file `js/loader.js`:
+When using this site for any other spot, please set the `position` argument in the URL:
 
-    position = "49.106389,10.987222";
+    index.html#!abcdef?position=41.145556,-73.995
 
-Then open the file in your browser.
+Please note that this will obviously not change the rain and lightning maps.
+
+Alternatively the API key may be given as an named argument:
+
+    index.html#!apikey=abcdef?position=41.145556,-73.995
+
+Any query string delimiter like
+
+    index.html#abcdef
+    index.html#!abcdef
+    index.html?abcdef
+
+is possible.
 
 ## Related Projects
 
