@@ -1004,12 +1004,19 @@
 			for (var i = 0; i < forecast.length; i++) {
 
 				if (typeof forecast[i].precipIntensity != 'undefined') {
-					if(forecast[i].temperature < 1) {
+					if(forecast[i].precipType == "snow") {
 						tmp.push({
 							x: milliSeconds(fixTimezone(forecast[i].time)),
 							y: forecast[i].precipIntensity,
 							color: 'white',
 							borderColor: '#A8C4FF'
+						});
+					} else if(forecast[i].precipType == "sleet" || forecast[i].precipType == "hail") {
+						tmp.push({
+							x: milliSeconds(fixTimezone(forecast[i].time)),
+							y: forecast[i].precipIntensity,
+							color: '#b4b4b4',
+							borderColor: '#7387b1'
 						});
 					} else {
 						tmp.push([
