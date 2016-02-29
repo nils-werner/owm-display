@@ -5,15 +5,22 @@ This page is a small, HTML- and JS-only, website to show basic weather informati
 
 ![Screenshot](img/screenshot.png)
 
+## API Key
+
 The API key must be provided using the URL hash, like
 
     index.html#!abcdef
+
+## Custom Position
 
 When using this site for any other spot, please set the `position` argument in the URL:
 
     index.html#!abcdef?position=41.145556,-73.995
 
-Please note that this will obviously not change the rain and lightning maps.
+Please note that this will not change the rain and lightning maps as they are
+a bit of a hack and not using proper slippy maps.
+
+## Query String Format
 
 Alternatively the API key may be given as an named argument:
 
@@ -36,3 +43,5 @@ make shutting down and rebooting the system easier (by just unplugging it).
 ## Example
 
 An example of this site can be found on <http://nils-werner.github.io/owm-display/>
+
+Obviously you need to provide your own [API key](https://developer.forecast.io/).
