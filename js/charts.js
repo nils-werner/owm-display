@@ -263,7 +263,7 @@
 					floating: true
 				},
 				tooltip: {
-					formatter: function() {
+					formatter: function () {
 						return this.x +': '+ this.y * this.y;
 					}
 				},
@@ -952,7 +952,7 @@
 					text: 'Luftdruck'
 				},
 				tooltip: {
-					formatter: function() {
+					formatter: function () {
 						return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
 					}
 				},
@@ -961,9 +961,9 @@
 					tickInterval: 24 * 3600 * 1000,
 					labels: {
 						x: 48,
-						formatter: function() {
+						formatter: function () {
 							return Highcharts.dateFormat('%a, %e. %b', this.value);
-						},
+						}
 					},
 					plotBands: stripeDays(daily),
 					plotLines: stripeNow(forecast),
@@ -1063,7 +1063,7 @@
 					text: 'Niederschlag/Bewölkung'
 				},
 				tooltip: {
-					formatter: function() {
+					formatter: function () {
 						return Highcharts.dateFormat('%e. %b %Y, %H:00', this.x) +': '+ this.y;
 					}
 				},
@@ -1072,7 +1072,7 @@
 					tickInterval: 24 * 3600 * 1000,
 					labels: {
 						x: 48,
-						formatter: function() {
+						formatter: function () {
 							return Highcharts.dateFormat('%a, %e. %b', this.value);
 						}
 					},
