@@ -14,7 +14,7 @@
          * @param {object} forecast
          */
         var placeIcon = function (chartName, forecast) {
-            $('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast['icon']) + '.png" style="width: 100%;" />');
+            $('#' + chartName).html('<img src="img/weather/'+ translateIcon(forecast.icon) + '.png" style="width: 100%;" />');
         };
 
         /**
@@ -32,6 +32,7 @@
          */
         var placeSuntimes = function (chartName, forecast) {
             var text = "";
+
             for (var i = 1; i < 4; i++) {
                 var sunrise = new Date(forecast[i]['sunriseTime'] * 1000);
                 var sunset = new Date(forecast[i]['sunsetTime'] * 1000);
@@ -57,7 +58,7 @@
             } else {
                 return false;
             }
-        }
+        };
 
         /**
          * @param {array} forecast
@@ -99,7 +100,7 @@
                     width: 2,
                     value: Date.now()
                 }];
-        }
+        };
 
         /**
          * @param {string} iconCode
@@ -133,9 +134,9 @@
          * @returns {double}
          */
         var quantizeDirection = function (angle) {
-            var val = Math.floor((angle / 22.5) + .5);
+            var val = Math.floor((angle / 22.5) + 0.5);
             return (val % 16);
-        }
+        };
 
         /**
          * @param {double} angle
@@ -145,7 +146,7 @@
             angle = angle + 180;
             var arr = ["n","nne","ne","ene","e","ese", "se", "sse","s","ssw","sw","wsw","w","wnw","nw","nnw"];
             return arr[quantizeDirection(angle)];
-        }
+        };
 
         /**
          * @param {number} timestamp
@@ -153,7 +154,7 @@
          */
         var milliSeconds = function (timestamp) {
             return 1000 * timestamp;
-        }
+        };
 
         /**
          * @param {number} timestamp
@@ -161,7 +162,7 @@
          */
         var fixTimezone = function (timestamp) {
             return timestamp - (new Date().getTimezoneOffset() * 60);
-        }
+        };
 
         /**
          * @param {string} chartName
@@ -201,18 +202,32 @@
 
                     l = quantizeDirection(deg);
 
-                    if (s >= 0 && s < 0.5)    tmp[6]['data'][l] += 1 - j / 2; // Gusts are half as likely, hence the substraction
-                    if (s >= 0.5 && s < 2)    tmp[5]['data'][l] += 1 - j / 2;
-                    if (s >= 2 && s < 4)    tmp[4]['data'][l] += 1 - j / 2;
-                    if (s >= 4 && s < 6)    tmp[3]['data'][l] += 1 - j / 2;
-                    if (s >= 6 && s < 8)    tmp[2]['data'][l] += 1 - j / 2;
-                    if (s >= 8 && s < 11)    tmp[1]['data'][l] += 1 - j / 2;
-                    if (s >= 11)            tmp[0]['data'][l] += 1 - j / 2;
+                    if (s >= 0 && s < 0.5) {
+                        tmp[6]['data'][l] += 1 - j / 2; // Gusts are half as likely, hence the substraction
+                    }
+                    if (s >= 0.5 && s < 2) {
+                        tmp[5]['data'][l] += 1 - j / 2;
+                    }
+                    if (s >= 2 && s < 4) {
+                        tmp[4]['data'][l] += 1 - j / 2;
+                    }
+                    if (s >= 4 && s < 6) {
+                        tmp[3]['data'][l] += 1 - j / 2;
+                    }
+                    if (s >= 6 && s < 8) {
+                        tmp[2]['data'][l] += 1 - j / 2;
+                    }
+                    if (s >= 8 && s < 11) {
+                        tmp[1]['data'][l] += 1 - j / 2;
+                    }
+                    if (s >= 11) {
+                        tmp[0]['data'][l] += 1 - j / 2;
+                    }
                 }
             }
 
-            for (var g = 0; g <  7; g++) {
-                for(var key in n) {
+            for (g = 0; g <  7; g++) {
+                for(key in n) {
                     tmp[g]['data'][key] = Math.sqrt(Math.round(100 * tmp[g]['data'][key] / (length * 1.5)));
                 }
             }
@@ -270,7 +285,7 @@
                 xAxis: {
                     tickmarkPlacement: 'on',
                     categories:["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"],
-                    type:(void 0)
+                    type: 0
                 },
                 yAxis: {
                     min: 0,
@@ -503,7 +518,7 @@
                     }]
                 },
                 series: [{
-                    data: tmp,
+                    data: tmp
                 }]
             });
         };
@@ -532,7 +547,7 @@
                         forecast[i].windGust
                     ]);
 
-                if (i % 3 == 0) {
+                if (i % 3 === 0) {
                     icons.push({
                             x: milliSeconds(fixTimezone(forecast[i].time)),
                             y: -0.5,
@@ -544,7 +559,7 @@
             new Highcharts.Chart({
                 chart: {
                     renderTo: chartName,
-                    type: 'spline',
+                    type: 'spline'
                 },
                 credits: {
                     enabled: false
@@ -568,7 +583,7 @@
                     },
                     plotBands: stripeDays(daily),
                     plotLines: stripeNow(forecast),
-                    startOnTick: true,
+                    startOnTick: true
                 },
                 plotOptions: {
                     series: {
@@ -756,8 +771,8 @@
                 {
                     title: {
                         margin: 30,
-                        text: 'bft',
-                    },
+                        text: 'bft'
+                    }
                 }],
                 series: [
                     {
@@ -804,7 +819,7 @@
             new Highcharts.Chart({
                 chart: {
                     renderTo: chartName,
-                    type: 'spline',
+                    type: 'spline'
                 },
                 credits: {
                     enabled: false
@@ -835,12 +850,12 @@
                     },
                     plotBands: stripeDays(daily),
                     plotLines: stripeNow(forecast),
-                    startOnTick: true,
+                    startOnTick: true
                 },
                 yAxis: {
                     title: {
                         text: '°C'
-                    },
+                    }
                 },
                 series: [{
                         showInLegend: false,
@@ -872,7 +887,7 @@
             new Highcharts.Chart({
                 chart: {
                     renderTo: chartName,
-                    type: 'spline',
+                    type: 'spline'
                 },
                 credits: {
                     enabled: false
@@ -903,12 +918,12 @@
                     },
                     plotBands: stripeDays(daily),
                     plotLines: stripeNow(forecast),
-                    startOnTick: true,
+                    startOnTick: true
                 },
                 yAxis: {
                     title: {
                         text: '%'
-                    },
+                    }
                 },
                 series: [{
                         showInLegend: false,
@@ -943,7 +958,7 @@
             new Highcharts.Chart({
                 chart: {
                     renderTo: chartName,
-                    type: 'spline',
+                    type: 'spline'
                 },
                 credits: {
                     enabled: false
@@ -967,7 +982,7 @@
                     },
                     plotBands: stripeDays(daily),
                     plotLines: stripeNow(forecast),
-                    startOnTick: true,
+                    startOnTick: true
                 },
                 yAxis: {
                     title: {
@@ -1078,7 +1093,7 @@
                     },
                     plotBands: stripeDays(daily),
                     plotLines: stripeNow(forecast),
-                    startOnTick: true,
+                    startOnTick: true
                 },
                 yAxis: [
                     {
@@ -1093,7 +1108,7 @@
                         title: {
                             text: '%'
                         },
-                        opposite: true,
+                        opposite: true
                     }
                 ],
                 plotOptions: {
@@ -1142,7 +1157,7 @@
             plotRain: plotRain,
             placeDate: placeDate,
             placeSuntimes: placeSuntimes
-        }
+        };
 
     };
 
