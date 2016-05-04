@@ -561,12 +561,14 @@
 					type: 'datetime',
 					tickInterval: 24 * 3600 * 1000,
 					labels: {
+						x: 48,
 						formatter: function () {
 							return Highcharts.dateFormat('%a, %e. %b', this.value);
 						}
 					},
 					plotBands: stripeDays(daily),
 					plotLines: stripeNow(forecast),
+					startOnTick: true,
 				},
 				plotOptions: {
 					series: {
@@ -826,12 +828,14 @@
 					type: 'datetime',
 					tickInterval: 24 * 3600 * 1000,
 					labels: {
+						x: 48,
 						formatter: function () {
 							return Highcharts.dateFormat('%a, %e. %b', this.value);
 						}
 					},
 					plotBands: stripeDays(daily),
 					plotLines: stripeNow(forecast),
+					startOnTick: true,
 				},
 				yAxis: {
 					title: {
@@ -892,12 +896,14 @@
 					type: 'datetime',
 					tickInterval: 24 * 3600 * 1000,
 					labels: {
+						x: 48,
 						formatter: function () {
 							return Highcharts.dateFormat('%a, %e. %b', this.value);
 						}
 					},
 					plotBands: stripeDays(daily),
 					plotLines: stripeNow(forecast),
+					startOnTick: true,
 				},
 				yAxis: {
 					title: {
@@ -954,12 +960,14 @@
 					type: 'datetime',
 					tickInterval: 24 * 3600 * 1000,
 					labels: {
+						x: 48,
 						formatter: function() {
 							return Highcharts.dateFormat('%a, %e. %b', this.value);
 						},
 					},
 					plotBands: stripeDays(daily),
 					plotLines: stripeNow(forecast),
+					startOnTick: true,
 				},
 				yAxis: {
 					title: {
@@ -1063,12 +1071,14 @@
 					type: 'datetime',
 					tickInterval: 24 * 3600 * 1000,
 					labels: {
+						x: 48,
 						formatter: function() {
 							return Highcharts.dateFormat('%a, %e. %b', this.value);
 						}
 					},
 					plotBands: stripeDays(daily),
 					plotLines: stripeNow(forecast),
+					startOnTick: true,
 				},
 				yAxis: [
 					{
