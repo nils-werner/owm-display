@@ -58,6 +58,8 @@ a, a:link, a:visited, a:hover {
 	width: 240px;
 	height: 240px;
 	overflow: hidden;
+	-webkit-clip-path: circle(at center);
+	border-radius: 50%;
 }
 
 .mask {
