@@ -172,7 +172,7 @@
             }
         }, 60000);
 
-        position = urlParam('position') || "49.106389,10.987222";
+        position = urlParam('position') || "49.1308061,10.9235329";
         apikey = urlParam('apikey') || urlParam(0);
 
         if(apikey) {
