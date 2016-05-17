@@ -109,10 +109,12 @@
         var translateIcon = function (iconCode) {
             switch (iconCode) {
                 case "clear-day":
-                case "clear-night":
                     return "sunny";
-                case "partly-cloudy-day":
+                case "clear-night":
+                    return "moon";
                 case "partly-cloudy-night":
+                    return "cloudynight";
+                case "partly-cloudy-day":
                 case "wind":
                     return "mostlycloudy";
                 case "cloudy":
@@ -120,8 +122,9 @@
                 case "rain":
                     return "drizzle";
                 case "snow":
-                case "sleet":
                     return "snow";
+                case "sleet":
+                    return "drizzlesnow";
                 case "fog":
                     return "haze";
                 default:
