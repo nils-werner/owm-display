@@ -5,7 +5,7 @@ html {
 body {
 	margin-top: 60px;
 	margin-bottom: 60px;
-	font-family: 'Unica One';
+	font-family: 'Unica One', sans-serif;
 	text-transform: uppercase;
 	background-color: #202020;
 	background-image: url('../img/background.png');
