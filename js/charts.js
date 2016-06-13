@@ -21,6 +21,16 @@
          * @param {string} chartName
          * @param {object} forecast
          */
+        var placePin = function (chartName, lat, long) {
+            $('.' + chartName)
+                .css('top', 240 - between(47.363446, 50.526241, lat) * 240 - 28)
+                .css('left', between(8.530751, 13.24, long) * 240 - 12);
+        };
+
+        /**
+         * @param {string} chartName
+         * @param {object} forecast
+         */
         var placeDate = function (chartName, forecast) {
             var date = new Date();
             $('#' + chartName).html("Last Update: " + date.toLocaleString());
@@ -100,6 +110,17 @@
                     width: 2,
                     value: Date.now()
                 }];
+        };
+
+        /**
+         * @param {float} a
+         * @param {float} b
+         * @param {float} f
+         * @returns {float}
+        */
+        var between = function (a, b, f)
+        {
+            return (f - a) / (b - a);
         };
 
         /**
@@ -1159,7 +1180,8 @@
             plotWindSpeed: plotWindSpeed,
             plotRain: plotRain,
             placeDate: placeDate,
-            placeSuntimes: placeSuntimes
+            placeSuntimes: placeSuntimes,
+            placePin: placePin
         };
 
     };

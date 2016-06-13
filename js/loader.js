@@ -88,7 +88,7 @@
      * @param {object} minus2
      * @param {object} forecast
      */
-    var mergeData = function (minus1, minus2, forecast) {
+    var mergeData = function (minus1, minus2, forecast, position) {
 
         dataReceived = true;
 
@@ -128,7 +128,9 @@
             dailyspan.push(forecast.daily.data[i]);
         }
 
-        renderData(hourlyspan, forecast.hourly.data, current, dailyspan);
+        var position = position.split(",").map(parseFloat);
+
+        renderData(hourlyspan, forecast.hourly.data, current, dailyspan, position);
 
     };
 
@@ -138,7 +140,7 @@
      * @param {array} current
      * @param {array} daily
      */
-    var renderData = function (span, future, current, daily) {
+    var renderData = function (span, future, current, daily, position) {
 
         hide('loading');
         show('map-rain');
@@ -149,6 +151,7 @@
 
         owm.dialTemperature('dial-temperature', current);
         owm.placeIcon('icon-weather', current);
+        owm.placePin('pin', position[0], position[1]);
 
         owm.dialWind('dial-wind', future);
         owm.plotPressure('chart-pressure', span, current, daily);
@@ -161,6 +164,38 @@
 
     };
 
+
+    /**
+    * @param {string} apikey
+    * @param {string} position
+     */
+    var loadData = function (apikey, position, minus1, minus2) {
+        $.when(
+            $.ajax({
+                url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
+                type: 'GET',
+                dataType: 'jsonp',
+                error: errorHandler
+            }),
+            $.ajax({
+                url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
+                type: 'GET',
+                dataType: 'jsonp',
+                error: errorHandler
+            }),
+            $.ajax({
+                url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
+                type: 'GET',
+                dataType: 'jsonp',
+                error: errorHandler
+            })).done(function (a1, a2, a3) {
+            mergeData(a1[0], a2[0], a3[0], position);
+        }).fail(function () {
+            location.reload(true);
+        });
+    };
+
+
     $(function() {
 
         var position;
@@ -171,34 +206,24 @@
                 location.reload(true);
             }
         }, 60000);
-
-        position = urlParam('position') || "49.1308061,10.9235329";
         apikey = urlParam('apikey') || urlParam(0);
 
         if(apikey) {
-            $.when(
-                $.ajax({
-                    url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
-                    type: 'GET',
-                    dataType: 'jsonp',
-                    error: errorHandler
-                }),
-                $.ajax({
-                    url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
-                    type: 'GET',
-                    dataType: 'jsonp',
-                    error: errorHandler
-                }),
-                $.ajax({
-                    url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
-                    type: 'GET',
-                    dataType: 'jsonp',
-                    error: errorHandler
-                })).done(function (a1, a2, a3) {
-                mergeData(a1[0], a2[0], a3[0]);
-            }).fail(function () {
-                location.reload(true);
-            });
+            if(urlParam('position')) {
+                loadData(apikey, urlParam('position'), minus1, minus2)
+            }
+            else if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        loadData(apikey, position.coords.latitude.toString() + "," + position.coords.longitude.toString(), minus1, minus2);
+                    },
+                    function() {
+                        loadData(apikey, "49.1308061,10.9235329", minus1, minus2)
+                    });
+            }
+            else {
+                loadData(apikey, "49.1308061,10.9235329", minus1, minus2)
+            }
         } else {
             show("apimissing");
         }
