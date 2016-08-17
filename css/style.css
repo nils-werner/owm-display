@@ -55,6 +55,7 @@ a, a:link, a:visited, a:hover {
 }
 
 .map-widget {
+	position: absolute;
 	width: 240px;
 	height: 240px;
 	overflow: hidden;
