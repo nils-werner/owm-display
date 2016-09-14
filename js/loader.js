@@ -175,19 +175,25 @@
                 url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
-                error: errorHandler
+                jsonpCallback: 'past2callback',
+                error: errorHandler,
+                cache: true
             }),
             $.ajax({
                 url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
-                error: errorHandler
+                jsonpCallback: 'past1callback',
+                error: errorHandler,
+                cache: true
             }),
             $.ajax({
                 url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
-                error: errorHandler
+                jsonpCallback: 'futurecallback',
+                error: errorHandler,
+                cache: true
             })).done(function (a1, a2, a3) {
             mergeData(a1[0], a2[0], a3[0], position);
         }).fail(function () {
@@ -215,7 +221,9 @@
             else if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
-                        loadData(apikey, position.coords.latitude.toString() + "," + position.coords.longitude.toString(), minus1, minus2);
+                        var latitude = Math.round(position.coords.latitude * 1000) / 1000
+                        var longitude = Math.round(position.coords.longitude * 1000) / 1000
+                        loadData(apikey, latitude.toString() + "," + longitude.toString(), minus1, minus2);
                     },
                     function() {
                         loadData(apikey, "49.1308061,10.9235329", minus1, minus2)

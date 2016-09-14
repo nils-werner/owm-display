@@ -1,6 +1,6 @@
 {
-  "name": "Brombachsee Wetter",
-  "short_name": "Brombachsee Wetter",
+  "name": "Wetter",
+  "short_name": "Wetter",
   "icons": [
   	{
       "src": "img/favicon/android-chrome-32x32.png",
