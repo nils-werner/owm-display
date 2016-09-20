@@ -44,4 +44,4 @@ make shutting down and rebooting the system easier (by just unplugging it).
 
 An example of this site can be found on <http://nils-werner.github.io/owm-display/>
 
-Obviously you need to provide your own [API key](https://developer.forecast.io/).
+Obviously you need to provide your own [API key](https://darksky.net/dev/).

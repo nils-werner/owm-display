@@ -172,7 +172,7 @@
     var loadData = function (apikey, position, minus1, minus2) {
         $.when(
             $.ajax({
-                url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
+                url: "https://api.darksky.net/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
                 jsonpCallback: 'past2callback',
@@ -180,7 +180,7 @@
                 cache: true
             }),
             $.ajax({
-                url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
+                url: "https://api.darksky.net/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
                 jsonpCallback: 'past1callback',
@@ -188,7 +188,7 @@
                 cache: true
             }),
             $.ajax({
-                url: "https://api.forecast.io/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
+                url: "https://api.darksky.net/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
                 jsonpCallback: 'futurecallback',
