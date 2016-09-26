@@ -198,13 +198,13 @@
             var length = forecast.length;
 
             var tmp = [
-                { name: "6+ bft", data: []},
-                { name: "5 bft",data: []},
-                { name: "4 bft", data: []},
-                { name: "3 bft", data: []},
-                { name: "2 bft", data: []},
-                { name: "1 bft", data: []},
-                { name: "0 bft", data: []}
+                { name: "6+ bft", data: [], color: '#fde725'},
+                { name: "5 bft", data: [], color: '#90d743'},
+                { name: "4 bft", data: [], color: '#35b779'},
+                { name: "3 bft", data: [], color: '#21918c'},
+                { name: "2 bft", data: [], color: '#31688e'},
+                { name: "1 bft", data: [], color: '#443983'},
+                { name: "0 bft", data: [], color: '#440154'}
             ];
 
             for (var g = 0; g < 7; g++ ) {
