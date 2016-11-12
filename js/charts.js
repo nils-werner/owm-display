@@ -606,8 +606,7 @@
                         }
                     },
                     plotBands: stripeDays(daily),
-                    plotLines: stripeNow(forecast),
-                    startOnTick: true
+                    plotLines: stripeNow(forecast)
                 },
                 plotOptions: {
                     series: {
@@ -873,8 +872,7 @@
                         }
                     },
                     plotBands: stripeDays(daily),
-                    plotLines: stripeNow(forecast),
-                    startOnTick: true
+                    plotLines: stripeNow(forecast)
                 },
                 yAxis: {
                     title: {
@@ -941,8 +939,7 @@
                         }
                     },
                     plotBands: stripeDays(daily),
-                    plotLines: stripeNow(forecast),
-                    startOnTick: true
+                    plotLines: stripeNow(forecast)
                 },
                 yAxis: {
                     title: {
@@ -1005,8 +1002,7 @@
                         }
                     },
                     plotBands: stripeDays(daily),
-                    plotLines: stripeNow(forecast),
-                    startOnTick: true
+                    plotLines: stripeNow(forecast)
                 },
                 yAxis: {
                     title: {
@@ -1116,8 +1112,7 @@
                         }
                     },
                     plotBands: stripeDays(daily),
-                    plotLines: stripeNow(forecast),
-                    startOnTick: true
+                    plotLines: stripeNow(forecast)
                 },
                 yAxis: [
                     {
