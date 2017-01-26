@@ -980,7 +980,7 @@
                 if (i % 6 === 0) {
                     icons.push({
                         x: milliSeconds(fixTimezone(forecast[i].time)),
-                        y: minv - 5,
+                        y: forecast[i].pressure + 3,
                         marker: {
                             symbol: 'url(img/weather/tiny/'+ translateIcon(forecast[i].icon) + '.png)'
                         }
@@ -1025,9 +1025,7 @@
                         x: 0,
                         y: 5
                     },
-                    min: minv - 8,
-                    minRange: 20,
-                    startOnTick: false
+                    minRange: 20
                 },
                 plotOptions: {
                     series: {
