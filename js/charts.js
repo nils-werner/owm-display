@@ -1,5 +1,7 @@
 /*global jQuery, Highcharts */
 
+/* Palette http://paletton.com/#uid=7310u0kwBFLjVL1pEHyFbtHGxn4 */
+
 (function ($, HighCharts) {
 
     "use strict";
@@ -526,19 +528,19 @@
                     plotBands: [{
                         from: -10,
                         to: 10,
-                        color: '#DF5353' // red
+                        color: '#FF4100' // red
                     }, {
                         from: 10,
                         to: 20,
-                        color: '#DDDF0D' // yellow
+                        color: '#FF8E00' // yellow
                     }, {
                         from: 20,
                         to: 36,
-                        color: '#55BF3B' // green
+                        color: '#00CC6A' // green
                     }, {
                         from: 36,
                         to: 40,
-                        color: '#DDDF0D' // yellow
+                        color: '#FF8E00' // yellow
                     }]
                 },
                 series: [{
@@ -802,14 +804,14 @@
                         showInLegend: false,
                         type: 'areaspline',
                         data: wind,
-                        color: '#EB662A',
+                        color: '#FF4100',
                         fillOpacity: 0.2
                     },
                     {
                         showInLegend: false,
                         type: 'spline',
                         data: gust,
-                        color: '#C0C0C0'
+                        color: '#FF6733'
                     },
                     {
                         showInLegend: false,
@@ -884,8 +886,8 @@
                         type: 'areaspline',
                         fillOpacity: 0.2,
                         data: tmp,
-                        color: '#37AEBE',
-                        negativeColor: '#0076E2'
+                        color: '#0B7AC2',
+                        negativeColor: '#57A1D1'
                     }]
                 });
         };
@@ -1041,8 +1043,8 @@
                         type: 'areaspline',
                         fillOpacity: 0.2,
                         data: tmp,
-                        color: '#00B000',
-                        negativeColor: '#B00000'
+                        color: '#00CC6A',
+                        negativeColor: '#008042'
                     },
                     {
                         showInLegend: false,
@@ -1073,15 +1075,15 @@
                         tmp.push({
                             x: milliSeconds(fixTimezone(forecast[i].time)),
                             y: forecast[i].precipIntensity,
-                            color: 'white',
-                            borderColor: '#A8C4FF'
+                            color: '#ffffff',
+                            borderColor: '#57A1D1'
                         });
                     } else if(forecast[i].precipType == "sleet" || forecast[i].precipType == "hail") {
                         tmp.push({
                             x: milliSeconds(fixTimezone(forecast[i].time)),
                             y: forecast[i].precipIntensity,
-                            color: '#b4b4b4',
-                            borderColor: '#7387b1'
+                            color: '#57A1D1',
+                            borderColor: '#318CC7'
                         });
                     } else {
                         tmp.push([
@@ -1165,7 +1167,7 @@
                         type: 'areaspline',
                         yAxis: 1,
                         data: cloud,
-                        color: '#808080',
+                        color: '#FF8E00',
                         fillOpacity: 0.2
                     },
                     {
@@ -1174,7 +1176,7 @@
                         pointWidth: 4,
                         yAxis: 0,
                         data: tmp,
-                        color: '#427EFF',
+                        color: '#0D517D',
                         borderColor: 'transparent'
                     }
                     ]
