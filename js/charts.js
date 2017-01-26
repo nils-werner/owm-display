@@ -965,7 +965,9 @@
         var plotPressure = function (chartName, forecast, current, daily) {
 
             var tmp = [];
+            var icons = [];
             var threshold = current.pressure;
+            var minv = Math.min.apply(null, forecast.map(function(d) { return d.pressure }));
 
             threshold = 1015;
 
@@ -974,6 +976,16 @@
                     milliSeconds(fixTimezone(forecast[i].time)),
                     forecast[i].pressure
                 ]);
+
+                if (i % 6 === 0) {
+                    icons.push({
+                        x: milliSeconds(fixTimezone(forecast[i].time)),
+                        y: minv - 5,
+                        marker: {
+                            symbol: 'url(img/weather/tiny/'+ translateIcon(forecast[i].icon) + '.png)'
+                        }
+                    });
+                }
             }
 
             new Highcharts.Chart({
@@ -1013,7 +1025,9 @@
                         x: 0,
                         y: 5
                     },
-                    minRange: 20
+                    min: minv - 8,
+                    minRange: 20,
+                    startOnTick: false
                 },
                 plotOptions: {
                     series: {
@@ -1023,14 +1037,24 @@
                         }
                     }
                 },
-                series: [{
+                series: [
+                    {
                         showInLegend: false,
                         type: 'areaspline',
                         fillOpacity: 0.2,
                         data: tmp,
                         color: '#00B000',
                         negativeColor: '#B00000'
-                    }]
+                    },
+                    {
+                        showInLegend: false,
+                        type: 'scatter',
+                        data: icons,
+                        marker: {
+                            enabled: true
+                        }
+                    }
+                ]
                 });
         };
 
