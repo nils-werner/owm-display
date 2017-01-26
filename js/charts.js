@@ -612,6 +612,7 @@
                 },
                 plotOptions: {
                     series: {
+                        lineWidth: 3,
                         marker: {
                             enabled: false
                         }
@@ -819,7 +820,8 @@
                         data: icons,
                         marker: {
                             enabled: true
-                        }
+                        },
+                        lineWidth: 0
                     }
                     ]
                 });
@@ -859,6 +861,7 @@
                 },
                 plotOptions: {
                     series: {
+                        lineWidth: 3,
                         marker: {
                             enabled: false
                         }
@@ -926,6 +929,7 @@
                 },
                 plotOptions: {
                     series: {
+                        lineWidth: 3,
                         marker: {
                             enabled: false
                         }
@@ -1031,6 +1035,7 @@
                 },
                 plotOptions: {
                     series: {
+                        lineWidth: 3,
                         threshold: threshold,
                         marker: {
                             enabled: false
@@ -1052,7 +1057,8 @@
                         data: icons,
                         marker: {
                             enabled: true
-                        }
+                        },
+                        lineWidth: 0
                     }
                 ]
                 });
@@ -1156,6 +1162,7 @@
                 ],
                 plotOptions: {
                     series: {
+                        lineWidth: 3,
                         marker: {
                             enabled: false
                         }
