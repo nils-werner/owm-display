@@ -1081,15 +1081,13 @@
                         tmp.push({
                             x: milliSeconds(fixTimezone(forecast[i].time)),
                             y: forecast[i].precipIntensity,
-                            color: '#ffffff',
-                            borderColor: '#57A1D1'
+                            color: '#ffffff'
                         });
                     } else if(forecast[i].precipType == "sleet" || forecast[i].precipType == "hail") {
                         tmp.push({
                             x: milliSeconds(fixTimezone(forecast[i].time)),
                             y: forecast[i].precipIntensity,
-                            color: '#57A1D1',
-                            borderColor: '#318CC7'
+                            color: '#57A1D1'
                         });
                     } else {
                         tmp.push([
@@ -1183,7 +1181,7 @@
                         pointWidth: 4,
                         yAxis: 0,
                         data: tmp,
-                        color: '#0D517D',
+                        color: '#0B7AC2',
                         borderColor: 'transparent'
                     }
                     ]
