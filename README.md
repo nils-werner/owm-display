@@ -36,9 +36,12 @@ is possible.
 
 ## Related Projects
 
-<https://github.com/nils-werner/raspi-dashboard> is a dashboard-style Linux
-installation for the Raspberry Pi. It boots with read-only file systems to
-make shutting down and rebooting the system easier (by just unplugging it).
+<https://github.com/nils-werner/raspi-dashboard> is a dashboard for Arch Linux that automatically
+boots into a browser.
+
+<https://github.com/nils-werner/raspi-overlayroot> is a method of mounting your root filesystem read-only,
+so unplugging power doesn't corrupt your filesystem, or your SD card doesn't wear down after a few months.
+
 
 ## Example
 
