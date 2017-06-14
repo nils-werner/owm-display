@@ -565,12 +565,12 @@
 
                 wind.push([
                         milliSeconds(fixTimezone(forecast[i].time)),
-                        forecast[i].windSpeed
+                        Math.min(forecast[i].windSpeed, forecast[i].windGust)
                     ]);
 
                 gust.push([
                         milliSeconds(fixTimezone(forecast[i].time)),
-                        forecast[i].windGust
+                        Math.max(forecast[i].windSpeed, forecast[i].windGust)
                     ]);
 
                 if (i % 3 === 0) {
@@ -585,7 +585,7 @@
             new Highcharts.Chart({
                 chart: {
                     renderTo: chartName,
-                    type: 'spline'
+                    type: 'areasplinerange'
                 },
                 credits: {
                     enabled: false
@@ -801,18 +801,20 @@
                     }
                 }],
                 series: [
+
+                    {
+                        showInLegend: false,
+                        type: 'areaspline',
+                        data: gust,
+                        color: '#666666',
+                        fillOpacity: 0.2
+                    },
                     {
                         showInLegend: false,
                         type: 'areaspline',
                         data: wind,
                         color: '#FF4100',
                         fillOpacity: 0.2
-                    },
-                    {
-                        showInLegend: false,
-                        type: 'spline',
-                        data: gust,
-                        color: '#FF6733'
                     },
                     {
                         showInLegend: false,
