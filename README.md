@@ -15,7 +15,7 @@ The API key must be provided using the URL hash, like
 
 When using this site for any other spot, please set the `position` argument in the URL:
 
-    index.html#!abcdef?position=41.145556,-73.995
+    index.html#!abcdef&position=41.145556,-73.995
 
 Please note that this will not change the rain and lightning maps as they are
 a bit of a hack and not using proper slippy maps.
@@ -24,7 +24,7 @@ a bit of a hack and not using proper slippy maps.
 
 Alternatively the API key may be given as an named argument:
 
-    index.html#!apikey=abcdef?position=41.145556,-73.995
+    index.html#!apikey=abcdef&position=41.145556,-73.995
 
 Any query string delimiter like
 
