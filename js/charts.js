@@ -13,6 +13,16 @@
 
         /**
          * @param {string} chartName
+         * @param {object} alerts
+         */
+        var placeAlert = function (chartName, alerts) {
+            if(typeof alerts !== "undefined") {
+                $(chartName).addClass('weatheralert');
+            }
+        };
+
+        /**
+         * @param {string} chartName
          * @param {object} forecast
          */
         var placeIcon = function (chartName, forecast) {
@@ -1207,7 +1217,8 @@
             plotRain: plotRain,
             placeDate: placeDate,
             placeSuntimes: placeSuntimes,
-            placePin: placePin
+            placePin: placePin,
+            placeAlert: placeAlert
         };
 
     };

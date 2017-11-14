@@ -7,9 +7,13 @@ body {
 	margin-bottom: 60px;
 	font-family: 'Unica One', sans-serif;
 	text-transform: uppercase;
-	background-color: #202020;
+	background-color: #000000;
 	background-image: url('../img/background.png');
 	color: #C0C0C0;
+}
+
+body.weatheralert {
+	background-color: #400000;
 }
 
 a, a:link, a:visited, a:hover {

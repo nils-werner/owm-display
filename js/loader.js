@@ -95,6 +95,7 @@
         var hourlyspan = [];
         var dailyspan = [];
         var current = forecast.currently;
+        var alerts = forecast.alerts;
 
         for (var i = 1; i < minus2.hourly.data.length; i++) {
             if(minus2.hourly.data[i].time < minus1.hourly.data[0].time) {
@@ -130,7 +131,7 @@
 
         var position = position.split(",").map(parseFloat);
 
-        renderData(hourlyspan, forecast.hourly.data, current, dailyspan, position);
+        renderData(hourlyspan, forecast.hourly.data, current, dailyspan, alerts, position);
 
     };
 
@@ -140,7 +141,7 @@
      * @param {array} current
      * @param {array} daily
      */
-    var renderData = function (span, future, current, daily, position) {
+    var renderData = function (span, future, current, daily, alerts, position) {
 
         hide('loading');
         show('map-rain');
@@ -149,6 +150,7 @@
 
         var owm = new OWM();
 
+        owm.placeAlert('body', alerts);
         owm.dialTemperature('dial-temperature', current);
         owm.placeIcon('icon-weather', current);
         owm.placePin('pin', position[0], position[1]);
