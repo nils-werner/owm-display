@@ -31,6 +31,10 @@ a, a:link, a:visited, a:hover {
 	display: none;
 }
 
+#apimissing code {
+	text-transform: none;
+}
+
 .row {
 	margin: auto;
 	width: 980px;
