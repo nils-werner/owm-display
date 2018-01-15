@@ -679,7 +679,7 @@
                         color: '#707073',
                         width: 1
                     }, {
-                        value: 23,
+                        value: 32,
                         color: '#707073',
                         width: 1
                     }],
