@@ -17,6 +17,18 @@
          */
         var placeAlert = function (chartName, alerts) {
             if(typeof alerts !== "undefined") {
+                $(chartName + " div p").text(alerts[0]['description']);
+                $(chartName + " div h3").text(alerts[0]['title']);
+                $(chartName).show();
+            }
+        };
+
+        /**
+         * @param {string} chartName
+         * @param {object} alerts
+         */
+        var highlightAlert = function (chartName, alerts) {
+            if(typeof alerts !== "undefined") {
                 $(chartName).addClass('weatheralert');
             }
         };
@@ -1218,7 +1230,8 @@
             placeDate: placeDate,
             placeSuntimes: placeSuntimes,
             placePin: placePin,
-            placeAlert: placeAlert
+            placeAlert: placeAlert,
+            highlightAlert: highlightAlert
         };
 
     };

@@ -150,7 +150,8 @@
 
         var owm = new OWM();
 
-        owm.placeAlert('body', alerts);
+        owm.highlightAlert('body', alerts);
+        owm.placeAlert('#text-warning', alerts);
         owm.dialTemperature('dial-temperature', current);
         owm.placeIcon('icon-weather', current);
         owm.placePin('pin', position[0], position[1]);
