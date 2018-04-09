@@ -1,40 +1,41 @@
 {
-  "name": "Wetter",
+  "name": "Wettervorhersage",
   "short_name": "Wetter",
+  "lang": "de-DE",
+  "background_color": "#1D1D1D",
+  "theme_color": "#161616",
+  "display": "standalone",
+  "orientation": "portrait",
   "icons": [
   	{
-      "src": "img/favicon/android-chrome-32x32.png",
+      "src": "/img/favicon/android-chrome-32x32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "img/favicon/android-chrome-152x152.png",
+      "src": "/img/favicon/android-chrome-152x152.png",
       "sizes": "152x152",
       "type": "image/png"
     },
   	{
-      "src": "img/favicon/android-chrome-196x196.png",
+      "src": "/img/favicon/android-chrome-196x196.png",
       "sizes": "196x196",
       "type": "image/png"
     },
     {
-      "src": "img/favicon/android-chrome-256x256.png",
+      "src": "/img/favicon/android-chrome-256x256.png",
       "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "img/favicon/android-chrome-384x384.png",
+      "src": "/img/favicon/android-chrome-384x384.png",
       "sizes": "384x384",
       "type": "image/png"
     },
   	{
-      "src": "img/favicon/android-chrome-512x512.png",
+      "src": "/img/favicon/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "background_color": "#1D1D1D",
-  "theme_color": "#161616",
-  "display": "standalone",
-  "orientation": "portrait"
+  ]
 }
