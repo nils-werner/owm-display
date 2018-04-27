@@ -56,7 +56,7 @@
          * @param {object} forecast
          */
         var placeDate = function (chartName, forecast) {
-            var date = new Date();
+            var date = fixTimezone(new Date());
             $('#' + chartName).html("Last Update: " + date.toLocaleString());
         };
 
@@ -68,8 +68,8 @@
             var text = "";
 
             for (var i = 1; i < 4; i++) {
-                var sunrise = new Date(forecast[i]['sunriseTime'] * 1000);
-                var sunset = new Date(forecast[i]['sunsetTime'] * 1000);
+                var sunrise = fixTimezone(new Date(forecast[i]['sunriseTime'] * 1000));
+                var sunset = fixTimezone(new Date(forecast[i]['sunsetTime'] * 1000));
                 if (i === 1) {
                     text = text + "<strong>";
                 }
@@ -132,7 +132,7 @@
                 return [{
                     color: 'rgba(0, 255, 33, 0.4)',
                     width: 2,
-                    value: Date.now()
+                    value: fixTimezone(Date.now())
                 }];
         };
 
