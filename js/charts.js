@@ -209,7 +209,7 @@
          * @returns {number}
          */
         var fixTimezone = function (timestamp) {
-            return timestamp - (new Date().getTimezoneOffset() * 60);
+            return timestamp;
         };
 
         /**
