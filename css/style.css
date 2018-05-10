@@ -14,19 +14,6 @@ body {
 
 body.weatheralert {
 	background-color: #400000;
-	-webkit-animation: blink-alert 4s infinite;  /* Safari 4+ */
-	-moz-animation: blink-alert 4s infinite;  /* Fx 5+ */
-	-o-animation: blink-alert 4s infinite;  /* Opera 12+ */
-	animation: blink-alert 4s infinite;  /* IE 10+, Fx 29+ */
-}
-
-@-webkit-keyframes blink-alert {
-	0%, 9% {
-		background-color: #000000;
-	}
-	10%, 100% {
-		background-color: #400000;
-	}
 }
 
 #text-warning {
