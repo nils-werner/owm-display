@@ -95,6 +95,21 @@
         };
 
         /**
+         * @param {callable} callable
+         * @param {mixed} a
+         * @param {mixed} b
+         */
+        var optional = function (callable, a, b) {
+            if (typeof a === "undefined"){
+              return b;
+            }
+            if (typeof b === "undefined"){
+              return a;
+            }
+            return callable(a, b);
+        };
+
+        /**
          * @param {array} forecast
          * @returns {array}
          */
@@ -587,12 +602,12 @@
 
                 wind.push([
                         milliSeconds(fixTimezone(forecast[i].time)),
-                        Math.min(forecast[i].windSpeed, forecast[i].windGust)
+                        optional(Math.min, forecast[i].windSpeed, forecast[i].windGust)
                     ]);
 
                 gust.push([
                         milliSeconds(fixTimezone(forecast[i].time)),
-                        Math.max(forecast[i].windSpeed, forecast[i].windGust)
+                        optional(Math.max, forecast[i].windSpeed, forecast[i].windGust)
                     ]);
 
                 if (i % 3 === 0) {
