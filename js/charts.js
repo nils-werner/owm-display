@@ -659,8 +659,8 @@
                     title: {
                         text: 'm/s'
                     },
-                    min: -1,
-                    minRange: 9,
+                    min: -1.5,
+                    max: 12,
                     startOnTick: false,
                     alternateGridColor: null,
                     opposite: true,
@@ -1191,6 +1191,7 @@
                     },
                     {
                         min: 0,
+                        max: 100,
                         title: {
                             text: '%'
                         },
