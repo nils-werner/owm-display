@@ -88,7 +88,7 @@
      * @param {object} minus2
      * @param {object} forecast
      */
-    var mergeData = function (minus1, minus2, forecast, position) {
+    var mergeData = function (minus1, minus2, forecast, latitude, longitude) {
 
         dataReceived = true;
 
@@ -129,9 +129,7 @@
             dailyspan.push(forecast.daily.data[i]);
         }
 
-        var position = position.split(",").map(parseFloat);
-
-        renderData(hourlyspan, forecast.hourly.data, current, dailyspan, alerts, position);
+        renderData(hourlyspan, forecast.hourly.data, current, dailyspan, alerts, latitude, longitude);
 
     };
 
@@ -141,7 +139,7 @@
      * @param {array} current
      * @param {array} daily
      */
-    var renderData = function (span, future, current, daily, alerts, position) {
+    var renderData = function (span, future, current, daily, alerts, latitude, longitude) {
 
         hide('loading');
         show('map-rain');
@@ -154,7 +152,7 @@
         owm.placeAlert('#text-warning', alerts);
         owm.dialTemperature('dial-temperature', current);
         owm.placeIcon('icon-weather', current);
-        owm.placePin('pin', position[0], position[1]);
+        owm.placePin('pin', latitude, longitude);
 
         owm.dialWind('dial-wind', future);
         owm.plotPressure('chart-pressure', span, current, daily);
@@ -168,14 +166,10 @@
     };
 
 
-    /**
-    * @param {string} apikey
-    * @param {string} position
-     */
-    var loadData = function (apikey, position, minus1, minus2) {
+    var loadData = function (apikey, latitude, longitude, minus1, minus2) {
         $.when(
             $.ajax({
-                url: "https://api.darksky.net/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
+                url: "https://api.darksky.net/forecast/" + apikey + "/" + latitude.toString() + "," + longitude.toString() + "," + minus1 + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
                 jsonpCallback: 'past2callback',
@@ -183,7 +177,7 @@
                 cache: true
             }),
             $.ajax({
-                url: "https://api.darksky.net/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
+                url: "https://api.darksky.net/forecast/" + apikey + "/" + latitude.toString() + "," + longitude.toString() + "," + minus2 + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
                 jsonpCallback: 'past1callback',
@@ -191,14 +185,14 @@
                 cache: true
             }),
             $.ajax({
-                url: "https://api.darksky.net/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
+                url: "https://api.darksky.net/forecast/" + apikey + "/" + latitude.toString() + "," + longitude.toString() + "?extend=hourly&units=si&callback=?",
                 type: 'GET',
                 dataType: 'jsonp',
                 jsonpCallback: 'futurecallback',
                 error: errorHandler,
                 cache: true
             })).done(function (a1, a2, a3) {
-            mergeData(a1[0], a2[0], a3[0], position);
+            mergeData(a1[0], a2[0], a3[0], latitude, longitude);
         }).fail(function () {
             location.reload(true);
         });
@@ -207,7 +201,6 @@
 
     $(function() {
 
-        var position;
         var apikey;
 
         setTimeout (function () {
@@ -218,22 +211,22 @@
         apikey = urlParam('apikey') || urlParam(0);
 
         if(apikey) {
-            if(urlParam('position')) {
-                loadData(apikey, urlParam('position'), minus1, minus2)
+            if(urlParam('lat')) {
+                loadData(apikey, urlParam('lat'), urlParam('long'), minus1, minus2)
             }
             else if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
                         var latitude = Math.round(position.coords.latitude * 1000) / 1000
                         var longitude = Math.round(position.coords.longitude * 1000) / 1000
-                        loadData(apikey, latitude.toString() + "," + longitude.toString(), minus1, minus2);
+                        loadData(apikey, latitude, longitude, minus1, minus2);
                     },
                     function() {
-                        loadData(apikey, "49.1308061,10.9235329", minus1, minus2)
+                        loadData(apikey, 49.1308061, 10.9235329, minus1, minus2)
                     });
             }
             else {
-                loadData(apikey, "49.1308061,10.9235329", minus1, minus2)
+                loadData(apikey, 49.1308061, 10.9235329, minus1, minus2)
             }
         } else {
             show("apimissing");
