@@ -70,68 +70,50 @@
 
     var dataReceived = false;
 
-    var date = new Date();
+    var date = new moment();
 
-    date.setHours(0);
-    date.setMilliseconds(0);
-    date.setMinutes(0);
-    date.setSeconds(0);
+    date.set('hour', 0);
+    date.set('millisecond', 0);
+    date.set('minute', 0);
+    date.set('second', 0);
 
-    var minus1 = ISODateString(date);
+    date.subtract(1, 'days');
 
-    date.setDate(date.getDate() - 1);
+    var minus1 = date.toISOString();
 
-    var minus2 = ISODateString(date);
+    date.add(8, 'days');
+    date.subtract(2, 'hours');
+
+    var plus7 = date.toISOString();
 
     /**
      * @param {object} minus1
-     * @param {object} minus2
+     * @param {object} plus7
      * @param {object} forecast
      */
-    var mergeData = function (minus1, minus2, forecast, position) {
+    var mergeData = function (data, latitude, longitude) {
 
         dataReceived = true;
 
         var hourlyspan = [];
         var dailyspan = [];
-        var current = forecast.currently;
-        var alerts = forecast.alerts;
 
-        for (var i = 1; i < minus2.hourly.data.length; i++) {
-            if(minus2.hourly.data[i].time < minus1.hourly.data[0].time) {
-                hourlyspan.push(minus2.hourly.data[i]);
+        for (var i = 1; i < data.weather.length; i++) {
+            hourlyspan.push(data.weather[i]);
+        }
+
+        var current = data.weather[10];
+        var alerts = [{}];
+
+        for (i = 0; i < data.weather.length; i++) {
+            if(data.weather[i].solar < 0.05) {
+                dailyspan.push(data.weather[i].timestamp);
             }
         }
 
-        for (i = 0; i < minus1.hourly.data.length; i++) {
-            if(minus1.hourly.data[i].time < forecast.hourly.data[0].time) {
-                hourlyspan.push(minus1.hourly.data[i]);
-            }
-        }
+        dailyspan = []
 
-        for (i = 0; i < forecast.hourly.data.length; i++) {
-            hourlyspan.push(forecast.hourly.data[i]);
-        }
-
-        for (i = 0; i < minus2.daily.data.length; i++) {
-            if(minus2.daily.data[i].time < minus1.daily.data[0].time) {
-                dailyspan.push(minus2.daily.data[i]);
-            }
-        }
-
-        for (i = 0; i < minus1.daily.data.length; i++) {
-            if(minus1.daily.data[i].time < forecast.daily.data[0].time) {
-                dailyspan.push(minus1.daily.data[i]);
-            }
-        }
-
-        for (i = 0; i < forecast.daily.data.length; i++) {
-            dailyspan.push(forecast.daily.data[i]);
-        }
-
-        var position = position.split(",").map(parseFloat);
-
-        renderData(hourlyspan, forecast.hourly.data, current, dailyspan, alerts, position);
+        renderData(hourlyspan, current, dailyspan, alerts, latitude, longitude);
 
     };
 
@@ -141,7 +123,7 @@
      * @param {array} current
      * @param {array} daily
      */
-    var renderData = function (span, future, current, daily, alerts, position) {
+    var renderData = function (span, current, daily, alerts, latitude, longitude) {
 
         hide('loading');
         show('map-rain');
@@ -150,64 +132,53 @@
 
         var owm = new OWM();
 
-        owm.highlightAlert('body', alerts);
-        owm.placeAlert('#text-warning', alerts);
+        // owm.highlightAlert('body', alerts);
+        // owm.placeAlert('#text-warning', alerts);
         owm.dialTemperature('dial-temperature', current);
         owm.placeIcon('icon-weather', current);
-        owm.placePin('pin', position[0], position[1]);
+        owm.placePin('pin', latitude, longitude);
 
-        owm.dialWind('dial-wind', future);
+        owm.dialWind('dial-wind', span);
         owm.plotPressure('chart-pressure', span, current, daily);
         owm.plotTemperature('chart-temp', span, daily);
         //owm.plotHumidity('chart-humidity', span, daily);
         owm.plotWindSpeed('chart-wind', span, daily);
         owm.plotRain('chart-rain', span, daily);
         owm.placeDate('date', span);
-        owm.placeSuntimes('suntimes', daily);
+        // owm.placeSuntimes('suntimes', daily);
 
     };
 
 
-    /**
-    * @param {string} apikey
-    * @param {string} position
-     */
-    var loadData = function (apikey, position, minus1, minus2) {
+    var loadData = function (latitude, longitude, minus1, plus7) {
         $.when(
             $.ajax({
-                url: "https://api.darksky.net/forecast/" + apikey + "/" + position + "," + minus1 + "?extend=hourly&units=si&callback=?",
+                url: "https://api.brightsky.dev/weather" +
+                    "?lat=" + latitude.toString() +
+                    "&lon=" + longitude.toString() +
+                    "&date=" + minus1 +
+                    "&last_date=" + plus7,
                 type: 'GET',
-                dataType: 'jsonp',
-                jsonpCallback: 'past2callback',
+                dataType: 'json',
                 error: errorHandler,
                 cache: true
-            }),
-            $.ajax({
-                url: "https://api.darksky.net/forecast/" + apikey + "/" + position + "," + minus2 + "?extend=hourly&units=si&callback=?",
-                type: 'GET',
-                dataType: 'jsonp',
-                jsonpCallback: 'past1callback',
-                error: errorHandler,
-                cache: true
-            }),
-            $.ajax({
-                url: "https://api.darksky.net/forecast/" + apikey + "/" + position + "?extend=hourly&units=si&callback=?",
-                type: 'GET',
-                dataType: 'jsonp',
-                jsonpCallback: 'futurecallback',
-                error: errorHandler,
-                cache: true
-            })).done(function (a1, a2, a3) {
-            mergeData(a1[0], a2[0], a3[0], position);
-        }).fail(function () {
-            location.reload(true);
-        });
+            })
+        ).done(
+            function (a1) {
+                mergeData(a1, latitude, longitude);
+            }
+        ).fail(
+            function () {
+                setTimeout (function () {
+                    location.reload(true);
+                }, 60000);
+            }
+        );
     };
 
 
     $(function() {
 
-        var position;
         var apikey;
 
         setTimeout (function () {
@@ -215,28 +186,23 @@
                 location.reload(true);
             }
         }, 60000);
-        apikey = urlParam('apikey') || urlParam(0);
 
-        if(apikey) {
-            if(urlParam('position')) {
-                loadData(apikey, urlParam('position'), minus1, minus2)
-            }
-            else if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    function(position) {
-                        var latitude = Math.round(position.coords.latitude * 1000) / 1000
-                        var longitude = Math.round(position.coords.longitude * 1000) / 1000
-                        loadData(apikey, latitude.toString() + "," + longitude.toString(), minus1, minus2);
-                    },
-                    function() {
-                        loadData(apikey, "49.1308061,10.9235329", minus1, minus2)
-                    });
-            }
-            else {
-                loadData(apikey, "49.1308061,10.9235329", minus1, minus2)
-            }
-        } else {
-            show("apimissing");
+        if(urlParam('lat')) {
+            loadData(urlParam('lat'), urlParam('long'), minus1, plus7)
+        }
+        else if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    var latitude = Math.round(position.coords.latitude * 1000) / 1000
+                    var longitude = Math.round(position.coords.longitude * 1000) / 1000
+                    loadData(latitude, longitude, minus1, plus7);
+                },
+                function() {
+                    loadData(49.1308061, 10.9235329, minus1, plus7)
+                });
+        }
+        else {
+            loadData(49.1308061, 10.9235329, minus1, plus7)
         }
 
     });

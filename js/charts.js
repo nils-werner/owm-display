@@ -114,6 +114,7 @@
          * @returns {array}
          */
         var stripeDays = function (forecast) {
+            return [];
 
             var stripes = [];
             var color = 'rgba(0, 0, 0, .2)';
@@ -122,7 +123,7 @@
                 color: color,
                 //color: 'rgba(256, 256, 256, 1)',
                 //color: 'rgba(0, 0, 0, .1)',
-                from: milliSeconds(fixTimezone(forecast[0].time)),
+                from: milliSeconds(fixTimezone(forecast[0].timestamp)),
                 to: milliSeconds(fixTimezone(forecast[0].sunriseTime))
             });
 
@@ -216,7 +217,7 @@
          * @returns {number}
          */
         var milliSeconds = function (timestamp) {
-            return 1000 * timestamp;
+            return timestamp.valueOf();
         };
 
         /**
@@ -225,6 +226,10 @@
          */
         var fixTimezone = function (timestamp) {
             return timestamp;
+        };
+
+        var parseDate = function (datetime) {
+            return moment(datetime);
         };
 
         /**
@@ -254,8 +259,8 @@
 
             for (var i = 0; i < length; i++) {
 
-                var deg = forecast[i].windBearing;
-                var stmp = [forecast[i].windSpeed]; // we're counting gusts, should we?
+                var deg = forecast[i].wind_direction;
+                var stmp = [forecast[i].wind_speed]; // we're counting gusts, should we?
 
                 for (var j = 0; j < stmp.length; j++) {
 
@@ -586,6 +591,10 @@
             });
         };
 
+        var windSpeedToMS = function (datapoint) {
+            return datapoint * 0.2777777778;
+        }
+
         /**
          * @param {string} chartName
          * @param {array} forecast
@@ -601,20 +610,20 @@
             for (var i = 0; i < forecast.length; i++) {
 
                 wind.push([
-                        milliSeconds(fixTimezone(forecast[i].time)),
-                        optional(Math.min, forecast[i].windSpeed, forecast[i].windGust)
+                        milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
+                        optional(Math.min, windSpeedToMS(forecast[i].wind_speed), windSpeedToMS(forecast[i].wind_gust_speed))
                     ]);
 
                 gust.push([
-                        milliSeconds(fixTimezone(forecast[i].time)),
-                        optional(Math.max, forecast[i].windSpeed, forecast[i].windGust)
+                        milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
+                        optional(Math.max, windSpeedToMS(forecast[i].wind_speed), windSpeedToMS(forecast[i].wind_gust_speed))
                     ]);
 
                 if (i % 3 === 0) {
                     icons.push({
-                            x: milliSeconds(fixTimezone(forecast[i].time)),
+                            x: milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
                             y: -0.5,
-                            marker: { symbol: 'url(img/directions/' + translateToDirection(forecast[i].windBearing) + '.png)' }
+                            marker: { symbol: 'url(img/directions/' + translateToDirection(forecast[i].wind_direction) + '.png)' }
                         });
                 }
             }
@@ -877,7 +886,7 @@
 
             for (var i = 0; i < forecast.length; i++) {
                 tmp.push([
-                    milliSeconds(fixTimezone(forecast[i].time)),
+                    milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
                     forecast[i].temperature
                 ]);
             }
@@ -945,7 +954,7 @@
 
             for (var i = 0; i < forecast.length; i++) {
                 tmp.push([
-                    milliSeconds(fixTimezone(forecast[i].time)),
+                    milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
                     forecast[i].humidity * 100
                 ]);
             }
@@ -1011,21 +1020,21 @@
 
             var tmp = [];
             var icons = [];
-            var threshold = current.pressure;
-            var minv = Math.min.apply(null, forecast.map(function(d) { return d.pressure }));
+            var threshold = current.pressure_msl;
+            var minv = Math.min.apply(null, forecast.map(function(d) { return d.pressure_msl }));
 
             threshold = 1015;
 
             for (var i = 0; i < forecast.length; i++) {
                 tmp.push([
-                    milliSeconds(fixTimezone(forecast[i].time)),
-                    forecast[i].pressure
+                    milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
+                    forecast[i].pressure_msl
                 ]);
 
                 if (i % 6 === 0) {
                     icons.push({
-                        x: milliSeconds(fixTimezone(forecast[i].time)),
-                        y: forecast[i].pressure + 3,
+                        x: milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
+                        y: forecast[i].pressure_msl + 3,
                         marker: {
                             symbol: 'url(img/weather/tiny/'+ translateIcon(forecast[i].icon) + '.png)'
                         }
@@ -1115,39 +1124,39 @@
 
             for (var i = 0; i < forecast.length; i++) {
 
-                if (typeof forecast[i].precipIntensity != 'undefined') {
-                    if(forecast[i].precipType == "snow") {
+                if (typeof forecast[i].precipitation != 'undefined') {
+                    if(forecast[i].precipitation_type == "snow") {
                         tmp.push({
-                            x: milliSeconds(fixTimezone(forecast[i].time)),
-                            y: forecast[i].precipIntensity,
+                            x: milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
+                            y: forecast[i].precipitation,
                             color: '#ffffff'
                         });
-                    } else if(forecast[i].precipType == "sleet" || forecast[i].precipType == "hail") {
+                    } else if(forecast[i].precipitation_type == "sleet" || forecast[i].precipitation_type == "hail") {
                         tmp.push({
-                            x: milliSeconds(fixTimezone(forecast[i].time)),
-                            y: forecast[i].precipIntensity,
+                            x: milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
+                            y: forecast[i].precipitation,
                             color: '#57A1D1'
                         });
                     } else {
                         tmp.push([
-                            milliSeconds(fixTimezone(forecast[i].time)),
-                            forecast[i].precipIntensity
+                            milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
+                            forecast[i].precipitation
                         ]);
                     }
                 } else {
                     tmp.push([
-                        milliSeconds(fixTimezone(forecast[i].time)), 0
+                        milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))), 0
                     ]);
                 }
 
-                if (typeof forecast[i].cloudCover != 'undefined') {
+                if (typeof forecast[i].cloud_cover != 'undefined') {
                     cloud.push([
-                            milliSeconds(fixTimezone(forecast[i].time)),
-                            Math.floor(forecast[i].cloudCover * 100)
+                            milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
+                            Math.floor(forecast[i].cloud_cover)
                         ]);
                 } else {
                     cloud.push([
-                            milliSeconds(fixTimezone(forecast[i].time)),
+                            milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
                             Math.floor(0)
                         ]);
                 }
