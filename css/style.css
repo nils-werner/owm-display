@@ -24,7 +24,7 @@ a, a:link, a:visited, a:hover {
 	color: #ffffff;
 }
 
-#loading div, #apimissing div {
+#loading div {
 	position: absolute;
 	top: 380px;
 	text-align: center;
