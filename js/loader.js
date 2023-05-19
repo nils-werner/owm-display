@@ -190,6 +190,10 @@
         if(urlParam('lat')) {
             loadData(urlParam('lat'), urlParam('long'), minus1, plus7)
         }
+        else if(urlParam('position')) {
+            var latlong = urlParam('position').split(',');
+            loadData(latlong[0], latlong[1], minus1, plus7)
+        }
         else if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 function(position) {
