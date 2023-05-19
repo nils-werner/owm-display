@@ -1,15 +1,9 @@
 Weather Display
 ===============
 
-This page is a small, HTML- and JS-only, website to show basic weather information for a sailing spot in southern germany.
+This page is a small, HTML- and JS-only, website to show basic weather information from [BrightSky](https://brightsky.dev/) for a sailing spot in southern germany.
 
 ![Screenshot](img/screenshot.png)
-
-## API Key
-
-The API key must be provided using the URL hash, like
-
-    index.html?apikey=abcdef
 
 ## Custom Position
 
@@ -32,5 +26,3 @@ so unplugging power doesn't corrupt your filesystem, or your SD card doesn't wea
 ## Example
 
 An example of this site can be found on <http://nils-werner.github.io/owm-display/>
-
-Obviously you need to provide your own [API key](https://darksky.net/dev/).
