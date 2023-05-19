@@ -102,7 +102,17 @@
             hourlyspan.push(data.weather[i]);
         }
 
-        var current = data.weather[10];
+        var current;
+
+        for (var i = 1; i < data.weather.length; i++) {
+            if (moment(data.weather[i].timestamp).isBetween(
+                moment(),
+                moment().add(1, 'hours')
+            )) {
+                current = data.weather[i];
+            }
+        }
+
         var alerts = [{}];
 
         for (i = 0; i < data.weather.length; i++) {
