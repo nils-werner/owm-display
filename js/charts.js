@@ -1023,7 +1023,7 @@
             var threshold = current.pressure_msl;
             var minv = Math.min.apply(null, forecast.map(function(d) { return d.pressure_msl }));
 
-            threshold = 1015;
+            // threshold = 1015;
 
             for (var i = 0; i < forecast.length; i++) {
                 tmp.push([
