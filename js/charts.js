@@ -260,7 +260,7 @@
             for (var i = 0; i < length; i++) {
 
                 var deg = forecast[i].wind_direction;
-                var stmp = [forecast[i].wind_speed]; // we're counting gusts, should we?
+                var stmp = [windSpeedToMS(forecast[i].wind_speed), windSpeedToMS(forecast[i].wind_gust_speed)]; // we're counting gusts, should we?
 
                 for (var j = 0; j < stmp.length; j++) {
 
