@@ -181,7 +181,7 @@
             function () {
                 setTimeout (function () {
                     location.reload(true);
-                }, 60000);
+                }, 120000);
             }
         );
     };
@@ -195,7 +195,7 @@
             if(!dataReceived) {
                 location.reload(true);
             }
-        }, 60000);
+        }, 120000);
 
         if(urlParam('lat')) {
             loadData(urlParam('lat'), urlParam('long'), minus1, plus7)
