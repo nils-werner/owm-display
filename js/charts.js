@@ -1226,7 +1226,7 @@
                     },
                     {
                         showInLegend: false,
-                        type: 'column',
+                        type: 'areaspline', // I would like 'column' here, but it causes an x-axis overflow bug.
                         pointWidth: 4,
                         yAxis: 0,
                         data: tmp,
