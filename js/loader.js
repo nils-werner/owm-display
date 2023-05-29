@@ -146,6 +146,7 @@
         // owm.placeAlert('#text-warning', alerts);
         owm.dialTemperature('dial-temperature', current);
         owm.placeIcon('icon-weather', current);
+        owm.placeFavicon(current);
         owm.placePin('pin', latitude, longitude);
 
         owm.dialWind('dial-wind', span);

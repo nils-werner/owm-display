@@ -42,6 +42,15 @@
         };
 
         /**
+         * @param {object} forecast
+         */
+        var placeFavicon = function (forecast) {
+            $("link[rel~='icon']").each(function() {
+                $(this).attr("href", 'img/weather/'+ translateIcon(forecast.icon) + '.png');
+            })
+        };
+
+        /**
          * @param {string} chartName
          * @param {object} forecast
          */
@@ -1246,6 +1255,7 @@
         return {
             dialTemperature: dialTemperature,
             placeIcon: placeIcon,
+            placeFavicon: placeFavicon,
             dialWind: dialWind,
             plotPressure: plotPressure,
             plotTemperature: plotTemperature,
