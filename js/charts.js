@@ -83,6 +83,18 @@
         };
 
         /**
+         * @param {string} chartName
+         * @param {object} forecast
+         */
+        var placeStation = function (chartName, sources) {
+            var text = "";
+
+            text = sources[0].station_name;
+
+            $('#' + chartName).html(text);
+        };
+
+        /**
          * @param {number} timestamp
          */
         var isNight = function (timestamp) {
@@ -1121,6 +1133,7 @@
 
             var tmp = [];
             var cloud = [];
+            var prob = [];
 
             for (var i = 0; i < forecast.length; i++) {
 
@@ -1160,6 +1173,11 @@
                             Math.floor(0)
                         ]);
                 }
+
+                prob.push([
+                    milliSeconds(fixTimezone(parseDate(forecast[i].timestamp))),
+                    forecast[i].precipitation_probability
+                ]);
             }
 
             new Highcharts.Chart({
@@ -1226,6 +1244,14 @@
                     },
                     {
                         showInLegend: false,
+                        type: 'areaspline',
+                        yAxis: 1,
+                        data: prob,
+                        color: '#CACACA',
+                        fillOpacity: 0.2
+                    },
+                    {
+                        showInLegend: false,
                         type: 'areaspline', // I would like 'column' here, but it causes an x-axis overflow bug.
                         pointWidth: 4,
                         yAxis: 0,
@@ -1254,6 +1280,7 @@
             plotRain: plotRain,
             placeDate: placeDate,
             placeSuntimes: placeSuntimes,
+            placeStation: placeStation,
             placePin: placePin,
             placeAlert: placeAlert,
             highlightAlert: highlightAlert

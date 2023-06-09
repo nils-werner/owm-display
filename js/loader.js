@@ -121,9 +121,10 @@
             }
         }
 
-        dailyspan = []
+        dailyspan = [];
+        var sources = data.sources;
 
-        renderData(hourlyspan, current, dailyspan, alerts, latitude, longitude);
+        renderData(hourlyspan, current, dailyspan, sources, alerts, latitude, longitude);
 
     };
 
@@ -133,7 +134,7 @@
      * @param {array} current
      * @param {array} daily
      */
-    var renderData = function (span, current, daily, alerts, latitude, longitude) {
+    var renderData = function (span, current, daily, sources, alerts, latitude, longitude) {
 
         hide('loading');
         show('map-rain');
@@ -156,6 +157,7 @@
         owm.plotRain('chart-rain', span, daily);
         owm.placeDate('date', span);
         // owm.placeSuntimes('suntimes', daily);
+        owm.placeStation('station', sources);
 
     };
 
