@@ -1189,7 +1189,7 @@
                     enabled: false
                 },
                 title: {
-                    text: 'Niederschlag/Bewölkung'
+                    text: 'Bewölkung/Niederschlag'
                 },
                 tooltip: {
                     formatter: function () {
@@ -1239,7 +1239,7 @@
                         type: 'areaspline',
                         yAxis: 1,
                         data: cloud,
-                        color: '#FF8E00',
+                        color: '#CACACA',
                         fillOpacity: 0.2
                     },
                     {
@@ -1247,7 +1247,7 @@
                         type: 'areaspline',
                         yAxis: 1,
                         data: prob,
-                        color: '#CACACA',
+                        color: '#FF8E00',
                         fillOpacity: 0.2
                     },
                     {
